@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="index,follow" />
+    <meta
+      name="description"
+      content="Official support, game information, and contact details for 9999m: Down to the Princess by Sanctuary Studio."
+    />
+    <meta property="og:title" content="9999m: Down to the Princess — Support" />
+    <meta
+      property="og:description"
+      content="Game information, troubleshooting, and developer contact for the offline single-player dungeon adventure."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/game-icon.jpg" />
+    <title>Support | 9999m: Down to the Princess</title>
+    <style>
+      :root {
+        --night: #07080d;
+        --night-soft: #0e1119;
+        --panel: rgba(20, 22, 32, 0.88);
+        --panel-solid: #151722;
+        --ink: #f6f1e8;
+        --muted: #b7b1aa;
+        --faint: #817d78;
+        --line: rgba(255, 255, 255, 0.11);
+        --gold: #e4b86b;
+        --gold-bright: #ffd58a;
+        --violet: #9d76d7;
+        --violet-soft: rgba(157, 118, 215, 0.14);
+        --ember: #ef6a43;
+        --shadow: 0 28px 90px rgba(0, 0, 0, 0.45);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 82% 2%, rgba(102, 65, 158, 0.28), transparent 30rem),
+          radial-gradient(circle at 12% 24%, rgba(173, 67, 40, 0.13), transparent 34rem),
+          var(--night);
+        font-family:
+          Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid var(--line);
+        background: rgba(7, 8, 13, 0.82);
+        backdrop-filter: blur(18px) saturate(140%);
+      }
+
+      .nav-shell {
+        width: min(1120px, calc(100% - 32px));
+        min-height: 66px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 720;
+        letter-spacing: -0.02em;
+      }
+
+      .brand img {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+      }
+
+      .brand span {
+        white-space: nowrap;
+      }
+
+      .top-nav {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .top-nav a {
+        color: var(--muted);
+        font-size: 0.86rem;
+        text-decoration: none;
+      }
+
+      .top-nav a:hover,
+      .top-nav a:focus-visible {
+        color: var(--gold-bright);
+      }
+
+      .page-width {
+        width: min(1120px, calc(100% - 32px));
+        margin-inline: auto;
+      }
+
+      .hero {
+        min-height: 680px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.75fr);
+        align-items: center;
+        gap: clamp(48px, 8vw, 110px);
+        padding-block: clamp(68px, 10vw, 124px);
+      }
+
+      .eyebrow {
+        margin: 0 0 18px;
+        color: var(--gold);
+        font-size: 0.76rem;
+        font-weight: 780;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1,
+      h2 {
+        font-family: Georgia, "Times New Roman", "Songti SC", serif;
+        font-weight: 500;
+      }
+
+      h1 {
+        max-width: 700px;
+        margin-bottom: 24px;
+        font-size: clamp(3.1rem, 7.6vw, 6.6rem);
+        line-height: 0.94;
+        letter-spacing: -0.055em;
+      }
+
+      .hero-copy {
+        max-width: 670px;
+        margin-bottom: 30px;
+        color: #d4cec6;
+        font-size: clamp(1.03rem, 2vw, 1.22rem);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+
+      .button {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 11px 18px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        font-size: 0.92rem;
+        font-weight: 740;
+        text-decoration: none;
+        transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button-primary {
+        color: #171008;
+        background: linear-gradient(135deg, var(--gold-bright), #d49b46);
+        box-shadow: 0 12px 32px rgba(221, 164, 76, 0.22);
+      }
+
+      .button-secondary {
+        color: var(--ink);
+        border-color: rgba(255, 255, 255, 0.19);
+        background: rgba(255, 255, 255, 0.055);
+      }
+
+      .feature-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+      }
+
+      .feature-chips span {
+        padding: 7px 11px;
+        color: #c9c1b8;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.035);
+        font-size: 0.78rem;
+      }
+
+      .hero-art {
+        position: relative;
+        justify-self: end;
+        width: min(100%, 460px);
+      }
+
+      .hero-art::before {
+        content: "";
+        position: absolute;
+        inset: 12% -14% -10% 10%;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(157, 118, 215, 0.35), transparent 67%);
+        filter: blur(24px);
+      }
+
+      .hero-art::after {
+        content: "9999m";
+        position: absolute;
+        right: -3%;
+        bottom: 5%;
+        color: rgba(255, 255, 255, 0.07);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(4.2rem, 9vw, 7.8rem);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.08em;
+      }
+
+      .hero-art img {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: clamp(34px, 7vw, 74px);
+        box-shadow: var(--shadow);
+        transform: rotate(2.5deg);
+      }
+
+      .section {
+        padding-block: clamp(72px, 10vw, 116px);
+        border-top: 1px solid var(--line);
+      }
+
+      .section-heading {
+        max-width: 740px;
+        margin-bottom: 42px;
+      }
+
+      .section-heading h2 {
+        margin-bottom: 15px;
+        font-size: clamp(2.25rem, 5vw, 4.2rem);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+      }
+
+      .section-heading p {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 1.02rem;
+      }
+
+      .support-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .contact-panel,
+      .info-panel {
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        background: var(--panel);
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.22);
+      }
+
+      .contact-panel {
+        padding: clamp(28px, 5vw, 48px);
+        background:
+          linear-gradient(135deg, rgba(99, 62, 145, 0.23), transparent 62%),
+          var(--panel);
+      }
+
+      .contact-panel h2 {
+        max-width: 640px;
+        margin-bottom: 17px;
+        font-size: clamp(2.2rem, 4.8vw, 3.9rem);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+      }
+
+      .contact-panel > p {
+        max-width: 650px;
+        color: var(--muted);
+      }
+
+      .contact-panel .button {
+        margin-top: 9px;
+      }
+
+      .contact-note {
+        margin-top: 28px;
+        padding-top: 22px;
+        border-top: 1px solid var(--line);
+      }
+
+      .contact-note strong {
+        display: block;
+        margin-bottom: 7px;
+        color: var(--gold-bright);
+        font-size: 0.83rem;
+        letter-spacing: 0.04em;
+      }
+
+      .contact-note p {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .info-panel {
+        padding: 10px 28px;
+      }
+
+      .info-row {
+        display: grid;
+        grid-template-columns: 118px 1fr;
+        gap: 18px;
+        padding: 19px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .info-row:last-child {
+        border-bottom: 0;
+      }
+
+      .info-row dt {
+        color: var(--faint);
+        font-size: 0.82rem;
+      }
+
+      .info-row dd {
+        margin: 0;
+        color: #e9e3db;
+        font-size: 0.9rem;
+        word-break: break-word;
+      }
+
+      .info-row a {
+        color: var(--gold-bright);
+        text-underline-offset: 0.18em;
+      }
+
+      .offline-banner {
+        margin-top: 22px;
+        padding: 19px 21px;
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        border: 1px solid rgba(228, 184, 107, 0.2);
+        border-radius: 18px;
+        background: rgba(228, 184, 107, 0.07);
+      }
+
+      .offline-banner span {
+        flex: 0 0 auto;
+        width: 35px;
+        height: 35px;
+        display: grid;
+        place-items: center;
+        color: #171008;
+        border-radius: 50%;
+        background: var(--gold);
+        font-weight: 850;
+      }
+
+      .offline-banner p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .offline-banner strong {
+        color: var(--ink);
+      }
+
+      .faq-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      details {
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      details[open] {
+        border-color: rgba(157, 118, 215, 0.36);
+        background: var(--violet-soft);
+      }
+
+      summary {
+        position: relative;
+        padding: 20px 54px 20px 21px;
+        cursor: pointer;
+        list-style: none;
+        font-weight: 710;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      summary::after {
+        content: "+";
+        position: absolute;
+        top: 50%;
+        right: 21px;
+        width: 26px;
+        height: 26px;
+        display: grid;
+        place-items: center;
+        color: var(--gold-bright);
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        transform: translateY(-50%);
+      }
+
+      details[open] summary::after {
+        content: "−";
+      }
+
+      .faq-answer {
+        padding: 0 54px 21px 21px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .faq-answer p:last-child {
+        margin-bottom: 0;
+      }
+
+      .site-footer {
+        padding: 36px 0 44px;
+        border-top: 1px solid var(--line);
+        color: var(--faint);
+        font-size: 0.8rem;
+      }
+
+      .footer-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 22px;
+      }
+
+      .footer-row p {
+        margin: 0;
+      }
+
+      .footer-row nav {
+        display: flex;
+        gap: 18px;
+      }
+
+      .footer-row a {
+        color: var(--muted);
+        text-underline-offset: 0.18em;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--gold-bright);
+        outline-offset: 4px;
+      }
+
+      @media (max-width: 860px) {
+        .hero {
+          min-height: 0;
+          grid-template-columns: 1fr;
+          padding-top: 70px;
+        }
+
+        .hero-art {
+          width: min(72vw, 440px);
+          justify-self: center;
+          order: -1;
+        }
+
+        .hero-copy-area {
+          text-align: center;
+        }
+
+        .hero-actions,
+        .feature-chips {
+          justify-content: center;
+        }
+
+        .support-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav-shell {
+          min-height: 60px;
+        }
+
+        .brand span {
+          max-width: 180px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .top-nav a:not(:last-child) {
+          display: none;
+        }
+
+        h1 {
+          font-size: clamp(3.2rem, 18vw, 5.4rem);
+        }
+
+        .hero {
+          padding-block: 52px 76px;
+          gap: 42px;
+        }
+
+        .hero-art {
+          width: min(78vw, 360px);
+        }
+
+        .section {
+          padding-block: 66px;
+        }
+
+        .contact-panel,
+        .info-panel {
+          border-radius: 21px;
+        }
+
+        .info-panel {
+          padding-inline: 21px;
+        }
+
+        .info-row {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+
+        .footer-row {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#top" aria-label="9999m support home">
+          <img src="assets/game-icon.jpg" alt="" />
+          <span>9999m: Down to the Princess</span>
+        </a>
+        <nav class="top-nav" aria-label="Support navigation">
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero page-width" aria-labelledby="hero-title">
+        <div class="hero-copy-area">
+          <p class="eyebrow">Sanctuary Studio · Official Support</p>
+          <h1 id="hero-title">The descent is hard. Getting help shouldn’t be.</h1>
+          <p class="hero-copy">
+            Support for <strong>9999m: Down to the Princess</strong>, a fully
+            offline single-player dungeon adventure about an ordinary delivery
+            boy, one impossible promise, and a princess waiting 9,999 meters below.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button button-primary"
+              href="mailto:dxl707963406@outlook.com?subject=9999m%20Support%20Request&amp;body=Game%20version%3A%0ADevice%20model%3A%0AiOS%20version%3A%0AIssue%3A%0ASteps%20to%20reproduce%3A"
+            >Email Support</a>
+            <a class="button button-secondary" href="./index.html">Privacy Policy</a>
+          </div>
+          <div class="feature-chips" aria-label="Game features">
+            <span>Fully offline</span>
+            <span>Single player</span>
+            <span>No game account required</span>
+            <span>Built for touch</span>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <img src="assets/game-icon.jpg" alt="" />
+        </div>
+      </section>
+
+      <section class="section" id="contact" aria-labelledby="contact-heading">
+        <div class="page-width support-grid">
+          <div class="contact-panel">
+            <p class="eyebrow">Player Support</p>
+            <h2 id="contact-heading">Tell us what happened.</h2>
+            <p>
+              Found a bug, lost progress, or have a gameplay question? Send a
+              message directly to the developer with the details below.
+            </p>
+            <a
+              class="button button-primary"
+              href="mailto:dxl707963406@outlook.com?subject=9999m%20Support%20Request&amp;body=Game%20version%3A%0ADevice%20model%3A%0AiOS%20version%3A%0AIssue%3A%0ASteps%20to%20reproduce%3A"
+            >dxl707963406@outlook.com</a>
+
+            <div class="contact-note">
+              <strong>Help us investigate faster</strong>
+              <p>
+                Please include the game version, device model, iOS version,
+                what you expected to happen, and the steps that caused the issue.
+                Screenshots are welcome when available.
+              </p>
+            </div>
+          </div>
+
+          <dl class="info-panel" aria-label="Developer contact information">
+            <div class="info-row">
+              <dt>Game</dt>
+              <dd>9999m: Down to the Princess</dd>
+            </div>
+            <div class="info-row">
+              <dt>Studio</dt>
+              <dd>Sanctuary Studio</dd>
+            </div>
+            <div class="info-row">
+              <dt>Developer</dt>
+              <dd>Deng XiaoLong</dd>
+            </div>
+            <div class="info-row">
+              <dt>Email</dt>
+              <dd><a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a></dd>
+            </div>
+            <div class="info-row">
+              <dt>Privacy</dt>
+              <dd><a href="./index.html">Read the Privacy Policy</a></dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="page-width">
+          <div class="offline-banner">
+            <span aria-hidden="true">✓</span>
+            <p>
+              <strong>Core gameplay works entirely offline.</strong> No game
+              account or internet connection is required to play. Optional save
+              synchronization through iCloud Documents requires iCloud to be
+              enabled, an internet connection, and the same Apple Account on each device.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq" aria-labelledby="faq-heading">
+        <div class="page-width">
+          <div class="section-heading">
+            <p class="eyebrow">Quick answers</p>
+            <h2 id="faq-heading">Frequently asked questions.</h2>
+            <p>Start here for the most common gameplay and technical questions.</p>
+          </div>
+
+          <div class="faq-list">
+            <details open>
+              <summary>Does the game require an internet connection or account?</summary>
+              <div class="faq-answer">
+                <p>
+                  No. The core game is a fully offline single-player experience,
+                  and no game account is required. Internet access is only needed
+                  for Apple services such as downloading the game, receiving
+                  updates, completing an App Store transaction, or synchronizing
+                  save data through iCloud Documents.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Where is my game progress stored?</summary>
+              <div class="faq-answer">
+                <p>
+                  Progress and settings are stored locally on your device. When
+                  iCloud is enabled for the game, a save copy is also stored in
+                  Apple’s iCloud Documents and synchronized across supported
+                  devices signed in to the same Apple Account. This helps keep
+                  progress available when you change devices. Allow iCloud time
+                  to finish synchronizing before opening the game on another device.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Why is my latest save not appearing on another device?</summary>
+              <div class="faq-answer">
+                <p>
+                  Confirm that both devices use the same Apple Account, iCloud
+                  Drive is enabled, iCloud access is allowed for the game, and
+                  both devices have an internet connection. Close the game on the
+                  first device after saving, allow synchronization to complete,
+                  and then open it on the second device. If the problem continues,
+                  contact support before uninstalling the game.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>What should I try if the game will not open or keeps closing?</summary>
+              <div class="faq-answer">
+                <p>
+                  Close the game completely, restart your device, confirm that
+                  enough storage space is available, and install the latest game
+                  and iOS updates. If the problem continues, email the device
+                  model, iOS version, game version, and a description of when the
+                  issue occurs.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>How do I change the game language?</summary>
+              <div class="faq-answer">
+                <p>
+                  Open Settings from the game’s main screen and choose Language.
+                  The game supports English, Simplified Chinese, Traditional
+                  Chinese, Japanese, and Korean.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Does the game collect personal data or show advertisements?</summary>
+              <div class="faq-answer">
+                <p>
+                  The developer does not collect personal data, use analytics,
+                  track players, or display advertisements. When enabled, save
+                  synchronization is provided by Apple’s iCloud Documents and is
+                  handled under your Apple Account settings. Read the
+                  <a href="./index.html">full Privacy Policy</a> for details.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>How should I report a bug?</summary>
+              <div class="faq-answer">
+                <p>
+                  Email <a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a>
+                  with the game version, device model, iOS version, steps to
+                  reproduce the problem, and screenshots if available.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-width footer-row">
+        <p>© 2026 Sanctuary Studio · Deng XiaoLong</p>
+        <nav aria-label="Footer navigation">
+          <a href="./index.html">Privacy Policy</a>
+          <a href="#top">Back to top</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
