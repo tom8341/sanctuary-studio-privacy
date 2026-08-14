@@ -325,7 +325,7 @@
           This page describes the current version of the game.
         </p>
         <div class="hero-meta">
-          <span class="badge">No ads · No analytics · No accounts · No tracking</span>
+          <span class="badge">No ads · No analytics · No game accounts · No tracking</span>
           <a class="language-link" href="./support.html">Game Support</a>
           <a class="language-link" href="#english">English</a>
           <a class="language-link" href="#chinese" lang="zh-Hans">简体中文</a>
@@ -345,12 +345,13 @@
           <article class="policy-section" id="english">
             <div class="language-heading">
               <h2>English</h2>
-              <span class="updated">Effective August 4, 2026</span>
+              <span class="updated">Effective August 15, 2026</span>
             </div>
 
             <p class="summary-card">
-              The current version of the game does not collect personal data,
-              serve advertisements, use analytics, or track users.
+              We do not collect or store personal data on developer-operated
+              servers. Optional purchases and iCloud synchronization use Apple
+              services and require an internet connection.
             </p>
 
             <p>
@@ -394,12 +395,24 @@
             <h3>3. In-app purchases</h3>
             <p>
               The Game may offer optional in-app purchases through Apple's App
-              Store. Payments are processed by Apple. We do not receive your
-              payment-card number or Apple Account credentials. The Game
-              receives the purchased product identifier and purchase status
-              through Apple's StoreKit services only as needed to deliver the
-              purchased virtual item. The current version does not send or
-              retain this information on a developer-operated server.
+              Store. An internet connection and an Apple Account permitted to
+              make purchases are required to initiate and complete these
+              transactions. Payments are processed by Apple. We do not receive
+              your payment-card number or Apple Account credentials. The Game
+              receives the purchased product identifier, transaction identity,
+              receipt, and purchase status through Apple's StoreKit services
+              only as needed to validate and deliver the purchased virtual item.
+            </p>
+            <p>
+              To prevent the same purchase from being delivered more than once,
+              the Game derives a one-way SHA-256 hash from the StoreKit
+              transaction identifier or receipt and stores that hash in the
+              local save file. When iCloud synchronization is enabled, the hash
+              is included in the save file synchronized through iCloud
+              Documents. Raw StoreKit transaction identifiers and receipts are
+              not stored in the save file. Neither the raw purchase information
+              nor the derived hash is sent to or retained on a
+              developer-operated server.
             </p>
             <p>
               Apple's handling of payment and App Store information is governed
@@ -410,12 +423,13 @@
             <p>
               The Game is built with the Unity game engine and uses Unity
               In-App Purchasing to communicate with the applicable app store.
-              When enabled by the user, the Game also uses Apple's iCloud
-              Documents to store and synchronize save files across the user's
-              supported devices.
-              In the current version, Unity Analytics, Unity Ads, crash
-              reporting, and other advertising or behavioral-tracking services
-              are disabled.
+              Core gameplay can be played offline, but in-app purchases require
+              an internet connection to Apple's App Store services. When
+              enabled by the user, the Game also uses Apple's iCloud Documents
+              to store and synchronize save files across the user's supported
+              devices; this synchronization requires internet access. In the
+              current version, Unity Analytics, Unity Ads, crash reporting, and
+              other advertising or behavioral-tracking services are disabled.
             </p>
 
             <h3>5. Children's privacy</h3>
@@ -464,11 +478,12 @@
           <article class="policy-section" id="chinese" lang="zh-Hans">
             <div class="language-heading">
               <h2>简体中文</h2>
-              <span class="updated">生效日期：2026 年 8 月 4 日</span>
+              <span class="updated">生效日期：2026 年 8 月 15 日</span>
             </div>
 
             <p class="summary-card">
-              游戏当前版本不收集个人数据、不展示广告、不使用分析服务，也不追踪用户。
+              我们不会在开发者运营的服务器上收集或保存个人数据。可选的 App 内购买及
+              iCloud 同步会使用 Apple 服务，并需要网络连接。
             </p>
 
             <p>
@@ -502,9 +517,15 @@
 
             <h3>3. App 内购买</h3>
             <p>
-              本游戏可能通过 Apple App Store 提供可选的 App 内购买。付款由 Apple
+              本游戏可能通过 Apple App Store 提供可选的 App 内购买。发起及完成此类交易需要网络连接，以及获准进行购买的 Apple 账户。付款由 Apple
               处理，我们不会获取您的银行卡号或 Apple 账户凭据。本游戏仅会通过 Apple
-              StoreKit 获取所购商品标识符和购买状态，以便发放相应的虚拟物品。当前版本不会将这些信息发送至开发者运营的服务器或在此类服务器上保存。
+              StoreKit 获取所购商品标识符、交易标识、收据及购买状态，用于验证购买并发放相应的虚拟物品。
+            </p>
+            <p>
+              为防止同一笔购买被重复发放，本游戏会根据 StoreKit 交易标识符或收据生成单向
+              SHA-256 哈希值，并将该哈希值保存在本地存档中。当您开启 iCloud
+              同步时，该哈希值也会随存档通过 iCloud Documents 同步。原始 StoreKit
+              交易标识符和收据不会保存在存档中；原始购买信息及生成的哈希值均不会发送至开发者运营的服务器或在此类服务器上保存。
             </p>
             <p>
               Apple 对付款及 App Store 信息的处理适用
@@ -514,8 +535,9 @@
             <h3>4. 第三方服务</h3>
             <p>
               本游戏使用 Unity 游戏引擎开发，并使用 Unity In-App Purchasing
-              与相应的应用商店通信。当用户开启 iCloud 时，本游戏还会使用 Apple 的
-              iCloud Documents 在用户的受支持设备之间存储和同步存档文件。当前版本已关闭
+              与相应的应用商店通信。核心游戏内容可以离线游玩，但 App 内购买需要联网访问
+              Apple App Store 服务。当用户开启 iCloud 时，本游戏还会使用 Apple 的
+              iCloud Documents 在用户的受支持设备之间存储和同步存档文件，此同步过程需要网络连接。当前版本已关闭
               Unity Analytics、Unity Ads、崩溃报告以及其他广告或行为追踪服务。
             </p>
 
@@ -554,13 +576,14 @@
           <article class="policy-section" id="spanish" lang="es">
             <div class="language-heading">
               <h2>Español</h2>
-              <span class="updated">Fecha de entrada en vigor: 4 de agosto de 2026</span>
+              <span class="updated">Fecha de entrada en vigor: 15 de agosto de 2026</span>
             </div>
 
             <p class="summary-card">
-              La versión actual del juego no recopila datos personales, no
-              muestra publicidad, no utiliza servicios de análisis ni rastrea a
-              los usuarios.
+              No recopilamos ni almacenamos datos personales en servidores
+              operados por el desarrollador. Las compras opcionales y la
+              sincronización con iCloud utilizan servicios de Apple y requieren
+              conexión a Internet.
             </p>
 
             <p>
@@ -609,13 +632,27 @@
             <h3>3. Compras dentro de la app</h3>
             <p>
               El Juego puede ofrecer compras opcionales dentro de la app a
-              través del App Store de Apple. Apple procesa los pagos. Nosotros
-              no recibimos el número de su tarjeta de pago ni las credenciales
-              de su cuenta de Apple. El Juego recibe, mediante los servicios
-              StoreKit de Apple, el identificador del producto adquirido y el
-              estado de la compra únicamente para entregar el artículo virtual
-              correspondiente. La versión actual no envía ni conserva esta
-              información en servidores operados por el desarrollador.
+              través del App Store de Apple. Para iniciar y completar estas
+              transacciones se necesita una conexión a Internet y una cuenta de
+              Apple autorizada para realizar compras. Apple procesa los pagos.
+              Nosotros no recibimos el número de su tarjeta de pago ni las
+              credenciales de su cuenta de Apple. El Juego recibe, mediante los
+              servicios StoreKit de Apple, el identificador del producto, la
+              identidad de la transacción, el recibo y el estado de la compra
+              únicamente para validar y entregar el artículo virtual
+              correspondiente.
+            </p>
+            <p>
+              Para impedir que una misma compra se entregue más de una vez, el
+              Juego genera un hash SHA-256 unidireccional a partir del
+              identificador de la transacción de StoreKit o del recibo y guarda
+              dicho hash en el archivo de guardado local. Cuando la
+              sincronización con iCloud está activada, el hash se incluye en el
+              archivo sincronizado mediante iCloud Documents. Los
+              identificadores de transacción y los recibos originales de
+              StoreKit no se guardan en el archivo. Ni la información original
+              de la compra ni el hash generado se envían ni se conservan en
+              servidores operados por el desarrollador.
             </p>
             <p>
               El tratamiento que Apple realiza de la información de pago y del
@@ -627,12 +664,16 @@
             <p>
               El Juego se ha desarrollado con el motor de videojuegos Unity y
               utiliza Unity In-App Purchasing para comunicarse con la tienda de
-              aplicaciones correspondiente. Cuando el usuario activa iCloud, el
-              Juego también utiliza iCloud Documents de Apple para almacenar y
-              sincronizar archivos de guardado entre sus dispositivos compatibles.
-              En la versión actual están
-              desactivados Unity Analytics, Unity Ads, los informes de fallos y
-              otros servicios de publicidad o seguimiento del comportamiento.
+              aplicaciones correspondiente. El contenido principal del Juego
+              puede jugarse sin conexión, pero las compras dentro de la app
+              requieren acceso a Internet para comunicarse con los servicios
+              del App Store de Apple. Cuando el usuario activa iCloud, el Juego
+              también utiliza iCloud Documents de Apple para almacenar y
+              sincronizar archivos de guardado entre sus dispositivos
+              compatibles; esta sincronización requiere acceso a Internet. En
+              la versión actual están desactivados Unity Analytics, Unity Ads,
+              los informes de fallos y otros servicios de publicidad o
+              seguimiento del comportamiento.
             </p>
 
             <h3>5. Privacidad de los menores</h3>
