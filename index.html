@@ -322,10 +322,11 @@
         <h1>Privacy Policy</h1>
         <p class="hero-summary">
           Privacy information for <strong>9999m: Down to the Princess</strong>.
-          This page describes the current version of the game.
+          Analytics sections apply to versions that include the GameAnalytics
+          integration; earlier versions do not send GameAnalytics events.
         </p>
         <div class="hero-meta">
-          <span class="badge">No ads · No analytics · No game accounts · No tracking</span>
+          <span class="badge">No ads · Limited gameplay analytics · No game accounts</span>
           <a class="language-link" href="./support.html">Game Support</a>
           <a class="language-link" href="#english">English</a>
           <a class="language-link" href="#chinese" lang="zh-Hans">简体中文</a>
@@ -345,13 +346,14 @@
           <article class="policy-section" id="english">
             <div class="language-heading">
               <h2>English</h2>
-              <span class="updated">Effective August 15, 2026</span>
+              <span class="updated">Effective August 26, 2026</span>
             </div>
 
             <p class="summary-card">
-              We do not collect or store personal data on developer-operated
-              servers. Optional purchases and iCloud synchronization use Apple
-              services and require an internet connection.
+              GameAnalytics-enabled versions use GameAnalytics for limited, pseudonymous gameplay
+              analytics. We do not collect names, email addresses, payment
+              credentials, precise location, or advertising content through
+              the Game.
             </p>
 
             <p>
@@ -365,10 +367,43 @@
 
             <h3>1. Information we collect</h3>
             <p>
-              We do not collect, transmit, or store personal information on
-              developer-operated servers. The current version of the Game does
-              not include user accounts, advertising, analytics, social-media
-              features, or third-party tracking.
+              We do not operate a game account system or a server that stores
+              player profiles. Versions that include GameAnalytics use it to understand
+              whether players can complete onboarding, begin and finish runs,
+              reach progression milestones, recover after a defeat, and
+              complete an optional in-app purchase. GameAnalytics may process:
+            </p>
+            <ul>
+              <li>
+                a persistent analytics identifier based on Apple's Identifier
+                for Vendor (IDFV), a session identifier, and session count;
+              </li>
+              <li>
+                device model, operating-system version, app and SDK version,
+                connection type, event timestamps, and coarse location derived
+                from the network connection;
+              </li>
+              <li>
+                product-interaction and gameplay events, including onboarding,
+                run start/completion/failure, death, revive, restart, depth
+                milestones, ending reached, difficulty, selected avatar,
+                player level, death count, and run duration; and
+              </li>
+              <li>
+                purchase analytics such as product identifier, localized price,
+                currency, purchase status, and a general failure reason.
+              </li>
+            </ul>
+            <p>
+              Analytics events are associated with the persistent identifier
+              so that sessions and retention can be measured. We do not
+              intentionally send a player's name, email address, precise
+              location, Apple Account credentials, payment-card information,
+              raw StoreKit transaction identifier, or raw App Store receipt to
+              GameAnalytics. Automatic Unity error submission, advertising
+              events, and native crash reporting are disabled. The Game does
+              not request App Tracking Transparency permission and does not use
+              the IDFA in the current configuration.
             </p>
 
             <h3>2. Information stored locally and in iCloud</h3>
@@ -410,9 +445,10 @@
               local save file. When iCloud synchronization is enabled, the hash
               is included in the save file synchronized through iCloud
               Documents. Raw StoreKit transaction identifiers and receipts are
-              not stored in the save file. Neither the raw purchase information
-              nor the derived hash is sent to or retained on a
-              developer-operated server.
+              not stored in the save file or sent to GameAnalytics. A separate
+              analytics event may report the purchased product, localized
+              price, currency, and success or failure status, without the raw
+              transaction identifier or receipt.
             </p>
             <p>
               Apple's handling of payment and App Store information is governed
@@ -421,41 +457,53 @@
 
             <h3>4. Third-party services</h3>
             <p>
-              The Game is built with the Unity game engine and uses Unity
-              In-App Purchasing to communicate with the applicable app store.
-              Core gameplay can be played offline, but in-app purchases require
-              an internet connection to Apple's App Store services. When
-              enabled by the user, the Game also uses Apple's iCloud Documents
-              to store and synchronize save files across the user's supported
-              devices; this synchronization requires internet access. In the
-              current version, Unity Analytics, Unity Ads, crash reporting, and
-              other advertising or behavioral-tracking services are disabled.
+              The Game is built with the Unity game engine, uses Unity In-App
+              Purchasing to communicate with the App Store, and uses
+              GameAnalytics as an analytics service provider. Core gameplay can
+              be played offline, but analytics, in-app purchases, and iCloud
+              synchronization require an internet connection. Unity Analytics,
+              Unity Ads, GameAnalytics advertising integrations, automatic
+              GameAnalytics error submission, and native crash reporting are
+              disabled.
+            </p>
+            <p>
+              GameAnalytics processes analytics data on our behalf for product
+              analytics, session measurement, security, and service delivery.
+              Its current documentation states that technical logs and
+              analytics may be retained for up to 12 months on a rolling basis
+              and then deleted or permanently anonymized. For details, see the
+              <a href="https://www.gameanalytics.com/trust/privacy-notice" rel="noopener">GameAnalytics Privacy Notice</a>
+              and
+              <a href="https://www.gameanalytics.com/trust/data-retention-and-deletion-policy" rel="noopener">Data Retention and Deletion Policy</a>.
             </p>
 
             <h3>5. Children's privacy</h3>
             <p>
-              The Game does not knowingly collect personal information from
-              children or other users. If the Game's data practices change, we
-              will update this policy and implement any age-appropriate notices
-              or consent mechanisms required by applicable law.
+              The Game is not directed to children under 13. We do not
+              knowingly collect names, contact information, or other direct
+              identifiers from children. GameAnalytics may process persistent
+              identifiers for the internal operations described above. If you
+              believe a child has provided information in a way that requires
+              action, contact us using the details below.
             </p>
 
             <h3>6. Data retention and deletion</h3>
             <p>
-              Because we do not collect or store personal data on our servers,
-              we do not retain server-side personal data to access or delete.
               Locally stored game data remains on your device until you erase
               the Game's data or uninstall the Game. Save data synchronized
               through iCloud remains in the user's iCloud storage until it is
               removed through the applicable device or iCloud storage settings.
+              GameAnalytics applies its own retention schedule to analytics
+              data as described above. To ask about analytics data access or
+              deletion, contact us; we may need the GameAnalytics user
+              identifier from the affected installation to locate a record.
             </p>
 
             <h3>7. Changes to this policy</h3>
             <p>
-              We may update this Privacy Policy when the Game changes, including
-              if we introduce analytics, advertising, game accounts, or
-              other online features. We will publish the revised policy on this
-              page and update the effective date above.
+              We may update this Privacy Policy when the Game or its service
+              providers change. We will publish the revised policy on this page
+              and update the effective date above.
             </p>
 
             <h3>8. Contact us</h3>
@@ -478,12 +526,13 @@
           <article class="policy-section" id="chinese" lang="zh-Hans">
             <div class="language-heading">
               <h2>简体中文</h2>
-              <span class="updated">生效日期：2026 年 8 月 15 日</span>
+              <span class="updated">生效日期：2026 年 8 月 26 日</span>
             </div>
 
             <p class="summary-card">
-              我们不会在开发者运营的服务器上收集或保存个人数据。可选的 App 内购买及
-              iCloud 同步会使用 Apple 服务，并需要网络连接。
+              包含 GameAnalytics 的版本会使用该服务收集有限的假名化游戏分析数据。较早版本不会发送
+              GameAnalytics 事件。我们不会通过本游戏收集姓名、
+              电子邮箱、付款凭据、精确位置或广告内容。
             </p>
 
             <p>
@@ -494,7 +543,21 @@
 
             <h3>1. 我们收集的信息</h3>
             <p>
-              我们不会在开发者运营的服务器上收集、传输或存储个人信息。本游戏当前版本不包含用户账号、广告、数据分析、社交媒体功能或第三方追踪服务。
+              我们不运营游戏账号系统，也不运营保存玩家档案的服务器。包含 GameAnalytics 的版本使用
+              GameAnalytics 了解玩家是否能够完成新手引导、开始及完成一局游戏、到达进度里程碑、
+              在失败后复活或重开，以及完成可选的 App 内购买。GameAnalytics 可能处理：
+            </p>
+            <ul>
+              <li>基于 Apple 供应商标识符（IDFV）的持久分析标识符、会话标识符及会话次数；</li>
+              <li>设备型号、操作系统版本、App 与 SDK 版本、连接类型、事件时间及根据网络连接推断的粗略位置；</li>
+              <li>新手引导、开局、完成、失败、死亡、复活、重开、深度里程碑、结局、难度、角色、玩家等级、死亡次数及单局时长等产品交互和游戏事件；</li>
+              <li>商品标识符、本地化价格、货币、购买状态及一般失败原因等购买分析数据。</li>
+            </ul>
+            <p>
+              为了衡量会话与留存，分析事件会与持久标识符关联。我们不会有意向 GameAnalytics
+              发送玩家姓名、电子邮箱、精确位置、Apple 账户凭据、银行卡信息、原始 StoreKit
+              交易标识符或原始 App Store 收据。GameAnalytics 的 Unity 自动错误上传、广告事件和原生崩溃报告均已关闭。
+              本游戏当前不会请求 App 跟踪透明度（ATT）权限，也不会使用 IDFA。
             </p>
 
             <h3>2. 存储在设备本地及 iCloud 中的信息</h3>
@@ -525,7 +588,8 @@
               为防止同一笔购买被重复发放，本游戏会根据 StoreKit 交易标识符或收据生成单向
               SHA-256 哈希值，并将该哈希值保存在本地存档中。当您开启 iCloud
               同步时，该哈希值也会随存档通过 iCloud Documents 同步。原始 StoreKit
-              交易标识符和收据不会保存在存档中；原始购买信息及生成的哈希值均不会发送至开发者运营的服务器或在此类服务器上保存。
+              交易标识符和收据不会保存在存档中，也不会发送至 GameAnalytics。另一条购买分析事件可能报告所购商品、
+              本地化价格、货币以及成功或失败状态，但不会包含原始交易标识符或收据。
             </p>
             <p>
               Apple 对付款及 App Store 信息的处理适用
@@ -534,29 +598,38 @@
 
             <h3>4. 第三方服务</h3>
             <p>
-              本游戏使用 Unity 游戏引擎开发，并使用 Unity In-App Purchasing
-              与相应的应用商店通信。核心游戏内容可以离线游玩，但 App 内购买需要联网访问
-              Apple App Store 服务。当用户开启 iCloud 时，本游戏还会使用 Apple 的
-              iCloud Documents 在用户的受支持设备之间存储和同步存档文件，此同步过程需要网络连接。当前版本已关闭
-              Unity Analytics、Unity Ads、崩溃报告以及其他广告或行为追踪服务。
+              本游戏使用 Unity 游戏引擎开发，使用 Unity In-App Purchasing 与 App Store
+              通信，并使用 GameAnalytics 作为数据分析服务商。核心游戏内容可以离线游玩，但数据分析、
+              App 内购买和 iCloud 同步需要网络连接。Unity Analytics、Unity Ads、GameAnalytics
+              广告集成、GameAnalytics 自动错误上传及原生崩溃报告均已关闭。
+            </p>
+            <p>
+              GameAnalytics 代表我们处理分析数据，用于产品分析、会话衡量、安全和服务提供。
+              其当前说明称，技术日志与分析数据可能按滚动周期保留最长 12 个月，之后删除或永久匿名化。
+              详情请参阅
+              <a href="https://www.gameanalytics.com/trust/privacy-notice" rel="noopener">GameAnalytics 隐私声明</a>
+              及
+              <a href="https://www.gameanalytics.com/trust/data-retention-and-deletion-policy" rel="noopener">数据保留与删除政策</a>。
             </p>
 
             <h3>5. 儿童隐私</h3>
             <p>
-              本游戏不会有意收集儿童或其他用户的个人信息。如果本游戏的数据处理方式发生变化，我们将更新本政策，并按照适用法律提供适龄提示或实施必要的同意机制。
+              本游戏并非面向 13 岁以下儿童。我们不会有意收集儿童的姓名、联系信息或其他直接标识符。
+              GameAnalytics 可能为上述内部运营目的处理持久标识符。如您认为有儿童以需要我们采取措施的方式提供了信息，
+              请通过下方方式联系我们。
             </p>
 
             <h3>6. 数据保留与删除</h3>
             <p>
-              由于我们不会在开发者服务器上收集或存储个人数据，因此不存在需要访问或删除的开发者服务器端个人数据。
               保存在设备本地的游戏数据将一直留存在您的设备上，直至您清除本游戏的数据或卸载本游戏。
               通过 iCloud 同步的存档会保留在用户的 iCloud 存储中，直至用户通过设备或
-              iCloud 存储设置将其删除。
+              iCloud 存储设置将其删除。GameAnalytics 会根据上述保留周期处理分析数据。
+              如需查询或删除分析数据，请联系我们；为了定位记录，我们可能需要相关安装中的 GameAnalytics 用户标识符。
             </p>
 
             <h3>7. 本政策的变更</h3>
             <p>
-              当本游戏发生变化时，包括未来加入数据分析、广告、游戏账号或其他在线功能时，我们可能更新本隐私政策。修订后的政策将在本页面发布，并更新上述生效日期。
+              当本游戏或其服务提供商发生变化时，我们可能更新本隐私政策。修订后的政策将在本页面发布，并更新上述生效日期。
             </p>
 
             <h3>8. 联系我们</h3>
@@ -576,14 +649,14 @@
           <article class="policy-section" id="spanish" lang="es">
             <div class="language-heading">
               <h2>Español</h2>
-              <span class="updated">Fecha de entrada en vigor: 15 de agosto de 2026</span>
+              <span class="updated">Fecha de entrada en vigor: 26 de agosto de 2026</span>
             </div>
 
             <p class="summary-card">
-              No recopilamos ni almacenamos datos personales en servidores
-              operados por el desarrollador. Las compras opcionales y la
-              sincronización con iCloud utilizan servicios de Apple y requieren
-              conexión a Internet.
+              Las versiones que incluyen GameAnalytics lo utilizan para obtener análisis limitados y
+              seudónimos del uso del juego. No recopilamos nombres, direcciones
+              de correo electrónico, credenciales de pago, ubicación precisa ni
+              contenido publicitario a través del Juego.
             </p>
 
             <p>
@@ -597,10 +670,45 @@
 
             <h3>1. Información que recopilamos</h3>
             <p>
-              No recopilamos, transmitimos ni almacenamos información personal
-              en servidores operados por el desarrollador. La versión actual
-              del Juego no incluye cuentas de usuario, publicidad, análisis de
-              datos, funciones de redes sociales ni seguimiento de terceros.
+              Las versiones anteriores no envían eventos a GameAnalytics. No
+              gestionamos cuentas del Juego ni un servidor que almacene
+              perfiles de jugadores. Las versiones que incluyen GameAnalytics lo utilizan para saber
+              si los jugadores completan la introducción, comienzan y terminan
+              partidas, alcanzan hitos, se recuperan tras una derrota y
+              completan compras opcionales. GameAnalytics puede tratar:
+            </p>
+            <ul>
+              <li>
+                un identificador analítico persistente basado en el
+                identificador para proveedores de Apple (IDFV), un
+                identificador de sesión y el número de sesiones;
+              </li>
+              <li>
+                modelo del dispositivo, versión del sistema operativo,
+                versiones de la app y del SDK, tipo de conexión, marcas de
+                tiempo y ubicación aproximada derivada de la conexión de red;
+              </li>
+              <li>
+                eventos de interacción y juego como introducción, inicio,
+                finalización o fallo de una partida, muerte, reanimación,
+                reinicio, hitos de profundidad, final alcanzado, dificultad,
+                avatar, nivel, número de muertes y duración; y
+              </li>
+              <li>
+                análisis de compras como producto, precio localizado, moneda,
+                estado y un motivo general de fallo.
+              </li>
+            </ul>
+            <p>
+              Los eventos se asocian al identificador persistente para medir
+              sesiones y retención. No enviamos intencionadamente a
+              GameAnalytics nombres, correos electrónicos, ubicación precisa,
+              credenciales de Apple, datos de tarjetas, identificadores de
+              transacción de StoreKit ni recibos originales del App Store. El
+              envío automático de errores de Unity, los eventos publicitarios y
+              los informes de fallos nativos están desactivados. El Juego no
+              solicita permiso de Transparencia de Seguimiento de Apps (ATT) y
+              no utiliza el IDFA con la configuración actual.
             </p>
 
             <h3>2. Información almacenada localmente y en iCloud</h3>
@@ -646,13 +754,13 @@
               Para impedir que una misma compra se entregue más de una vez, el
               Juego genera un hash SHA-256 unidireccional a partir del
               identificador de la transacción de StoreKit o del recibo y guarda
-              dicho hash en el archivo de guardado local. Cuando la
-              sincronización con iCloud está activada, el hash se incluye en el
-              archivo sincronizado mediante iCloud Documents. Los
-              identificadores de transacción y los recibos originales de
-              StoreKit no se guardan en el archivo. Ni la información original
-              de la compra ni el hash generado se envían ni se conservan en
-              servidores operados por el desarrollador.
+              dicho hash en el archivo local. Cuando iCloud está activado, el
+              hash se incluye en el archivo sincronizado mediante iCloud
+              Documents. Los identificadores de transacción y los recibos
+              originales no se guardan en el archivo ni se envían a
+              GameAnalytics. Un evento analítico independiente puede comunicar
+              el producto, el precio localizado, la moneda y el estado de éxito
+              o fallo sin incluir el identificador ni el recibo originales.
             </p>
             <p>
               El tratamiento que Apple realiza de la información de pago y del
@@ -662,48 +770,54 @@
 
             <h3>4. Servicios de terceros</h3>
             <p>
-              El Juego se ha desarrollado con el motor de videojuegos Unity y
-              utiliza Unity In-App Purchasing para comunicarse con la tienda de
-              aplicaciones correspondiente. El contenido principal del Juego
-              puede jugarse sin conexión, pero las compras dentro de la app
-              requieren acceso a Internet para comunicarse con los servicios
-              del App Store de Apple. Cuando el usuario activa iCloud, el Juego
-              también utiliza iCloud Documents de Apple para almacenar y
-              sincronizar archivos de guardado entre sus dispositivos
-              compatibles; esta sincronización requiere acceso a Internet. En
-              la versión actual están desactivados Unity Analytics, Unity Ads,
-              los informes de fallos y otros servicios de publicidad o
-              seguimiento del comportamiento.
+              El Juego se ha desarrollado con Unity, utiliza Unity In-App
+              Purchasing para comunicarse con el App Store y utiliza
+              GameAnalytics como proveedor de análisis. El juego principal
+              puede usarse sin conexión, pero los análisis, las compras y la
+              sincronización con iCloud requieren Internet. Unity Analytics,
+              Unity Ads, las integraciones publicitarias de GameAnalytics, el
+              envío automático de errores y los informes de fallos nativos
+              están desactivados.
+            </p>
+            <p>
+              GameAnalytics trata datos en nuestro nombre para análisis de
+              producto, medición de sesiones, seguridad y prestación del
+              servicio. Su documentación actual indica que los registros
+              técnicos y datos analíticos pueden conservarse durante un máximo
+              de 12 meses de forma continua y después eliminarse o anonimizarse
+              permanentemente. Consulte el
+              <a href="https://www.gameanalytics.com/trust/privacy-notice" rel="noopener">Aviso de privacidad de GameAnalytics</a>
+              y su
+              <a href="https://www.gameanalytics.com/trust/data-retention-and-deletion-policy" rel="noopener">Política de conservación y eliminación</a>.
             </p>
 
             <h3>5. Privacidad de los menores</h3>
             <p>
-              El Juego no recopila deliberadamente información personal de
-              menores ni de otros usuarios. Si cambian las prácticas de datos
-              del Juego, actualizaremos esta política e implementaremos los
-              avisos adecuados para cada edad o los mecanismos de consentimiento
-              exigidos por la legislación aplicable.
+              El Juego no está dirigido a menores de 13 años. No recopilamos
+              deliberadamente nombres, datos de contacto u otros identificadores
+              directos de menores. GameAnalytics puede tratar identificadores
+              persistentes para las operaciones internas descritas anteriormente.
+              Si cree que un menor ha facilitado información que requiere una
+              actuación, póngase en contacto con nosotros.
             </p>
 
             <h3>6. Conservación y eliminación de datos</h3>
             <p>
-              Como no recopilamos ni almacenamos datos personales en nuestros
-              servidores, no conservamos datos personales en servidores que sea
-              necesario consultar o eliminar. Los datos de juego almacenados
-              localmente permanecen en su dispositivo hasta que borre los datos
-              del Juego o lo desinstale. Los datos de guardado sincronizados a
-              través de iCloud permanecen en el almacenamiento de iCloud del
-              usuario hasta que se eliminan mediante los ajustes del dispositivo
-              o del almacenamiento de iCloud.
+              Los datos locales permanecen en su dispositivo hasta que borre los
+              datos del Juego o lo desinstale. Los datos sincronizados mediante
+              iCloud permanecen en el almacenamiento de iCloud hasta que se
+              eliminan desde los ajustes correspondientes. GameAnalytics aplica
+              su propio calendario de conservación a los datos analíticos. Para
+              solicitar acceso o eliminación, contáctenos; puede que necesitemos
+              el identificador de usuario de GameAnalytics de la instalación
+              afectada para localizar el registro.
             </p>
 
             <h3>7. Cambios en esta política</h3>
             <p>
-              Podemos actualizar esta Política de privacidad cuando cambie el
-              Juego, incluso si incorporamos análisis, publicidad, cuentas del
-              juego u otras funciones en línea.
-              Publicaremos la política revisada en esta página y actualizaremos
-              la fecha de entrada en vigor indicada anteriormente.
+              Podemos actualizar esta Política de privacidad cuando cambien el
+              Juego o sus proveedores. Publicaremos la versión revisada en esta
+              página y actualizaremos la fecha de entrada en vigor.
             </p>
 
             <h3>8. Contacto</h3>
