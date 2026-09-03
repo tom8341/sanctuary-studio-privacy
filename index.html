@@ -130,13 +130,28 @@
       .language-link {
         color: #fff;
         border: 1px solid rgba(255, 255, 255, 0.24);
+        background: transparent;
+        font: inherit;
         text-decoration: none;
+        cursor: pointer;
+      }
+
+      .language-link:hover,
+      .language-link:focus-visible {
+        color: #171008;
+        border-color: var(--accent);
+        background: var(--accent);
+      }
+
+      .language-link[aria-pressed="true"] {
+        color: #171008;
+        border-color: var(--accent);
+        background: var(--accent);
       }
 
       .content-grid {
         display: grid;
-        grid-template-columns: 220px minmax(0, 1fr);
-        gap: clamp(28px, 6vw, 72px);
+        grid-template-columns: minmax(0, 1fr);
         padding: 42px clamp(24px, 7vw, 76px) 72px;
       }
 
@@ -170,10 +185,20 @@
         scroll-margin-top: 28px;
       }
 
+      .policy-section[hidden] {
+        display: none;
+      }
+
       .policy-section + .policy-section {
         margin-top: 48px;
         padding-top: 48px;
         border-top: 1px solid var(--line);
+      }
+
+      .policy-section:not([hidden]) {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
       }
 
       .language-heading {
@@ -264,6 +289,7 @@
         .side-nav {
           position: static;
           display: flex;
+          flex-wrap: wrap;
           gap: 10px;
           padding-bottom: 22px;
           border-bottom: 1px solid var(--line);
@@ -326,34 +352,31 @@
           integration; earlier versions do not send GameAnalytics events.
         </p>
         <div class="hero-meta">
-          <span class="badge">No ads · Limited gameplay analytics · No game accounts</span>
-          <a class="language-link" href="./support.html">Game Support</a>
-          <a class="language-link" href="#english">English</a>
-          <a class="language-link" href="#chinese" lang="zh-Hans">简体中文</a>
-          <a class="language-link" href="#spanish" lang="es">Español</a>
+          <span class="badge">No ads · Limited gameplay analytics · No separate game account</span>
+          <a class="language-link" href="./support.html#english" data-support-link>Game Support</a>
+          <button class="language-link" type="button" data-policy-language="english" aria-pressed="true">English</button>
+          <button class="language-link" type="button" data-policy-language="chinese" aria-pressed="false" lang="zh-Hans">简体中文</button>
+          <button class="language-link" type="button" data-policy-language="traditional-chinese" aria-pressed="false" lang="zh-Hant">繁體中文</button>
+          <button class="language-link" type="button" data-policy-language="spanish" aria-pressed="false" lang="es">Español</button>
+          <button class="language-link" type="button" data-policy-language="japanese" aria-pressed="false" lang="ja">日本語</button>
+          <button class="language-link" type="button" data-policy-language="korean" aria-pressed="false" lang="ko">한국어</button>
         </div>
       </header>
 
       <div class="content-grid">
-        <nav class="side-nav" aria-label="Language navigation">
-          <strong>Languages</strong>
-          <a href="#english">English</a>
-          <a href="#chinese" lang="zh-Hans">简体中文</a>
-          <a href="#spanish" lang="es">Español</a>
-        </nav>
-
         <div>
-          <article class="policy-section" id="english">
+          <article class="policy-section" id="english" data-policy-panel="english" lang="en">
             <div class="language-heading">
               <h2>English</h2>
-              <span class="updated">Effective August 26, 2026</span>
+              <span class="updated">Effective September 3, 2026</span>
             </div>
 
             <p class="summary-card">
               GameAnalytics-enabled versions use GameAnalytics for limited, pseudonymous gameplay
               analytics. We do not collect names, email addresses, payment
               credentials, precise location, or advertising content through
-              the Game.
+              the Game. Optional Game Center features send leaderboard scores
+              and achievement progress to Apple.
             </p>
 
             <p>
@@ -427,7 +450,30 @@
               <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple's Privacy Policy</a>.
             </p>
 
-            <h3>3. In-app purchases</h3>
+            <h3>3. Game Center</h3>
+            <p>
+              The Game optionally supports Apple Game Center. If you are signed
+              in to Game Center, the Game sends your deepest-depth leaderboard
+              score and achievement progress to Apple. It may also receive your
+              Game Center authentication status, leaderboard rank, and stored
+              achievement progress so that these features work and remain
+              synchronized across supported devices.
+            </p>
+            <p>
+              Apple associates Game Center activity with your Apple Account.
+              Depending on your Game Center privacy and sharing settings, your
+              nickname, avatar, scores, and achievement activity may be visible
+              to other Game Center users. We do not receive your Apple Account
+              credentials, and the Game does not send your Game Center player
+              identifier, nickname, avatar, scores, or achievement progress to
+              a developer-operated server or to GameAnalytics. Game Center is
+              optional; you can manage sign-in and sharing under Settings &gt;
+              Game Center on your device. Apple's handling of this information
+              is described in
+              <a href="https://www.apple.com/legal/privacy/data/en/game-center/" rel="noopener">Game Center &amp; Privacy</a>.
+            </p>
+
+            <h3>4. In-app purchases</h3>
             <p>
               The Game may offer optional in-app purchases through Apple's App
               Store. An internet connection and an Apple Account permitted to
@@ -455,16 +501,17 @@
               by <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple's Privacy Policy</a>.
             </p>
 
-            <h3>4. Third-party services</h3>
+            <h3>5. Third-party services</h3>
             <p>
               The Game is built with the Unity game engine, uses Unity In-App
-              Purchasing to communicate with the App Store, and uses
+              Purchasing to communicate with the App Store, optionally uses
+              Apple Game Center for leaderboards and achievements, and uses
               GameAnalytics as an analytics service provider. Core gameplay can
-              be played offline, but analytics, in-app purchases, and iCloud
-              synchronization require an internet connection. Unity Analytics,
-              Unity Ads, GameAnalytics advertising integrations, automatic
-              GameAnalytics error submission, and native crash reporting are
-              disabled.
+              be played offline, but analytics, in-app purchases, Game Center,
+              and iCloud synchronization require an internet connection. Unity
+              Analytics, Unity Ads, GameAnalytics advertising integrations,
+              automatic GameAnalytics error submission, and native crash
+              reporting are disabled.
             </p>
             <p>
               GameAnalytics processes analytics data on our behalf for product
@@ -477,7 +524,7 @@
               <a href="https://www.gameanalytics.com/trust/data-retention-and-deletion-policy" rel="noopener">Data Retention and Deletion Policy</a>.
             </p>
 
-            <h3>5. Children's privacy</h3>
+            <h3>6. Children's privacy</h3>
             <p>
               The Game is not directed to children under 13. We do not
               knowingly collect names, contact information, or other direct
@@ -487,26 +534,29 @@
               action, contact us using the details below.
             </p>
 
-            <h3>6. Data retention and deletion</h3>
+            <h3>7. Data retention and deletion</h3>
             <p>
               Locally stored game data remains on your device until you erase
               the Game's data or uninstall the Game. Save data synchronized
               through iCloud remains in the user's iCloud storage until it is
               removed through the applicable device or iCloud storage settings.
+              Scores and achievement progress submitted to Game Center are
+              retained and managed by Apple under the player's Apple Account
+              and Game Center settings.
               GameAnalytics applies its own retention schedule to analytics
               data as described above. To ask about analytics data access or
               deletion, contact us; we may need the GameAnalytics user
               identifier from the affected installation to locate a record.
             </p>
 
-            <h3>7. Changes to this policy</h3>
+            <h3>8. Changes to this policy</h3>
             <p>
               We may update this Privacy Policy when the Game or its service
               providers change. We will publish the revised policy on this page
               and update the effective date above.
             </p>
 
-            <h3>8. Contact us</h3>
+            <h3>9. Contact us</h3>
             <p>
               If you have questions about this Privacy Policy, please contact
               Sanctuary Studio:
@@ -523,16 +573,17 @@
             </div>
           </article>
 
-          <article class="policy-section" id="chinese" lang="zh-Hans">
+          <article class="policy-section" id="chinese" data-policy-panel="chinese" lang="zh-Hans" hidden>
             <div class="language-heading">
               <h2>简体中文</h2>
-              <span class="updated">生效日期：2026 年 8 月 26 日</span>
+              <span class="updated">生效日期：2026 年 9 月 3 日</span>
             </div>
 
             <p class="summary-card">
               包含 GameAnalytics 的版本会使用该服务收集有限的假名化游戏分析数据。较早版本不会发送
               GameAnalytics 事件。我们不会通过本游戏收集姓名、
-              电子邮箱、付款凭据、精确位置或广告内容。
+              电子邮箱、付款凭据、精确位置或广告内容。可选的 Game Center
+              功能会将排行榜分数和成就进度提交给 Apple。
             </p>
 
             <p>
@@ -578,7 +629,20 @@
               <a href="https://www.apple.com/legal/privacy/zh-cn/" rel="noopener">Apple 隐私政策</a>。
             </p>
 
-            <h3>3. App 内购买</h3>
+            <h3>3. Game Center</h3>
+            <p>
+              本游戏可选支持 Apple Game Center。当您已登录 Game Center 时，本游戏会将您的最深下降距离排行榜分数及成就进度提交给 Apple；同时可能读取 Game Center
+              的登录状态、排行榜名次和已保存的成就进度，以提供相关功能并在受支持的设备间保持同步。
+            </p>
+            <p>
+              Apple 会将 Game Center 活动与您的 Apple 账户关联。根据您的 Game Center
+              隐私与共享设置，您的昵称、头像、分数及成就活动可能对其他 Game Center 用户可见。
+              我们不会获取您的 Apple 账户凭据；本游戏也不会将您的 Game Center 玩家标识符、昵称、头像、分数或成就进度发送到开发者运营的服务器或 GameAnalytics。
+              Game Center 为可选功能，您可以在设备的“设置 &gt; Game Center”中管理登录和共享设置。Apple 对这些信息的处理说明请参阅
+              <a href="https://www.apple.com/legal/privacy/data/en/game-center/" rel="noopener">Game Center 与隐私</a>。
+            </p>
+
+            <h3>4. App 内购买</h3>
             <p>
               本游戏可能通过 Apple App Store 提供可选的 App 内购买。发起及完成此类交易需要网络连接，以及获准进行购买的 Apple 账户。付款由 Apple
               处理，我们不会获取您的银行卡号或 Apple 账户凭据。本游戏仅会通过 Apple
@@ -596,11 +660,12 @@
               <a href="https://www.apple.com/legal/privacy/zh-cn/" rel="noopener">Apple 隐私政策</a>。
             </p>
 
-            <h3>4. 第三方服务</h3>
+            <h3>5. 第三方服务</h3>
             <p>
               本游戏使用 Unity 游戏引擎开发，使用 Unity In-App Purchasing 与 App Store
-              通信，并使用 GameAnalytics 作为数据分析服务商。核心游戏内容可以离线游玩，但数据分析、
-              App 内购买和 iCloud 同步需要网络连接。Unity Analytics、Unity Ads、GameAnalytics
+              通信，可选使用 Apple Game Center 提供排行榜和成就，并使用 GameAnalytics
+              作为数据分析服务商。核心游戏内容可以离线游玩，但数据分析、App 内购买、Game Center
+              和 iCloud 同步需要网络连接。Unity Analytics、Unity Ads、GameAnalytics
               广告集成、GameAnalytics 自动错误上传及原生崩溃报告均已关闭。
             </p>
             <p>
@@ -612,27 +677,28 @@
               <a href="https://www.gameanalytics.com/trust/data-retention-and-deletion-policy" rel="noopener">数据保留与删除政策</a>。
             </p>
 
-            <h3>5. 儿童隐私</h3>
+            <h3>6. 儿童隐私</h3>
             <p>
               本游戏并非面向 13 岁以下儿童。我们不会有意收集儿童的姓名、联系信息或其他直接标识符。
               GameAnalytics 可能为上述内部运营目的处理持久标识符。如您认为有儿童以需要我们采取措施的方式提供了信息，
               请通过下方方式联系我们。
             </p>
 
-            <h3>6. 数据保留与删除</h3>
+            <h3>7. 数据保留与删除</h3>
             <p>
               保存在设备本地的游戏数据将一直留存在您的设备上，直至您清除本游戏的数据或卸载本游戏。
               通过 iCloud 同步的存档会保留在用户的 iCloud 存储中，直至用户通过设备或
-              iCloud 存储设置将其删除。GameAnalytics 会根据上述保留周期处理分析数据。
+              iCloud 存储设置将其删除。提交至 Game Center 的分数和成就进度由 Apple
+              根据玩家的 Apple 账户及 Game Center 设置保留和管理。GameAnalytics 会根据上述保留周期处理分析数据。
               如需查询或删除分析数据，请联系我们；为了定位记录，我们可能需要相关安装中的 GameAnalytics 用户标识符。
             </p>
 
-            <h3>7. 本政策的变更</h3>
+            <h3>8. 本政策的变更</h3>
             <p>
               当本游戏或其服务提供商发生变化时，我们可能更新本隐私政策。修订后的政策将在本页面发布，并更新上述生效日期。
             </p>
 
-            <h3>8. 联系我们</h3>
+            <h3>9. 联系我们</h3>
             <p>如对本隐私政策有任何疑问，请联系庇护所工作室：</p>
             <div class="contact-card">
               <p>
@@ -646,17 +712,19 @@
             </div>
           </article>
 
-          <article class="policy-section" id="spanish" lang="es">
+          <article class="policy-section" id="spanish" data-policy-panel="spanish" lang="es" hidden>
             <div class="language-heading">
               <h2>Español</h2>
-              <span class="updated">Fecha de entrada en vigor: 26 de agosto de 2026</span>
+              <span class="updated">Fecha de entrada en vigor: 3 de septiembre de 2026</span>
             </div>
 
             <p class="summary-card">
               Las versiones que incluyen GameAnalytics lo utilizan para obtener análisis limitados y
               seudónimos del uso del juego. No recopilamos nombres, direcciones
               de correo electrónico, credenciales de pago, ubicación precisa ni
-              contenido publicitario a través del Juego.
+              contenido publicitario a través del Juego. Las funciones opcionales
+              de Game Center envían a Apple las puntuaciones de las clasificaciones
+              y el progreso de los logros.
             </p>
 
             <p>
@@ -737,7 +805,32 @@
               <a href="https://www.apple.com/legal/privacy/es/" rel="noopener">Política de privacidad de Apple</a>.
             </p>
 
-            <h3>3. Compras dentro de la app</h3>
+            <h3>3. Game Center</h3>
+            <p>
+              El Juego ofrece compatibilidad opcional con Apple Game Center. Si
+              ha iniciado sesión en Game Center, el Juego envía a Apple su
+              puntuación de mayor profundidad y el progreso de sus logros.
+              También puede recibir el estado de autenticación de Game Center,
+              la posición en la clasificación y el progreso almacenado de los
+              logros para ofrecer estas funciones y mantenerlas sincronizadas
+              entre dispositivos compatibles.
+            </p>
+            <p>
+              Apple asocia la actividad de Game Center con su cuenta de Apple.
+              Según sus ajustes de privacidad y uso compartido de Game Center,
+              su apodo, avatar, puntuaciones y actividad de logros pueden ser
+              visibles para otros usuarios de Game Center. No recibimos las
+              credenciales de su cuenta de Apple, y el Juego no envía su
+              identificador de jugador, apodo, avatar, puntuaciones ni progreso
+              de logros de Game Center a servidores operados por el desarrollador
+              ni a GameAnalytics. Game Center es opcional; puede gestionar el
+              inicio de sesión y el uso compartido en Ajustes &gt; Game Center.
+              Consulte
+              <a href="https://www.apple.com/legal/privacy/data/en/game-center/" rel="noopener">Game Center y la privacidad</a>
+              para obtener información sobre el tratamiento realizado por Apple.
+            </p>
+
+            <h3>4. Compras dentro de la app</h3>
             <p>
               El Juego puede ofrecer compras opcionales dentro de la app a
               través del App Store de Apple. Para iniciar y completar estas
@@ -768,16 +861,17 @@
               <a href="https://www.apple.com/legal/privacy/es/" rel="noopener">Política de privacidad de Apple</a>.
             </p>
 
-            <h3>4. Servicios de terceros</h3>
+            <h3>5. Servicios de terceros</h3>
             <p>
               El Juego se ha desarrollado con Unity, utiliza Unity In-App
-              Purchasing para comunicarse con el App Store y utiliza
+              Purchasing para comunicarse con el App Store, utiliza opcionalmente
+              Apple Game Center para clasificaciones y logros, y utiliza
               GameAnalytics como proveedor de análisis. El juego principal
-              puede usarse sin conexión, pero los análisis, las compras y la
-              sincronización con iCloud requieren Internet. Unity Analytics,
-              Unity Ads, las integraciones publicitarias de GameAnalytics, el
-              envío automático de errores y los informes de fallos nativos
-              están desactivados.
+              puede usarse sin conexión, pero los análisis, las compras, Game
+              Center y la sincronización con iCloud requieren Internet. Unity
+              Analytics, Unity Ads, las integraciones publicitarias de
+              GameAnalytics, el envío automático de errores y los informes de
+              fallos nativos están desactivados.
             </p>
             <p>
               GameAnalytics trata datos en nuestro nombre para análisis de
@@ -791,7 +885,7 @@
               <a href="https://www.gameanalytics.com/trust/data-retention-and-deletion-policy" rel="noopener">Política de conservación y eliminación</a>.
             </p>
 
-            <h3>5. Privacidad de los menores</h3>
+            <h3>6. Privacidad de los menores</h3>
             <p>
               El Juego no está dirigido a menores de 13 años. No recopilamos
               deliberadamente nombres, datos de contacto u otros identificadores
@@ -801,26 +895,29 @@
               actuación, póngase en contacto con nosotros.
             </p>
 
-            <h3>6. Conservación y eliminación de datos</h3>
+            <h3>7. Conservación y eliminación de datos</h3>
             <p>
               Los datos locales permanecen en su dispositivo hasta que borre los
               datos del Juego o lo desinstale. Los datos sincronizados mediante
               iCloud permanecen en el almacenamiento de iCloud hasta que se
-              eliminan desde los ajustes correspondientes. GameAnalytics aplica
+              eliminan desde los ajustes correspondientes. Apple conserva y
+              gestiona las puntuaciones y el progreso de los logros enviados a
+              Game Center de acuerdo con la cuenta de Apple y los ajustes de
+              Game Center del jugador. GameAnalytics aplica
               su propio calendario de conservación a los datos analíticos. Para
               solicitar acceso o eliminación, contáctenos; puede que necesitemos
               el identificador de usuario de GameAnalytics de la instalación
               afectada para localizar el registro.
             </p>
 
-            <h3>7. Cambios en esta política</h3>
+            <h3>8. Cambios en esta política</h3>
             <p>
               Podemos actualizar esta Política de privacidad cuando cambien el
               Juego o sus proveedores. Publicaremos la versión revisada en esta
               página y actualizaremos la fecha de entrada en vigor.
             </p>
 
-            <h3>8. Contacto</h3>
+            <h3>9. Contacto</h3>
             <p>
               Si tiene alguna pregunta sobre esta Política de privacidad,
               póngase en contacto con Sanctuary Studio:
@@ -836,13 +933,338 @@
               </p>
             </div>
           </article>
+
+          <article class="policy-section" id="traditional-chinese" data-policy-panel="traditional-chinese" lang="zh-Hant" hidden>
+            <div class="language-heading">
+              <h2>繁體中文</h2>
+              <span class="updated">生效日期：2026 年 9 月 3 日</span>
+            </div>
+
+            <p class="summary-card">
+              包含 GameAnalytics 的版本會使用該服務收集有限的假名化遊戲分析資料。我們不會透過本遊戲收集姓名、電子郵件地址、付款憑證、精確位置或廣告內容。選用的 Game Center 功能會將排行榜分數及成就進度提交給 Apple。
+            </p>
+
+            <p>
+              App Store 商品頁所列的個人開發者以 <strong>Sanctuary Studio（庇護所工作室）</strong>名義營運並提供《<strong>9999m: Down to the Princess</strong>》（以下稱「本遊戲」）。本隱私權政策說明您使用本遊戲時，相關資訊會如何受到處理。
+            </p>
+
+            <h3>1. 我們收集的資訊</h3>
+            <p>
+              我們不營運遊戲帳號系統，也不營運儲存玩家個人檔案的伺服器。包含 GameAnalytics 的版本會使用該服務瞭解玩家是否能完成新手教學、開始及完成一局遊戲、到達進度里程碑、在失敗後復活或重新開始，以及完成選用的 App 內購買。GameAnalytics 可能會處理：
+            </p>
+            <ul>
+              <li>以 Apple 廠商識別碼（IDFV）為基礎的持久分析識別碼、工作階段識別碼及工作階段次數；</li>
+              <li>裝置型號、作業系統版本、App 與 SDK 版本、連線類型、事件時間，以及由網路連線推斷的概略位置；</li>
+              <li>新手教學、遊戲開始、完成或失敗、死亡、復活、重新開始、深度里程碑、抵達結局、難度、所選角色、玩家等級、死亡次數及單局時間等產品互動和遊戲事件；以及</li>
+              <li>商品識別碼、本地化價格、幣別、購買狀態及一般失敗原因等購買分析資料。</li>
+            </ul>
+            <p>
+              分析事件會與持久識別碼關聯，以衡量工作階段及留存。我們不會刻意向 GameAnalytics 傳送玩家姓名、電子郵件地址、精確位置、Apple 帳號憑證、付款卡資訊、原始 StoreKit 交易識別碼或原始 App Store 收據。Unity 自動錯誤上傳、廣告事件及原生當機報告均已停用。本遊戲目前不會要求 App 追蹤透明度（ATT）權限，也不會使用 IDFA。
+            </p>
+
+            <h3>2. 儲存在裝置本機及 iCloud 中的資訊</h3>
+            <p>
+              為了儲存遊戲進度和偏好，本遊戲會在您的裝置本機儲存相關資訊。為本遊戲啟用 iCloud 後，存檔也會儲存在 Apple 的 iCloud Documents，並在登入同一 Apple 帳號的支援裝置之間同步。相關資訊可能包括：
+            </p>
+            <ul>
+              <li>遊戲進度、成就、物品欄及裝備；</li>
+              <li>語言、音效及操作偏好等設定；以及</li>
+              <li>僅用於管理本機存檔的安裝專用識別碼。</li>
+            </ul>
+            <p>
+              這些資訊不會傳送至開發者營運的伺服器，我們也無法透過此類伺服器存取。iCloud 由 Apple 依照您的 Apple 帳號設定提供及營運；Apple 對 iCloud 資訊的處理受其
+              <a href="https://www.apple.com/legal/privacy/" rel="noopener">隱私權政策</a>規範。
+            </p>
+
+            <h3>3. Game Center</h3>
+            <p>
+              本遊戲可選用 Apple Game Center。當您登入 Game Center 時，本遊戲會將您的最深下降距離排行榜分數和成就進度提交給 Apple；也可能接收 Game Center 驗證狀態、排行榜名次及已儲存的成就進度，以提供相關功能並在支援的裝置之間保持同步。
+            </p>
+            <p>
+              Apple 會將 Game Center 活動與您的 Apple 帳號關聯。依照您的 Game Center 隱私及分享設定，暱稱、頭像、分數和成就活動可能會向其他 Game Center 使用者顯示。我們不會取得您的 Apple 帳號憑證；本遊戲也不會將 Game Center 玩家識別碼、暱稱、頭像、分數或成就進度傳送至開發者營運的伺服器或 GameAnalytics。Game Center 為選用功能，您可以在裝置的「設定 &gt; Game Center」中管理登入及分享設定。Apple 對此資訊的處理方式請參閱
+              <a href="https://www.apple.com/legal/privacy/data/en/game-center/" rel="noopener">Game Center 與隱私權</a>。
+            </p>
+
+            <h3>4. App 內購買</h3>
+            <p>
+              本遊戲可能透過 Apple App Store 提供選用的 App 內購買。開始及完成交易需要網路連線，以及獲准購買的 Apple 帳號。付款由 Apple 處理，我們不會收到您的付款卡號或 Apple 帳號憑證。本遊戲只會在驗證購買並發放虛擬物品所需的範圍內，透過 Apple StoreKit 接收商品識別碼、交易識別、收據及購買狀態。
+            </p>
+            <p>
+              為避免同一筆購買重複發放，本遊戲會由 StoreKit 交易識別碼或收據產生單向 SHA-256 雜湊值，並將該雜湊值儲存在本機存檔中。啟用 iCloud 同步後，此雜湊值也會隨存檔透過 iCloud Documents 同步。原始 StoreKit 交易識別碼和收據不會儲存在存檔中，也不會傳送至 GameAnalytics。獨立的購買分析事件可能會回報商品、本地化價格、幣別及成功或失敗狀態，但不包含原始交易識別碼或收據。
+            </p>
+            <p>
+              Apple 對付款及 App Store 資訊的處理受其
+              <a href="https://www.apple.com/legal/privacy/" rel="noopener">隱私權政策</a>規範。
+            </p>
+
+            <h3>5. 第三方服務</h3>
+            <p>
+              本遊戲使用 Unity 遊戲引擎開發，使用 Unity In-App Purchasing 與 App Store 通訊，可選用 Apple Game Center 提供排行榜及成就，並使用 GameAnalytics 作為分析服務供應商。核心遊戲內容可離線遊玩，但分析、App 內購買、Game Center 及 iCloud 同步需要網路連線。Unity Analytics、Unity Ads、GameAnalytics 廣告整合、GameAnalytics 自動錯誤上傳及原生當機報告均已停用。
+            </p>
+            <p>
+              GameAnalytics 代表我們處理分析資料，用於產品分析、工作階段衡量、安全及服務提供。其現行文件指出，技術記錄和分析資料可能以滾動方式保留最長 12 個月，之後刪除或永久匿名化。詳情請參閱
+              <a href="https://www.gameanalytics.com/trust/privacy-notice" rel="noopener">GameAnalytics 隱私權聲明</a>及
+              <a href="https://www.gameanalytics.com/trust/data-retention-and-deletion-policy" rel="noopener">資料保留與刪除政策</a>。
+            </p>
+
+            <h3>6. 兒童隱私</h3>
+            <p>
+              本遊戲並非以 13 歲以下兒童為對象。我們不會蓄意收集兒童的姓名、聯絡資訊或其他直接識別碼。GameAnalytics 可能為上述內部營運目的處理持久識別碼。如果您認為兒童提供資訊的方式需要我們採取行動，請使用下方資料與我們聯絡。
+            </p>
+
+            <h3>7. 資料保留與刪除</h3>
+            <p>
+              儲存在裝置本機的遊戲資料會保留到您清除本遊戲資料或解除安裝本遊戲為止。透過 iCloud 同步的存檔會保留在使用者的 iCloud 儲存空間中，直到透過適用的裝置或 iCloud 儲存設定刪除。提交至 Game Center 的分數和成就進度由 Apple 依照玩家的 Apple 帳號及 Game Center 設定保留和管理。GameAnalytics 會依上述保留週期處理分析資料。如要查詢或刪除分析資料，請與我們聯絡；我們可能需要受影響安裝中的 GameAnalytics 使用者識別碼才能找到記錄。
+            </p>
+
+            <h3>8. 本政策的變更</h3>
+            <p>當本遊戲或其服務供應商有所變更時，我們可能更新本隱私權政策。我們會在此頁面發布修訂版本，並更新上方的生效日期。</p>
+
+            <h3>9. 聯絡我們</h3>
+            <p>如對本隱私權政策有任何疑問，請聯絡 Sanctuary Studio：</p>
+            <div class="contact-card">
+              <p>個人開發者 / App Store 銷售方：<span>Deng XiaoLong</span></p>
+              <p>電子郵件：<a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a></p>
+            </div>
+          </article>
+
+          <article class="policy-section" id="japanese" data-policy-panel="japanese" lang="ja" hidden>
+            <div class="language-heading">
+              <h2>日本語</h2>
+              <span class="updated">発効日：2026年9月3日</span>
+            </div>
+
+            <p class="summary-card">
+              GameAnalytics を含むバージョンでは、限定的な仮名化されたゲームプレイ分析のために同サービスを使用します。本ゲームを通じて氏名、メールアドレス、決済認証情報、正確な位置情報、広告コンテンツを収集することはありません。任意の Game Center 機能は、ランキングのスコアと実績の進捗を Apple に送信します。
+            </p>
+
+            <p>
+              App Store の本ゲーム掲載ページで販売者として表示される個人開発者は、<strong>Sanctuary Studio</strong>（以下「当方」）の名称で <strong>9999m: Down to the Princess</strong>（以下「本ゲーム」）を提供しています。本プライバシーポリシーは、本ゲームの利用時に情報がどのように取り扱われるかを説明します。
+            </p>
+
+            <h3>1. 収集する情報</h3>
+            <p>
+              当方はゲームアカウントシステムやプレイヤープロフィールを保存するサーバーを運営していません。GameAnalytics を含むバージョンでは、プレイヤーがチュートリアルを完了できるか、プレイを開始・完了できるか、進行上の節目に到達できるか、敗北後に復活または再開できるか、任意のアプリ内購入を完了できるかを把握するために同サービスを使用します。GameAnalytics は次の情報を処理する場合があります。
+            </p>
+            <ul>
+              <li>Apple の Vendor Identifier（IDFV）に基づく永続的な分析識別子、セッション識別子、セッション回数。</li>
+              <li>端末モデル、OS バージョン、App と SDK のバージョン、接続種別、イベント時刻、ネットワーク接続から推定されるおおよその位置。</li>
+              <li>チュートリアル、プレイの開始・完了・失敗、死亡、復活、再開、深度の節目、エンディング到達、難易度、選択キャラクター、プレイヤーレベル、死亡回数、プレイ時間などの操作・ゲームイベント。</li>
+              <li>商品識別子、現地価格、通貨、購入状態、一般的な失敗理由などの購入分析情報。</li>
+            </ul>
+            <p>
+              セッションと継続利用を測定するため、分析イベントは永続的な識別子に関連付けられます。プレイヤーの氏名、メールアドレス、正確な位置、Apple Account の認証情報、決済カード情報、未加工の StoreKit 取引識別子、未加工の App Store レシートを GameAnalytics に意図的に送信することはありません。Unity の自動エラー送信、広告イベント、ネイティブクラッシュレポートは無効です。現在の設定では App Tracking Transparency（ATT）の許可を要求せず、IDFA を使用しません。
+            </p>
+
+            <h3>2. 端末内および iCloud に保存される情報</h3>
+            <p>
+              本ゲームは進行状況と設定を保存するため、ゲームプレイ情報を端末内に保存します。本ゲームで iCloud を有効にすると、セーブファイルは Apple の iCloud Documents にも保存され、同じ Apple Account でサインインした対応端末間で同期されます。これには次の情報が含まれる場合があります。
+            </p>
+            <ul>
+              <li>ゲームの進行状況、実績、所持品、装備。</li>
+              <li>言語、音声、操作方法などの設定。</li>
+              <li>ローカルセーブデータの管理にのみ使用するインストール固有の識別子。</li>
+            </ul>
+            <p>
+              これらの情報は開発者が運営するサーバーへ送信されず、当方がそのようなサーバーを通じてアクセスすることもできません。iCloud は Apple Account の設定に基づき Apple が提供・運営します。iCloud 情報の取り扱いには
+              <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple のプライバシーポリシー</a>が適用されます。
+            </p>
+
+            <h3>3. Game Center</h3>
+            <p>
+              本ゲームは任意で Apple Game Center に対応します。Game Center にサインインしている場合、本ゲームは最深到達距離のランキングスコアと実績の進捗を Apple に送信します。また、機能の提供と対応端末間での同期のため、Game Center の認証状態、ランキング順位、保存された実績の進捗を受け取る場合があります。
+            </p>
+            <p>
+              Apple は Game Center のアクティビティを Apple Account に関連付けます。Game Center のプライバシーおよび共有設定によっては、ニックネーム、アバター、スコア、実績のアクティビティが他の Game Center ユーザーに表示される場合があります。当方は Apple Account の認証情報を受け取りません。また本ゲームは、Game Center のプレイヤー識別子、ニックネーム、アバター、スコア、実績の進捗を開発者運営サーバーまたは GameAnalytics に送信しません。Game Center は任意であり、端末の「設定 &gt; Game Center」でサインインと共有を管理できます。Apple による情報の取り扱いについては
+              <a href="https://www.apple.com/legal/privacy/data/en/game-center/" rel="noopener">Game Center とプライバシー</a>をご覧ください。
+            </p>
+
+            <h3>4. アプリ内購入</h3>
+            <p>
+              本ゲームは Apple App Store を通じて任意のアプリ内購入を提供する場合があります。取引の開始と完了にはインターネット接続と購入が許可された Apple Account が必要です。支払いは Apple が処理し、当方は決済カード番号や Apple Account の認証情報を受け取りません。本ゲームは、購入の検証と仮想アイテムの付与に必要な範囲でのみ、Apple の StoreKit を通じて商品識別子、取引識別情報、レシート、購入状態を受け取ります。
+            </p>
+            <p>
+              同じ購入の重複付与を防ぐため、本ゲームは StoreKit の取引識別子またはレシートから一方向の SHA-256 ハッシュを生成し、ローカルセーブファイルに保存します。iCloud 同期が有効な場合、このハッシュは iCloud Documents で同期されるセーブファイルに含まれます。未加工の StoreKit 取引識別子とレシートはセーブファイルに保存されず、GameAnalytics にも送信されません。別の購入分析イベントで、商品、現地価格、通貨、成功または失敗の状態を報告する場合がありますが、未加工の取引識別子やレシートは含まれません。
+            </p>
+            <p>Apple による支払いおよび App Store 情報の取り扱いには、<a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple のプライバシーポリシー</a>が適用されます。</p>
+
+            <h3>5. 第三者サービス</h3>
+            <p>
+              本ゲームは Unity ゲームエンジンで開発され、Unity In-App Purchasing を使用して App Store と通信し、任意で Apple Game Center のランキングと実績を利用し、分析サービスとして GameAnalytics を使用します。基本ゲームプレイはオフラインで利用できますが、分析、アプリ内購入、Game Center、iCloud 同期にはインターネット接続が必要です。Unity Analytics、Unity Ads、GameAnalytics の広告連携、自動エラー送信、ネイティブクラッシュレポートは無効です。
+            </p>
+            <p>
+              GameAnalytics は、製品分析、セッション測定、セキュリティ、サービス提供のため、当方に代わって分析データを処理します。現行の説明では、技術ログと分析データはローリング方式で最長 12 か月保持され、その後削除または恒久的に匿名化される場合があります。詳しくは
+              <a href="https://www.gameanalytics.com/trust/privacy-notice" rel="noopener">GameAnalytics Privacy Notice</a>および
+              <a href="https://www.gameanalytics.com/trust/data-retention-and-deletion-policy" rel="noopener">Data Retention and Deletion Policy</a>をご覧ください。
+            </p>
+
+            <h3>6. 子どものプライバシー</h3>
+            <p>
+              本ゲームは 13 歳未満の子どもを対象としていません。当方は子どもの氏名、連絡先、その他の直接的な識別子を意図的に収集しません。GameAnalytics は上記の内部運用目的で永続的な識別子を処理する場合があります。対応が必要な形で子どもが情報を提供したと思われる場合は、下記の連絡先までご連絡ください。
+            </p>
+
+            <h3>7. データの保持と削除</h3>
+            <p>
+              端末内のゲームデータは、本ゲームのデータを消去するか本ゲームをアンインストールするまで端末に残ります。iCloud で同期されたセーブデータは、該当する端末または iCloud ストレージ設定から削除するまでユーザーの iCloud ストレージに残ります。Game Center に送信されたスコアと実績の進捗は、プレイヤーの Apple Account と Game Center の設定に基づき Apple が保持・管理します。GameAnalytics は上記の保持期間に従って分析データを処理します。分析データへのアクセスまたは削除については当方へご連絡ください。記録の特定に、対象インストールの GameAnalytics ユーザー識別子が必要になる場合があります。
+            </p>
+
+            <h3>8. 本ポリシーの変更</h3>
+            <p>本ゲームまたはサービス提供者の変更に伴い、本プライバシーポリシーを更新する場合があります。改訂版をこのページに掲載し、上記の発効日を更新します。</p>
+
+            <h3>9. お問い合わせ</h3>
+            <p>本プライバシーポリシーに関するお問い合わせは、Sanctuary Studio までご連絡ください。</p>
+            <div class="contact-card">
+              <p>個人開発者 / App Store 販売者：<span>Deng XiaoLong</span></p>
+              <p>メール：<a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a></p>
+            </div>
+          </article>
+
+          <article class="policy-section" id="korean" data-policy-panel="korean" lang="ko" hidden>
+            <div class="language-heading">
+              <h2>한국어</h2>
+              <span class="updated">시행일: 2026년 9월 3일</span>
+            </div>
+
+            <p class="summary-card">
+              GameAnalytics가 포함된 버전은 제한적인 가명 처리 게임플레이 분석을 위해 해당 서비스를 사용합니다. 게임을 통해 이름, 이메일 주소, 결제 인증 정보, 정확한 위치 또는 광고 콘텐츠를 수집하지 않습니다. 선택 사항인 Game Center 기능은 순위표 점수와 업적 진행 상황을 Apple에 전송합니다.
+            </p>
+
+            <p>
+              App Store의 게임 페이지에 판매자로 표시된 개인 개발자는 <strong>Sanctuary Studio</strong>(이하 “당사”)라는 이름으로 <strong>9999m: Down to the Princess</strong>(이하 “게임”)를 제공합니다. 본 개인정보 처리방침은 게임 이용 시 정보가 처리되는 방식을 설명합니다.
+            </p>
+
+            <h3>1. 수집하는 정보</h3>
+            <p>
+              당사는 게임 계정 시스템이나 플레이어 프로필을 저장하는 서버를 운영하지 않습니다. GameAnalytics가 포함된 버전은 플레이어가 튜토리얼을 완료하고, 플레이를 시작·완료하고, 진행 단계에 도달하고, 패배 후 부활하거나 다시 시작하고, 선택적 앱 내 구입을 완료할 수 있는지 파악하기 위해 해당 서비스를 사용합니다. GameAnalytics는 다음 정보를 처리할 수 있습니다.
+            </p>
+            <ul>
+              <li>Apple의 IDFV(공급업체용 식별자)에 기반한 영구 분석 식별자, 세션 식별자 및 세션 횟수</li>
+              <li>기기 모델, 운영체제 버전, 앱 및 SDK 버전, 연결 유형, 이벤트 시간, 네트워크 연결에서 추정한 대략적인 위치</li>
+              <li>튜토리얼, 플레이 시작·완료·실패, 사망, 부활, 재시작, 깊이 이정표, 엔딩 도달, 난이도, 선택한 캐릭터, 플레이어 레벨, 사망 횟수 및 플레이 시간 등의 제품 상호작용 및 게임플레이 이벤트</li>
+              <li>상품 식별자, 현지 가격, 통화, 구매 상태 및 일반적인 실패 사유 등의 구매 분석 정보</li>
+            </ul>
+            <p>
+              세션과 유지율을 측정하기 위해 분석 이벤트는 영구 식별자와 연결됩니다. 플레이어의 이름, 이메일 주소, 정확한 위치, Apple Account 인증 정보, 결제 카드 정보, 원본 StoreKit 거래 식별자 또는 원본 App Store 영수증을 GameAnalytics에 의도적으로 전송하지 않습니다. Unity 자동 오류 전송, 광고 이벤트 및 네이티브 충돌 보고는 비활성화되어 있습니다. 현재 설정에서는 앱 추적 투명성(ATT) 권한을 요청하지 않으며 IDFA를 사용하지 않습니다.
+            </p>
+
+            <h3>2. 기기와 iCloud에 저장되는 정보</h3>
+            <p>
+              게임은 진행 상황과 환경설정을 저장하기 위해 게임플레이 정보를 기기에 로컬로 저장합니다. 게임에 iCloud가 활성화되면 저장 파일은 Apple의 iCloud Documents에도 저장되며, 동일한 Apple Account로 로그인한 지원 기기 간에 동기화됩니다. 다음 정보가 포함될 수 있습니다.
+            </p>
+            <ul>
+              <li>게임 진행 상황, 업적, 인벤토리 및 장비</li>
+              <li>언어, 오디오 및 조작 환경설정</li>
+              <li>로컬 저장 데이터 관리에만 사용되는 설치별 식별자</li>
+            </ul>
+            <p>
+              이 정보는 개발자가 운영하는 서버로 전송되지 않으며 당사도 그러한 서버를 통해 접근할 수 없습니다. iCloud는 사용자의 Apple Account 설정에 따라 Apple이 제공하고 운영합니다. iCloud 정보의 처리는
+              <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple 개인정보 처리방침</a>의 적용을 받습니다.
+            </p>
+
+            <h3>3. Game Center</h3>
+            <p>
+              게임은 선택 사항으로 Apple Game Center를 지원합니다. Game Center에 로그인한 경우 게임은 사용자의 최대 하강 거리 순위표 점수와 업적 진행 상황을 Apple에 전송합니다. 또한 기능 제공 및 지원 기기 간 동기화를 위해 Game Center 인증 상태, 순위표 순위 및 저장된 업적 진행 상황을 수신할 수 있습니다.
+            </p>
+            <p>
+              Apple은 Game Center 활동을 사용자의 Apple Account와 연결합니다. Game Center 개인정보 보호 및 공유 설정에 따라 별명, 아바타, 점수 및 업적 활동이 다른 Game Center 사용자에게 표시될 수 있습니다. 당사는 Apple Account 인증 정보를 받지 않으며, 게임은 Game Center 플레이어 식별자, 별명, 아바타, 점수 또는 업적 진행 상황을 개발자 운영 서버나 GameAnalytics로 전송하지 않습니다. Game Center는 선택 사항이며 기기의 “설정 &gt; Game Center”에서 로그인 및 공유를 관리할 수 있습니다. Apple의 정보 처리에 대해서는
+              <a href="https://www.apple.com/legal/privacy/data/en/game-center/" rel="noopener">Game Center 및 개인정보 보호</a>를 참조하십시오.
+            </p>
+
+            <h3>4. 앱 내 구입</h3>
+            <p>
+              게임은 Apple App Store를 통해 선택적 앱 내 구입을 제공할 수 있습니다. 거래를 시작하고 완료하려면 인터넷 연결과 구입 권한이 있는 Apple Account가 필요합니다. 결제는 Apple이 처리하며, 당사는 결제 카드 번호나 Apple Account 인증 정보를 받지 않습니다. 게임은 구입 확인과 가상 아이템 지급에 필요한 범위에서만 Apple StoreKit을 통해 구입한 상품 식별자, 거래 식별 정보, 영수증 및 구입 상태를 받습니다.
+            </p>
+            <p>
+              동일한 구입이 중복 지급되지 않도록 게임은 StoreKit 거래 식별자 또는 영수증에서 단방향 SHA-256 해시를 생성하여 로컬 저장 파일에 보관합니다. iCloud 동기화가 활성화되면 이 해시는 iCloud Documents로 동기화되는 저장 파일에 포함됩니다. 원본 StoreKit 거래 식별자와 영수증은 저장 파일에 보관되거나 GameAnalytics로 전송되지 않습니다. 별도의 구매 분석 이벤트가 상품, 현지 가격, 통화, 성공 또는 실패 상태를 보고할 수 있지만 원본 거래 식별자나 영수증은 포함하지 않습니다.
+            </p>
+            <p>Apple의 결제 및 App Store 정보 처리는 <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple 개인정보 처리방침</a>의 적용을 받습니다.</p>
+
+            <h3>5. 제3자 서비스</h3>
+            <p>
+              게임은 Unity 게임 엔진으로 제작되었으며 Unity In-App Purchasing을 통해 App Store와 통신하고, 선택 사항으로 Apple Game Center의 순위표와 업적을 사용하며, 분석 서비스 제공업체로 GameAnalytics를 사용합니다. 핵심 게임플레이는 오프라인으로 이용할 수 있지만 분석, 앱 내 구입, Game Center 및 iCloud 동기화에는 인터넷 연결이 필요합니다. Unity Analytics, Unity Ads, GameAnalytics 광고 통합, GameAnalytics 자동 오류 전송 및 네이티브 충돌 보고는 비활성화되어 있습니다.
+            </p>
+            <p>
+              GameAnalytics는 제품 분석, 세션 측정, 보안 및 서비스 제공을 위해 당사를 대신하여 분석 데이터를 처리합니다. 현재 문서에 따르면 기술 로그와 분석 데이터는 순환 방식으로 최대 12개월 동안 보관된 후 삭제되거나 영구적으로 익명화될 수 있습니다. 자세한 내용은
+              <a href="https://www.gameanalytics.com/trust/privacy-notice" rel="noopener">GameAnalytics Privacy Notice</a>와
+              <a href="https://www.gameanalytics.com/trust/data-retention-and-deletion-policy" rel="noopener">Data Retention and Deletion Policy</a>를 참조하십시오.
+            </p>
+
+            <h3>6. 아동의 개인정보 보호</h3>
+            <p>
+              게임은 만 13세 미만 아동을 대상으로 하지 않습니다. 당사는 아동의 이름, 연락처 정보 또는 기타 직접 식별자를 고의로 수집하지 않습니다. GameAnalytics는 위에서 설명한 내부 운영 목적을 위해 영구 식별자를 처리할 수 있습니다. 조치가 필요한 방식으로 아동이 정보를 제공했다고 생각되면 아래 연락처로 문의해 주십시오.
+            </p>
+
+            <h3>7. 데이터 보관 및 삭제</h3>
+            <p>
+              기기에 로컬로 저장된 게임 데이터는 게임 데이터를 지우거나 게임을 삭제할 때까지 기기에 남아 있습니다. iCloud로 동기화된 저장 데이터는 해당 기기 또는 iCloud 저장 공간 설정을 통해 삭제할 때까지 사용자의 iCloud 저장 공간에 남습니다. Game Center에 제출된 점수와 업적 진행 상황은 플레이어의 Apple Account 및 Game Center 설정에 따라 Apple이 보관하고 관리합니다. GameAnalytics는 위에서 설명한 보관 일정에 따라 분석 데이터를 처리합니다. 분석 데이터 접근 또는 삭제에 관한 문의는 당사로 연락해 주십시오. 기록을 찾기 위해 해당 설치의 GameAnalytics 사용자 식별자가 필요할 수 있습니다.
+            </p>
+
+            <h3>8. 본 방침의 변경</h3>
+            <p>게임 또는 서비스 제공업체가 변경되는 경우 본 개인정보 처리방침을 업데이트할 수 있습니다. 개정된 방침을 이 페이지에 게시하고 위 시행일을 갱신합니다.</p>
+
+            <h3>9. 문의하기</h3>
+            <p>본 개인정보 처리방침에 관한 문의는 Sanctuary Studio로 연락해 주십시오.</p>
+            <div class="contact-card">
+              <p>개인 개발자 / App Store 판매자: <span>Deng XiaoLong</span></p>
+              <p>이메일: <a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a></p>
+            </div>
+          </article>
         </div>
       </div>
 
       <footer>
         © 2026 Sanctuary Studio · 庇护所工作室 · 9999m: Down to the Princess ·
-        <a href="./support.html">Game Support</a>
+        <a href="./support.html#english" data-support-link>Game Support</a>
       </footer>
     </main>
+    <script>
+      (() => {
+        const localeMap = {
+          english: { lang: "en", title: "Privacy Policy | 9999m: Down to the Princess" },
+          chinese: { lang: "zh-Hans", title: "隐私政策 | 9999m: Down to the Princess" },
+          "traditional-chinese": { lang: "zh-Hant", title: "隱私權政策 | 9999m: Down to the Princess" },
+          spanish: { lang: "es", title: "Política de privacidad | 9999m: Down to the Princess" },
+          japanese: { lang: "ja", title: "プライバシーポリシー | 9999m: Down to the Princess" },
+          korean: { lang: "ko", title: "개인정보 처리방침 | 9999m: Down to the Princess" },
+        };
+        const panels = [...document.querySelectorAll("[data-policy-panel]")];
+        const buttons = [...document.querySelectorAll("[data-policy-language]")];
+        const supportLinks = [...document.querySelectorAll("[data-support-link]")];
+
+        const languageFromHash = () => {
+          const hash = window.location.hash.slice(1);
+          return Object.keys(localeMap).find((language) => hash === language);
+        };
+
+        const activateLanguage = (language) => {
+          const selected = localeMap[language] ? language : "english";
+          panels.forEach((panel) => {
+            panel.hidden = panel.dataset.policyPanel !== selected;
+          });
+          buttons.forEach((button) => {
+            button.setAttribute("aria-pressed", String(button.dataset.policyLanguage === selected));
+          });
+          supportLinks.forEach((link) => {
+            link.href = `./support.html#${selected}`;
+          });
+          document.documentElement.lang = localeMap[selected].lang;
+          document.title = localeMap[selected].title;
+        };
+
+        buttons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const language = button.dataset.policyLanguage;
+            activateLanguage(language);
+            window.location.hash = language;
+          });
+        });
+
+        window.addEventListener("hashchange", () => {
+          activateLanguage(languageFromHash() || "english");
+        });
+
+        activateLanguage(languageFromHash() || "english");
+      })();
+    </script>
   </body>
 </html>

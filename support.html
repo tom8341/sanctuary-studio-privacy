@@ -129,6 +129,49 @@
         color: var(--gold-bright);
       }
 
+      .language-picker {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .language-picker::-webkit-scrollbar {
+        display: none;
+      }
+
+      .language-picker button {
+        min-height: 34px;
+        padding: 6px 11px;
+        color: var(--muted);
+        border: 1px solid transparent;
+        border-radius: 999px;
+        background: transparent;
+        font: inherit;
+        font-size: 0.78rem;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      .language-picker button:hover,
+      .language-picker button:focus-visible {
+        color: var(--gold-bright);
+        border-color: var(--line);
+      }
+
+      .language-picker button[aria-pressed="true"] {
+        color: #171008;
+        border-color: var(--gold);
+        background: var(--gold);
+      }
+
+      .language-panel[hidden] {
+        display: none;
+      }
+
       .page-width {
         width: min(1120px, calc(100% - 32px));
         margin-inline: auto;
@@ -544,13 +587,16 @@
         }
 
         .brand span {
-          max-width: 180px;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          display: none;
         }
 
-        .top-nav a:not(:last-child) {
-          display: none;
+        .language-picker {
+          gap: 3px;
+        }
+
+        .language-picker button {
+          padding-inline: 8px;
+          font-size: 0.72rem;
         }
 
         h1 {
@@ -603,18 +649,23 @@
   <body>
     <header class="site-header">
       <div class="nav-shell">
-        <a class="brand" href="#top" aria-label="9999m support home">
+        <a class="brand" href="#english" aria-label="9999m support home" data-home-link>
           <img src="assets/game-icon.jpg" alt="" />
           <span>9999m: Down to the Princess</span>
         </a>
-        <nav class="top-nav" aria-label="Support navigation">
-          <a href="#faq">FAQ</a>
-          <a href="#contact">Contact</a>
+        <nav class="language-picker" aria-label="Language selection">
+          <button type="button" data-language="english" aria-pressed="true">English</button>
+          <button type="button" data-language="chinese" aria-pressed="false" lang="zh-Hans">简体中文</button>
+          <button type="button" data-language="traditional-chinese" aria-pressed="false" lang="zh-Hant">繁體中文</button>
+          <button type="button" data-language="spanish" aria-pressed="false" lang="es">Español</button>
+          <button type="button" data-language="japanese" aria-pressed="false" lang="ja">日本語</button>
+          <button type="button" data-language="korean" aria-pressed="false" lang="ko">한국어</button>
         </nav>
       </div>
     </header>
 
-    <main id="top">
+    <div class="language-panel" id="english" data-language-panel="english" lang="en">
+    <main id="english-top">
       <section class="hero page-width" aria-labelledby="hero-title">
         <div class="hero-copy-area">
           <p class="eyebrow">Sanctuary Studio · Official Support</p>
@@ -635,7 +686,8 @@
           <div class="feature-chips" aria-label="Game features">
             <span>Offline core gameplay</span>
             <span>Single player</span>
-            <span>No game account required</span>
+            <span>No separate game account required</span>
+            <span>Optional Game Center</span>
             <span>Limited gameplay analytics</span>
             <span>Built for touch</span>
           </div>
@@ -646,11 +698,11 @@
         </div>
       </section>
 
-      <section class="section" id="contact" aria-labelledby="contact-heading">
+      <section class="section" id="english-contact" aria-labelledby="english-contact-heading">
         <div class="page-width support-grid">
           <div class="contact-panel">
             <p class="eyebrow">Player Support</p>
-            <h2 id="contact-heading">Tell us what happened.</h2>
+            <h2 id="english-contact-heading">Tell us what happened.</h2>
             <p>
               Found a bug, lost progress, or have a gameplay question? Send a
               message directly to the developer with the details below.
@@ -703,17 +755,19 @@
               in-app purchases require an internet connection and an Apple
               Account that can make App Store purchases. Save synchronization
               requires iCloud to be enabled, an internet connection, and the
-              same Apple Account on each device.
+              same Apple Account on each device. Optional Game Center
+              leaderboards and achievements require an internet connection and
+              a signed-in Game Center account.
             </p>
           </div>
         </div>
       </section>
 
-      <section class="section" id="faq" aria-labelledby="faq-heading">
+      <section class="section" id="english-faq" aria-labelledby="english-faq-heading">
         <div class="page-width">
           <div class="section-heading">
             <p class="eyebrow">Quick answers</p>
-            <h2 id="faq-heading">Frequently asked questions.</h2>
+            <h2 id="english-faq-heading">Frequently asked questions.</h2>
             <p>Start here for the most common gameplay and technical questions.</p>
           </div>
 
@@ -726,8 +780,41 @@
                   game account. Internet access is required for Apple services
                   such as downloading the game, receiving updates, completing
                   an in-app purchase, or synchronizing save data through iCloud
-                  Documents. An Apple Account may be required for those Apple
-                  services even though the game has no separate account system.
+                  Documents. Optional Game Center leaderboards and achievements
+                  also require internet access and a signed-in Game Center
+                  account. The game has no separate account system, and all core
+                  gameplay remains available without Game Center.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>How do Game Center leaderboards and achievements work?</summary>
+              <div class="faq-answer">
+                <p>
+                  Game Center is optional. When you are signed in, the game
+                  submits your deepest-depth score and achievement progress to
+                  Apple Game Center. This lets you view your achievements and
+                  compare leaderboard results, and keeps that Game Center
+                  progress available on supported devices using the same Game
+                  Center account. Game Center achievements do not grant
+                  additional in-game items or currency.
+                </p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Why is the Game Center icon gray or locked?</summary>
+              <div class="faq-answer">
+                <p>
+                  A gray or locked icon means the game cannot confirm an active
+                  Game Center sign-in. Check your internet connection, open
+                  iPhone or iPad Settings &gt; Game Center, and confirm that you
+                  are signed in. Then return to the game and try again; restart
+                  the game once if the status does not refresh. If you previously
+                  dismissed Apple’s sign-in screen, sign in from Settings before
+                  returning. You can continue playing normally without Game
+                  Center.
                 </p>
               </div>
             </details>
@@ -813,9 +900,15 @@
                   outcomes. The current configuration does not request ATT,
                   submit IDFA-based advertising events, upload automatic Unity
                   errors, or send raw StoreKit transaction identifiers or
-                  receipts to GameAnalytics. When enabled, save synchronization
+                  receipts to GameAnalytics. Optional Game Center features send
+                  the player’s deepest-depth score and achievement progress to
+                  Apple, but the game does not send Game Center identifiers,
+                  nicknames, scores, or achievement progress to GameAnalytics or
+                  a developer-operated server. When enabled, save synchronization
                   is provided by Apple’s iCloud Documents. Read the
                   <a href="./index.html">full Privacy Policy</a> for details.
+                  Apple explains its handling of Game Center information in
+                  <a href="https://www.apple.com/legal/privacy/data/en/game-center/" rel="noopener">Game Center &amp; Privacy</a>.
                 </p>
               </div>
             </details>
@@ -855,9 +948,710 @@
         <p>© 2026 Sanctuary Studio · Deng XiaoLong</p>
         <nav aria-label="Footer navigation">
           <a href="./index.html">Privacy Policy</a>
-          <a href="#top">Back to top</a>
+          <a href="#english">Back to top</a>
         </nav>
       </div>
     </footer>
+    </div>
+
+    <div class="language-panel" id="chinese" data-language-panel="chinese" lang="zh-Hans" hidden>
+    <main id="chinese-top">
+      <section class="hero page-width" aria-labelledby="chinese-hero-title">
+        <div class="hero-copy-area">
+          <p class="eyebrow">庇护所工作室 · 官方支持</p>
+          <h1 id="chinese-hero-title">下潜很艰难。获得帮助不应该。</h1>
+          <p class="hero-copy">
+            这里为<strong>《9999m: Down to the Princess》</strong>提供支持。这是一款支持离线游玩的单人地牢冒险游戏，讲述一名普通送货少年、一项几乎不可能完成的承诺，以及一位在地下 9,999 米等待救援的公主。
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button button-primary"
+              href="mailto:dxl707963406@outlook.com?subject=9999m%20Support%20Request&amp;body=Game%20version%3A%0ADevice%20model%3A%0AiOS%20version%3A%0AIssue%3A%0ASteps%20to%20reproduce%3A"
+            >联系支持</a>
+            <a class="button button-secondary" href="./index.html#chinese">隐私政策</a>
+          </div>
+          <div class="feature-chips" aria-label="游戏功能">
+            <span>核心玩法支持离线</span>
+            <span>单人游戏</span>
+            <span>无需单独的游戏账户</span>
+            <span>可选 Game Center</span>
+            <span>有限的游戏分析</span>
+            <span>为触控操作设计</span>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <img src="assets/game-icon.jpg" alt="" />
+        </div>
+      </section>
+
+      <section class="section" id="chinese-contact" aria-labelledby="chinese-contact-heading">
+        <div class="page-width support-grid">
+          <div class="contact-panel">
+            <p class="eyebrow">玩家支持</p>
+            <h2 id="chinese-contact-heading">告诉我们发生了什么。</h2>
+            <p>如果您遇到错误、存档丢失或玩法问题，请将以下信息直接发送给开发者。</p>
+            <a
+              class="button button-primary"
+              href="mailto:dxl707963406@outlook.com?subject=9999m%20Support%20Request&amp;body=Game%20version%3A%0ADevice%20model%3A%0AiOS%20version%3A%0AIssue%3A%0ASteps%20to%20reproduce%3A"
+            >dxl707963406@outlook.com</a>
+
+            <div class="contact-note">
+              <strong>帮助我们更快定位问题</strong>
+              <p>请提供游戏版本、设备型号、iOS 版本、您预期发生的结果，以及触发问题的操作步骤。如有截图，也请一并附上。</p>
+            </div>
+          </div>
+
+          <dl class="info-panel" aria-label="开发者联系信息">
+            <div class="info-row"><dt>游戏</dt><dd>9999m: Down to the Princess</dd></div>
+            <div class="info-row"><dt>工作室</dt><dd>庇护所工作室</dd></div>
+            <div class="info-row"><dt>开发者</dt><dd>Deng XiaoLong</dd></div>
+            <div class="info-row"><dt>电子邮箱</dt><dd><a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a></dd></div>
+            <div class="info-row"><dt>隐私</dt><dd><a href="./index.html#chinese">阅读隐私政策</a></dd></div>
+          </dl>
+        </div>
+
+        <div class="page-width">
+          <div class="offline-banner">
+            <span aria-hidden="true">✓</span>
+            <p>
+              <strong>核心玩法支持离线。</strong>正常游玩不需要游戏账户或网络连接。可选的 App 内购买需要网络连接，以及能够在 App Store 购买项目的 Apple 账户。存档同步需要启用 iCloud、连接网络，并在各设备上使用同一 Apple 账户。可选的 Game Center 排行榜和成就需要网络连接及已登录的 Game Center 账户。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="chinese-faq" aria-labelledby="chinese-faq-heading">
+        <div class="page-width">
+          <div class="section-heading">
+            <p class="eyebrow">快速解答</p>
+            <h2 id="chinese-faq-heading">常见问题</h2>
+            <p>您可以先在这里查找常见的玩法与技术问题。</p>
+          </div>
+
+          <div class="faq-list">
+            <details open>
+              <summary>游戏是否需要网络连接或账户？</summary>
+              <div class="faq-answer"><p>核心玩法不需要网络连接或游戏账户。下载游戏、接收更新、完成 App 内购买或通过 iCloud Documents 同步存档等 Apple 服务需要网络。可选的 Game Center 排行榜和成就还需要网络连接及已登录的 Game Center 账户。本游戏没有单独的账户系统；不使用 Game Center 也可以体验全部核心玩法。</p></div>
+            </details>
+
+            <details>
+              <summary>Game Center 排行榜和成就是如何工作的？</summary>
+              <div class="faq-answer"><p>Game Center 是可选功能。登录后，游戏会将您的最深下降距离分数和成就进度提交至 Apple Game Center，以便您查看成就、比较排行榜成绩，并在使用同一 Game Center 账户的受支持设备上保留这些进度。Game Center 成就不会提供额外的游戏内物品或货币奖励。</p></div>
+            </details>
+
+            <details>
+              <summary>为什么 Game Center 图标显示为灰色或带锁？</summary>
+              <div class="faq-answer"><p>灰色或带锁图标表示游戏无法确认有效的 Game Center 登录状态。请检查网络连接，打开 iPhone 或 iPad 的“设置 &gt; Game Center”，并确认已经登录。然后返回游戏重试；如果状态没有刷新，可重新启动一次游戏。如果您之前关闭了 Apple 的登录界面，请先在系统设置中登录。即使不使用 Game Center，您也可以正常游玩。</p></div>
+            </details>
+
+            <details>
+              <summary>App 内购买无法开始或完成时该怎么办？</summary>
+              <div class="faq-answer"><p>请确认设备网络正常、已登录 App Store，并允许 App 内购买。在 Apple 确认交易和游戏保存发放记录时，请短暂保持游戏开启；已有购买正在处理时请勿再次点击。如果 Apple 已扣款但水晶没有到账，请重新启动一次游戏，然后将商品名称、大致购买时间、游戏版本及设备型号发送给支持邮箱。请勿发送银行卡信息或 Apple 账户凭据。</p></div>
+            </details>
+
+            <details>
+              <summary>游戏进度保存在哪里？</summary>
+              <div class="faq-answer"><p>进度和设置保存在您的设备本地。为游戏启用 iCloud 后，存档副本也会保存在 Apple 的 iCloud Documents 中，并在使用同一 Apple 账户的受支持设备间同步。更换设备时，这有助于保留进度。在另一台设备上打开游戏前，请给 iCloud 足够时间完成同步。</p></div>
+            </details>
+
+            <details>
+              <summary>为什么另一台设备没有显示最新存档？</summary>
+              <div class="faq-answer"><p>请确认两台设备使用同一 Apple 账户、已启用 iCloud Drive、允许本游戏访问 iCloud，并且都已连接网络。在第一台设备保存后关闭游戏，等待同步完成，再在第二台设备上打开。如果问题仍然存在，请在卸载游戏前联系支持。</p></div>
+            </details>
+
+            <details>
+              <summary>游戏无法启动或频繁关闭时应该怎么做？</summary>
+              <div class="faq-answer"><p>请彻底关闭游戏、重新启动设备、确认有足够的存储空间，并安装最新的游戏和 iOS 更新。如果问题仍然存在，请通过电子邮件提供设备型号、iOS 版本、游戏版本及问题发生时的情况。</p></div>
+            </details>
+
+            <details>
+              <summary>如何更改游戏语言？</summary>
+              <div class="faq-answer"><p>在游戏主界面打开“设置”，然后选择“语言”。游戏支持英语、简体中文、繁体中文、日语和韩语。</p></div>
+            </details>
+
+            <details>
+              <summary>游戏会收集个人数据或显示广告吗？</summary>
+              <div class="faq-answer"><p>本游戏不显示广告，也不要求注册游戏账户。包含 GameAnalytics 的版本会使用该服务进行有限的产品分析，其中可能包括基于 IDFV 的持久标识符、设备与 App 版本信息、由网络推断的粗略位置、游戏里程碑、会话活动及可选的购买结果。当前配置不会请求 ATT，不会提交基于 IDFA 的广告事件，不会上传 Unity 自动错误，也不会向 GameAnalytics 发送原始 StoreKit 交易标识符或收据。可选的 Game Center 功能会将玩家的最深下降距离分数和成就进度提交给 Apple，但不会把 Game Center 标识符、昵称、分数或成就进度发送到 GameAnalytics 或开发者运营的服务器。启用后，存档同步由 Apple 的 iCloud Documents 提供。详情请阅读<a href="./index.html#chinese">完整隐私政策</a>。Apple 对 Game Center 信息的处理说明请参阅<a href="https://www.apple.com/legal/privacy/data/en/game-center/" rel="noopener">《Game Center 与隐私》</a>。</p></div>
+            </details>
+
+            <details>
+              <summary>如何查询或申请删除分析数据？</summary>
+              <div class="faq-answer"><p>请发送邮件至 <a href="mailto:dxl707963406@outlook.com?subject=9999m%20Privacy%20Request">dxl707963406@outlook.com</a>，主题填写“9999m Privacy Request”。请勿发送付款凭据或 Apple 账户密码。为了定位分析记录，我们可能需要受影响安装中的 GameAnalytics 用户标识符；如有需要，我们会说明查找方法。</p></div>
+            </details>
+
+            <details>
+              <summary>如何报告错误？</summary>
+              <div class="faq-answer"><p>请发送邮件至 <a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a>，并提供游戏版本、设备型号、iOS 版本、复现步骤，以及可用的截图。</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-width footer-row">
+        <p>© 2026 庇护所工作室 · Deng XiaoLong</p>
+        <nav aria-label="页脚导航">
+          <a href="./index.html#chinese">隐私政策</a>
+          <a href="#chinese">返回顶部</a>
+        </nav>
+      </div>
+    </footer>
+    </div>
+
+    <div class="language-panel" id="spanish" data-language-panel="spanish" lang="es" hidden>
+    <main id="spanish-top">
+      <section class="hero page-width" aria-labelledby="spanish-hero-title">
+        <div class="hero-copy-area">
+          <p class="eyebrow">Sanctuary Studio · Soporte oficial</p>
+          <h1 id="spanish-hero-title">El descenso es difícil. Pedir ayuda no debería serlo.</h1>
+          <p class="hero-copy">
+            Soporte para <strong>9999m: Down to the Princess</strong>, una aventura de mazmorras para un jugador que puede jugarse sin conexión, protagonizada por un repartidor corriente, una promesa imposible y una princesa que espera 9.999 metros bajo tierra.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button button-primary"
+              href="mailto:dxl707963406@outlook.com?subject=9999m%20Support%20Request&amp;body=Game%20version%3A%0ADevice%20model%3A%0AiOS%20version%3A%0AIssue%3A%0ASteps%20to%20reproduce%3A"
+            >Contactar con soporte</a>
+            <a class="button button-secondary" href="./index.html#spanish">Política de privacidad</a>
+          </div>
+          <div class="feature-chips" aria-label="Funciones del juego">
+            <span>Juego principal sin conexión</span>
+            <span>Un jugador</span>
+            <span>Sin cuenta de juego independiente</span>
+            <span>Game Center opcional</span>
+            <span>Análisis de juego limitados</span>
+            <span>Diseñado para controles táctiles</span>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <img src="assets/game-icon.jpg" alt="" />
+        </div>
+      </section>
+
+      <section class="section" id="spanish-contact" aria-labelledby="spanish-contact-heading">
+        <div class="page-width support-grid">
+          <div class="contact-panel">
+            <p class="eyebrow">Soporte para jugadores</p>
+            <h2 id="spanish-contact-heading">Cuéntenos qué ha ocurrido.</h2>
+            <p>Si ha encontrado un error, ha perdido progreso o tiene una pregunta sobre el juego, envíe directamente al desarrollador los datos indicados a continuación.</p>
+            <a
+              class="button button-primary"
+              href="mailto:dxl707963406@outlook.com?subject=9999m%20Support%20Request&amp;body=Game%20version%3A%0ADevice%20model%3A%0AiOS%20version%3A%0AIssue%3A%0ASteps%20to%20reproduce%3A"
+            >dxl707963406@outlook.com</a>
+
+            <div class="contact-note">
+              <strong>Ayúdenos a investigar más rápido</strong>
+              <p>Incluya la versión del juego, el modelo del dispositivo, la versión de iOS, lo que esperaba que ocurriera y los pasos que provocaron el problema. Puede adjuntar capturas de pantalla.</p>
+            </div>
+          </div>
+
+          <dl class="info-panel" aria-label="Información de contacto del desarrollador">
+            <div class="info-row"><dt>Juego</dt><dd>9999m: Down to the Princess</dd></div>
+            <div class="info-row"><dt>Estudio</dt><dd>Sanctuary Studio</dd></div>
+            <div class="info-row"><dt>Desarrollador</dt><dd>Deng XiaoLong</dd></div>
+            <div class="info-row"><dt>Correo</dt><dd><a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a></dd></div>
+            <div class="info-row"><dt>Privacidad</dt><dd><a href="./index.html#spanish">Leer la Política de privacidad</a></dd></div>
+          </dl>
+        </div>
+
+        <div class="page-width">
+          <div class="offline-banner">
+            <span aria-hidden="true">✓</span>
+            <p>
+              <strong>El juego principal funciona sin conexión.</strong> Para jugar normalmente no se necesita una cuenta del juego ni conexión a Internet. Las compras opcionales dentro de la app requieren Internet y una cuenta de Apple autorizada para comprar en el App Store. La sincronización de partidas requiere iCloud, conexión a Internet y la misma cuenta de Apple en cada dispositivo. Las clasificaciones y los logros opcionales de Game Center requieren Internet y una cuenta de Game Center con la sesión iniciada.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="spanish-faq" aria-labelledby="spanish-faq-heading">
+        <div class="page-width">
+          <div class="section-heading">
+            <p class="eyebrow">Respuestas rápidas</p>
+            <h2 id="spanish-faq-heading">Preguntas frecuentes</h2>
+            <p>Empiece aquí para resolver las dudas técnicas y de juego más habituales.</p>
+          </div>
+
+          <div class="faq-list">
+            <details open>
+              <summary>¿El juego necesita conexión a Internet o una cuenta?</summary>
+              <div class="faq-answer"><p>El juego principal no necesita conexión a Internet ni una cuenta del juego. Los servicios de Apple, como descargar el juego, recibir actualizaciones, completar una compra dentro de la app o sincronizar partidas mediante iCloud Documents, requieren Internet. Las clasificaciones y los logros opcionales de Game Center también requieren Internet y una cuenta de Game Center con la sesión iniciada. El juego no tiene un sistema de cuentas independiente y todo el juego principal está disponible sin Game Center.</p></div>
+            </details>
+
+            <details>
+              <summary>¿Cómo funcionan las clasificaciones y los logros de Game Center?</summary>
+              <div class="faq-answer"><p>Game Center es opcional. Cuando inicia sesión, el juego envía a Apple Game Center su puntuación de mayor profundidad y el progreso de sus logros. Así puede consultar sus logros, comparar resultados en la clasificación y conservar ese progreso en dispositivos compatibles que utilicen la misma cuenta de Game Center. Los logros de Game Center no otorgan objetos ni moneda adicionales dentro del juego.</p></div>
+            </details>
+
+            <details>
+              <summary>¿Por qué el icono de Game Center aparece gris o bloqueado?</summary>
+              <div class="faq-answer"><p>Un icono gris o bloqueado indica que el juego no puede confirmar una sesión activa de Game Center. Compruebe la conexión a Internet, abra Ajustes &gt; Game Center en el iPhone o iPad y confirme que ha iniciado sesión. Después vuelva al juego e inténtelo de nuevo; reinicie el juego una vez si el estado no se actualiza. Si cerró anteriormente la pantalla de inicio de sesión de Apple, inicie sesión desde Ajustes antes de volver. Puede seguir jugando normalmente sin Game Center.</p></div>
+            </details>
+
+            <details>
+              <summary>¿Qué hago si una compra dentro de la app no se inicia o no termina?</summary>
+              <div class="faq-answer"><p>Compruebe que el dispositivo tenga conexión a Internet, que haya iniciado sesión en el App Store y que las compras dentro de la app estén permitidas. Mantenga el juego abierto brevemente mientras Apple confirma la transacción y el juego guarda el registro de entrega. No pulse otra compra mientras haya una en proceso. Si Apple ha efectuado el cobro pero no aparecen los cristales, reinicie el juego una vez y contacte con soporte indicando el producto, la hora aproximada, la versión del juego y el modelo del dispositivo. No envíe datos de tarjetas ni credenciales de su cuenta de Apple.</p></div>
+            </details>
+
+            <details>
+              <summary>¿Dónde se guarda mi progreso?</summary>
+              <div class="faq-answer"><p>El progreso y los ajustes se guardan localmente en el dispositivo. Si iCloud está habilitado para el juego, también se guarda una copia en iCloud Documents de Apple y se sincroniza entre dispositivos compatibles conectados a la misma cuenta de Apple. Esto ayuda a conservar el progreso al cambiar de dispositivo. Espere a que iCloud termine de sincronizar antes de abrir el juego en otro dispositivo.</p></div>
+            </details>
+
+            <details>
+              <summary>¿Por qué no aparece mi última partida en otro dispositivo?</summary>
+              <div class="faq-answer"><p>Confirme que ambos dispositivos utilizan la misma cuenta de Apple, que iCloud Drive está activado, que el juego tiene acceso a iCloud y que ambos dispositivos están conectados a Internet. Cierre el juego en el primer dispositivo después de guardar, espere a que termine la sincronización y ábralo después en el segundo. Si el problema continúa, contacte con soporte antes de desinstalar el juego.</p></div>
+            </details>
+
+            <details>
+              <summary>¿Qué puedo hacer si el juego no se abre o se cierra continuamente?</summary>
+              <div class="faq-answer"><p>Cierre el juego por completo, reinicie el dispositivo, confirme que hay suficiente espacio de almacenamiento e instale las actualizaciones más recientes del juego y de iOS. Si el problema continúa, envíe por correo el modelo del dispositivo, la versión de iOS, la versión del juego y una descripción de cuándo ocurre.</p></div>
+            </details>
+
+            <details>
+              <summary>¿Cómo cambio el idioma del juego?</summary>
+              <div class="faq-answer"><p>Abra Ajustes en la pantalla principal del juego y seleccione Idioma. El juego admite inglés, chino simplificado, chino tradicional, japonés y coreano.</p></div>
+            </details>
+
+            <details>
+              <summary>¿El juego recopila datos personales o muestra anuncios?</summary>
+              <div class="faq-answer"><p>El juego no muestra anuncios ni exige una cuenta del juego. Las versiones que incluyen GameAnalytics lo utilizan para análisis limitados del producto, que pueden incluir un identificador persistente basado en IDFV, información del dispositivo y de la versión de la app, ubicación aproximada derivada de la red, hitos de juego, actividad de las sesiones y resultados opcionales de compras. La configuración actual no solicita ATT, no envía eventos publicitarios basados en IDFA, no sube errores automáticos de Unity ni envía identificadores de transacciones o recibos de StoreKit sin procesar a GameAnalytics. Las funciones opcionales de Game Center envían a Apple la puntuación de mayor profundidad y el progreso de los logros, pero el juego no envía identificadores, apodos, puntuaciones ni progreso de Game Center a GameAnalytics ni a servidores operados por el desarrollador. Cuando está activada, Apple proporciona la sincronización mediante iCloud Documents. Consulte la <a href="./index.html#spanish">Política de privacidad completa</a>. Apple explica cómo trata la información de Game Center en <a href="https://www.apple.com/legal/privacy/data/en/game-center/" rel="noopener">Game Center y la privacidad</a>.</p></div>
+            </details>
+
+            <details>
+              <summary>¿Cómo puedo consultar o solicitar la eliminación de datos analíticos?</summary>
+              <div class="faq-answer"><p>Envíe un correo a <a href="mailto:dxl707963406@outlook.com?subject=9999m%20Privacy%20Request">dxl707963406@outlook.com</a> con el asunto “9999m Privacy Request”. No envíe credenciales de pago ni la contraseña de su cuenta de Apple. Es posible que necesitemos el identificador de usuario de GameAnalytics de la instalación afectada para localizar un registro; si es necesario, le explicaremos cómo encontrarlo.</p></div>
+            </details>
+
+            <details>
+              <summary>¿Cómo informo de un error?</summary>
+              <div class="faq-answer"><p>Envíe un correo a <a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a> con la versión del juego, el modelo del dispositivo, la versión de iOS, los pasos para reproducir el problema y capturas de pantalla, si dispone de ellas.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-width footer-row">
+        <p>© 2026 Sanctuary Studio · Deng XiaoLong</p>
+        <nav aria-label="Navegación del pie de página">
+          <a href="./index.html#spanish">Política de privacidad</a>
+          <a href="#spanish">Volver arriba</a>
+        </nav>
+      </div>
+    </footer>
+    </div>
+
+    <div class="language-panel" id="traditional-chinese" data-language-panel="traditional-chinese" lang="zh-Hant" hidden>
+    <main id="traditional-chinese-top">
+      <section class="hero page-width" aria-labelledby="traditional-chinese-hero-title">
+        <div class="hero-copy-area">
+          <p class="eyebrow">Sanctuary Studio · 官方支援</p>
+          <h1 id="traditional-chinese-hero-title">下潛很艱難。取得協助不應該如此。</h1>
+          <p class="hero-copy">
+            這裡為《<strong>9999m: Down to the Princess</strong>》提供支援。這是一款支援離線遊玩的單人地城冒險遊戲，描述一名普通送貨少年、一項幾乎不可能完成的承諾，以及一位在地下 9,999 公尺等待救援的公主。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="mailto:dxl707963406@outlook.com?subject=9999m%20Support%20Request&amp;body=Game%20version%3A%0ADevice%20model%3A%0AiOS%20version%3A%0AIssue%3A%0ASteps%20to%20reproduce%3A">聯絡支援</a>
+            <a class="button button-secondary" href="./index.html#traditional-chinese">隱私權政策</a>
+          </div>
+          <div class="feature-chips" aria-label="遊戲功能">
+            <span>核心玩法支援離線</span>
+            <span>單人遊戲</span>
+            <span>不需另設遊戲帳號</span>
+            <span>選用 Game Center</span>
+            <span>有限的遊戲分析</span>
+            <span>專為觸控操作設計</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true"><img src="assets/game-icon.jpg" alt="" /></div>
+      </section>
+
+      <section class="section" id="traditional-chinese-contact" aria-labelledby="traditional-chinese-contact-heading">
+        <div class="page-width support-grid">
+          <div class="contact-panel">
+            <p class="eyebrow">玩家支援</p>
+            <h2 id="traditional-chinese-contact-heading">告訴我們發生了什麼。</h2>
+            <p>如果您發現錯誤、遺失進度或有遊戲問題，請將下列資料直接傳送給開發者。</p>
+            <a class="button button-primary" href="mailto:dxl707963406@outlook.com?subject=9999m%20Support%20Request&amp;body=Game%20version%3A%0ADevice%20model%3A%0AiOS%20version%3A%0AIssue%3A%0ASteps%20to%20reproduce%3A">dxl707963406@outlook.com</a>
+            <div class="contact-note">
+              <strong>協助我們更快調查</strong>
+              <p>請提供遊戲版本、裝置型號、iOS 版本、您預期的結果及觸發問題的步驟。如有螢幕截圖，也請一併附上。</p>
+            </div>
+          </div>
+          <dl class="info-panel" aria-label="開發者聯絡資訊">
+            <div class="info-row"><dt>遊戲</dt><dd>9999m: Down to the Princess</dd></div>
+            <div class="info-row"><dt>工作室</dt><dd>Sanctuary Studio</dd></div>
+            <div class="info-row"><dt>開發者</dt><dd>Deng XiaoLong</dd></div>
+            <div class="info-row"><dt>電子郵件</dt><dd><a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a></dd></div>
+            <div class="info-row"><dt>隱私權</dt><dd><a href="./index.html#traditional-chinese">閱讀隱私權政策</a></dd></div>
+          </dl>
+        </div>
+        <div class="page-width">
+          <div class="offline-banner">
+            <span aria-hidden="true">✓</span>
+            <p><strong>核心玩法可離線進行。</strong>一般遊玩不需遊戲帳號或網路連線。選用的 App 內購買需要網路連線，以及可在 App Store 購買項目的 Apple 帳號。存檔同步需要啟用 iCloud、網路連線，並在各裝置使用同一 Apple 帳號。選用的 Game Center 排行榜和成就需要網路連線及已登入的 Game Center 帳號。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="traditional-chinese-faq" aria-labelledby="traditional-chinese-faq-heading">
+        <div class="page-width">
+          <div class="section-heading">
+            <p class="eyebrow">快速解答</p>
+            <h2 id="traditional-chinese-faq-heading">常見問題</h2>
+            <p>您可以先在這裡尋找常見的遊戲及技術問題。</p>
+          </div>
+          <div class="faq-list">
+            <details open>
+              <summary>遊戲需要網路連線或帳號嗎？</summary>
+              <div class="faq-answer"><p>核心玩法不需網路連線或遊戲帳號。下載遊戲、接收更新、完成 App 內購買或透過 iCloud Documents 同步存檔等 Apple 服務需要網路。選用的 Game Center 排行榜和成就也需要網路連線及已登入的 Game Center 帳號。本遊戲沒有獨立帳號系統；不使用 Game Center 仍可進行所有核心玩法。</p></div>
+            </details>
+            <details>
+              <summary>Game Center 排行榜和成就如何運作？</summary>
+              <div class="faq-answer"><p>Game Center 是選用功能。登入後，遊戲會將您的最深下降距離分數和成就進度提交至 Apple Game Center，讓您查看成就、比較排行榜結果，並在使用同一 Game Center 帳號的支援裝置上保留進度。Game Center 成就不會提供額外的遊戲內物品或貨幣。</p></div>
+            </details>
+            <details>
+              <summary>為什麼 Game Center 圖示呈灰色或顯示鎖頭？</summary>
+              <div class="faq-answer"><p>灰色或鎖定圖示表示遊戲無法確認有效的 Game Center 登入狀態。請檢查網路連線，開啟 iPhone 或 iPad 的「設定 &gt; Game Center」並確認已登入，然後返回遊戲重試；如狀態未更新，可重新啟動一次遊戲。若您先前關閉 Apple 的登入畫面，請先從「設定」登入。即使不使用 Game Center，您仍可正常遊玩。</p></div>
+            </details>
+            <details>
+              <summary>App 內購買無法開始或完成時該怎麼辦？</summary>
+              <div class="faq-answer"><p>請確認裝置已連上網路、已登入 App Store，並允許 App 內購買。Apple 確認交易及遊戲儲存發放記錄時，請短暫保持遊戲開啟；已有購買處理中時請勿再次點選。若 Apple 已扣款但水晶未出現，請重新啟動一次遊戲，再向支援提供商品、大約購買時間、遊戲版本及裝置型號。請勿傳送付款卡資料或 Apple 帳號憑證。</p></div>
+            </details>
+            <details>
+              <summary>遊戲進度儲存在哪裡？</summary>
+              <div class="faq-answer"><p>進度和設定會儲存在裝置本機。為遊戲啟用 iCloud 後，存檔副本也會儲存在 Apple 的 iCloud Documents，並在使用同一 Apple 帳號的支援裝置間同步。更換裝置時，這有助於保留進度。在另一部裝置開啟遊戲前，請讓 iCloud 完成同步。</p></div>
+            </details>
+            <details>
+              <summary>為什麼另一部裝置沒有顯示最新存檔？</summary>
+              <div class="faq-answer"><p>請確認兩部裝置使用同一 Apple 帳號、已啟用 iCloud Drive、允許本遊戲存取 iCloud，且都已連上網路。在第一部裝置儲存後關閉遊戲，等待同步完成，再於第二部裝置開啟。若問題持續，請在解除安裝遊戲前聯絡支援。</p></div>
+            </details>
+            <details>
+              <summary>遊戲無法開啟或持續關閉時該怎麼辦？</summary>
+              <div class="faq-answer"><p>請完整關閉遊戲、重新啟動裝置、確認有足夠的儲存空間，並安裝最新的遊戲與 iOS 更新。若問題持續，請透過電子郵件提供裝置型號、iOS 版本、遊戲版本及問題發生的情況。</p></div>
+            </details>
+            <details>
+              <summary>如何變更遊戲語言？</summary>
+              <div class="faq-answer"><p>從遊戲主畫面開啟「設定」，然後選擇「語言」。遊戲支援英文、簡體中文、繁體中文、日文及韓文。</p></div>
+            </details>
+            <details>
+              <summary>遊戲會收集個人資料或顯示廣告嗎？</summary>
+              <div class="faq-answer"><p>本遊戲不顯示廣告，也不要求遊戲帳號。包含 GameAnalytics 的版本會使用該服務進行有限的產品分析，其中可能包括以 IDFV 為基礎的持久識別碼、裝置與 App 版本資訊、由網路推斷的概略位置、遊戲里程碑、工作階段活動及選用的購買結果。目前設定不會要求 ATT、不會提交以 IDFA 為基礎的廣告事件、不會上傳 Unity 自動錯誤，也不會向 GameAnalytics 傳送原始 StoreKit 交易識別碼或收據。選用的 Game Center 功能會向 Apple 傳送玩家的最深下降距離分數及成就進度，但不會將 Game Center 識別碼、暱稱、分數或成就進度傳送至 GameAnalytics 或開發者營運的伺服器。啟用後，存檔同步由 Apple 的 iCloud Documents 提供。詳情請閱讀<a href="./index.html#traditional-chinese">完整隱私權政策</a>。Apple 對 Game Center 資訊的處理請參閱<a href="https://www.apple.com/legal/privacy/data/en/game-center/" rel="noopener">Game Center 與隱私權</a>。</p></div>
+            </details>
+            <details>
+              <summary>如何查詢或要求刪除分析資料？</summary>
+              <div class="faq-answer"><p>請寄送電子郵件至 <a href="mailto:dxl707963406@outlook.com?subject=9999m%20Privacy%20Request">dxl707963406@outlook.com</a>，主旨填寫「9999m Privacy Request」。請勿傳送付款憑證或 Apple 帳號密碼。為找到分析記錄，我們可能需要受影響安裝中的 GameAnalytics 使用者識別碼；如有需要，我們會說明如何尋找。</p></div>
+            </details>
+            <details>
+              <summary>如何回報錯誤？</summary>
+              <div class="faq-answer"><p>請寄送電子郵件至 <a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a>，並提供遊戲版本、裝置型號、iOS 版本、重現步驟及可用的螢幕截圖。</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="page-width footer-row">
+        <p>© 2026 Sanctuary Studio · Deng XiaoLong</p>
+        <nav aria-label="頁尾導覽">
+          <a href="./index.html#traditional-chinese">隱私權政策</a>
+          <a href="#traditional-chinese">返回頂端</a>
+        </nav>
+      </div>
+    </footer>
+    </div>
+
+    <div class="language-panel" id="japanese" data-language-panel="japanese" lang="ja" hidden>
+    <main id="japanese-top">
+      <section class="hero page-width" aria-labelledby="japanese-hero-title">
+        <div class="hero-copy-area">
+          <p class="eyebrow">Sanctuary Studio · 公式サポート</p>
+          <h1 id="japanese-hero-title">冒険は困難でも、サポートは簡単に。</h1>
+          <p class="hero-copy">
+            <strong>9999m: Down to the Princess</strong> のサポートページです。本作は、平凡な配達人と果たすことが困難な約束、そして地下 9,999 メートルで待つ王女を描く、オフライン対応の一人用ダンジョンアドベンチャーです。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="mailto:dxl707963406@outlook.com?subject=9999m%20Support%20Request&amp;body=Game%20version%3A%0ADevice%20model%3A%0AiOS%20version%3A%0AIssue%3A%0ASteps%20to%20reproduce%3A">サポートに連絡</a>
+            <a class="button button-secondary" href="./index.html#japanese">プライバシーポリシー</a>
+          </div>
+          <div class="feature-chips" aria-label="ゲーム機能">
+            <span>基本プレイはオフライン対応</span>
+            <span>一人用</span>
+            <span>専用ゲームアカウント不要</span>
+            <span>任意の Game Center</span>
+            <span>限定的なゲーム分析</span>
+            <span>タッチ操作向け</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true"><img src="assets/game-icon.jpg" alt="" /></div>
+      </section>
+
+      <section class="section" id="japanese-contact" aria-labelledby="japanese-contact-heading">
+        <div class="page-width support-grid">
+          <div class="contact-panel">
+            <p class="eyebrow">プレイヤーサポート</p>
+            <h2 id="japanese-contact-heading">発生した状況をお知らせください。</h2>
+            <p>不具合、進行データの消失、ゲームプレイに関する質問がある場合は、以下の情報を添えて開発者へ直接ご連絡ください。</p>
+            <a class="button button-primary" href="mailto:dxl707963406@outlook.com?subject=9999m%20Support%20Request&amp;body=Game%20version%3A%0ADevice%20model%3A%0AiOS%20version%3A%0AIssue%3A%0ASteps%20to%20reproduce%3A">dxl707963406@outlook.com</a>
+            <div class="contact-note">
+              <strong>迅速な調査にご協力ください</strong>
+              <p>ゲームのバージョン、端末モデル、iOS バージョン、期待していた動作、問題が発生した手順を記載してください。可能であればスクリーンショットも添付してください。</p>
+            </div>
+          </div>
+          <dl class="info-panel" aria-label="開発者の連絡先">
+            <div class="info-row"><dt>ゲーム</dt><dd>9999m: Down to the Princess</dd></div>
+            <div class="info-row"><dt>スタジオ</dt><dd>Sanctuary Studio</dd></div>
+            <div class="info-row"><dt>開発者</dt><dd>Deng XiaoLong</dd></div>
+            <div class="info-row"><dt>メール</dt><dd><a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a></dd></div>
+            <div class="info-row"><dt>プライバシー</dt><dd><a href="./index.html#japanese">プライバシーポリシーを読む</a></dd></div>
+          </dl>
+        </div>
+        <div class="page-width">
+          <div class="offline-banner">
+            <span aria-hidden="true">✓</span>
+            <p><strong>基本ゲームプレイはオフラインで利用できます。</strong>通常のプレイにゲームアカウントやインターネット接続は不要です。任意のアプリ内購入には、インターネット接続と App Store で購入可能な Apple Account が必要です。セーブ同期には、iCloud の有効化、インターネット接続、各端末で同じ Apple Account の使用が必要です。任意の Game Center ランキングと実績には、インターネット接続とサインイン済みの Game Center アカウントが必要です。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="japanese-faq" aria-labelledby="japanese-faq-heading">
+        <div class="page-width">
+          <div class="section-heading">
+            <p class="eyebrow">クイック回答</p>
+            <h2 id="japanese-faq-heading">よくある質問</h2>
+            <p>一般的なゲームプレイや技術的な問題について、まずこちらをご確認ください。</p>
+          </div>
+          <div class="faq-list">
+            <details open>
+              <summary>ゲームにインターネット接続やアカウントは必要ですか？</summary>
+              <div class="faq-answer"><p>基本ゲームプレイにインターネット接続やゲームアカウントは不要です。ゲームのダウンロード、アップデート、アプリ内購入、iCloud Documents によるセーブ同期などの Apple サービスにはインターネット接続が必要です。任意の Game Center ランキングと実績には、サインイン済みの Game Center アカウントも必要です。本ゲームに独自のアカウントシステムはなく、Game Center を使用しなくても基本ゲームプレイをすべて利用できます。</p></div>
+            </details>
+            <details>
+              <summary>Game Center のランキングと実績はどのように機能しますか？</summary>
+              <div class="faq-answer"><p>Game Center は任意です。サインインすると、本ゲームは最深到達距離のスコアと実績の進捗を Apple Game Center に送信します。これにより実績の確認、ランキング結果の比較、同じ Game Center アカウントを使用する対応端末での進捗維持ができます。Game Center の実績によって追加のゲーム内アイテムや通貨が付与されることはありません。</p></div>
+            </details>
+            <details>
+              <summary>Game Center のアイコンが灰色またはロック表示なのはなぜですか？</summary>
+              <div class="faq-answer"><p>灰色またはロックされたアイコンは、有効な Game Center サインインをゲームが確認できないことを示します。インターネット接続を確認し、iPhone または iPad の「設定 &gt; Game Center」でサインイン済みか確認してからゲームに戻って再試行してください。状態が更新されない場合はゲームを一度再起動してください。以前 Apple のサインイン画面を閉じた場合は、「設定」からサインインしてから戻ってください。Game Center を使わなくても通常どおりプレイできます。</p></div>
+            </details>
+            <details>
+              <summary>アプリ内購入が開始または完了しない場合はどうすればよいですか？</summary>
+              <div class="faq-answer"><p>端末がインターネットに接続され、App Store にサインインしており、アプリ内購入が許可されていることを確認してください。Apple が取引を確認し、ゲームが付与記録を保存する間は、しばらくゲームを開いたままにしてください。購入処理中に別の購入をタップしないでください。Apple から請求されたのにクリスタルが表示されない場合は、ゲームを一度再起動し、商品、購入時刻の目安、ゲームのバージョン、端末モデルをサポートへお知らせください。決済カード情報や Apple Account の認証情報は送らないでください。</p></div>
+            </details>
+            <details>
+              <summary>ゲームの進行状況はどこに保存されますか？</summary>
+              <div class="faq-answer"><p>進行状況と設定は端末内に保存されます。本ゲームで iCloud を有効にすると、セーブのコピーが Apple の iCloud Documents にも保存され、同じ Apple Account でサインインした対応端末間で同期されます。機種変更時も進行状況を維持しやすくなります。別の端末でゲームを開く前に、iCloud の同期が完了するまでお待ちください。</p></div>
+            </details>
+            <details>
+              <summary>別の端末に最新のセーブが表示されないのはなぜですか？</summary>
+              <div class="faq-answer"><p>両方の端末で同じ Apple Account を使用し、iCloud Drive が有効で、本ゲームの iCloud アクセスが許可され、両方がインターネットに接続されていることを確認してください。最初の端末で保存後にゲームを閉じ、同期が完了してから次の端末で開いてください。問題が続く場合は、ゲームをアンインストールする前にサポートへご連絡ください。</p></div>
+            </details>
+            <details>
+              <summary>ゲームが開かない、または繰り返し終了する場合はどうすればよいですか？</summary>
+              <div class="faq-answer"><p>ゲームを完全に終了し、端末を再起動し、十分な空き容量があることを確認して、最新のゲームおよび iOS アップデートをインストールしてください。問題が続く場合は、端末モデル、iOS バージョン、ゲームのバージョン、問題が発生する状況をメールでお知らせください。</p></div>
+            </details>
+            <details>
+              <summary>ゲームの言語を変更するにはどうすればよいですか？</summary>
+              <div class="faq-answer"><p>ゲームのメイン画面から「設定」を開き、「言語」を選択してください。本ゲームは英語、簡体字中国語、繁体字中国語、日本語、韓国語に対応しています。</p></div>
+            </details>
+            <details>
+              <summary>ゲームは個人データを収集したり広告を表示したりしますか？</summary>
+              <div class="faq-answer"><p>本ゲームは広告を表示せず、ゲームアカウントも必要としません。GameAnalytics を含むバージョンでは、IDFV に基づく永続的な識別子、端末・App バージョン情報、ネットワークから推定されるおおよその位置、ゲームの節目、セッション活動、任意の購入結果などを限定的な製品分析に使用する場合があります。現在の設定では ATT を要求せず、IDFA ベースの広告イベント、Unity の自動エラー、未加工の StoreKit 取引識別子やレシートを GameAnalytics に送信しません。任意の Game Center 機能は最深到達距離のスコアと実績の進捗を Apple に送信しますが、Game Center の識別子、ニックネーム、スコア、実績の進捗を GameAnalytics または開発者運営サーバーには送信しません。セーブ同期を有効にすると Apple の iCloud Documents が使用されます。詳しくは<a href="./index.html#japanese">プライバシーポリシー全文</a>をご覧ください。Apple による Game Center 情報の取り扱いは<a href="https://www.apple.com/legal/privacy/data/en/game-center/" rel="noopener">Game Center とプライバシー</a>をご覧ください。</p></div>
+            </details>
+            <details>
+              <summary>分析データへのアクセスや削除を依頼するにはどうすればよいですか？</summary>
+              <div class="faq-answer"><p>件名を「9999m Privacy Request」として、<a href="mailto:dxl707963406@outlook.com?subject=9999m%20Privacy%20Request">dxl707963406@outlook.com</a> へメールをお送りください。決済認証情報や Apple Account のパスワードは送らないでください。分析記録の特定に、対象インストールの GameAnalytics ユーザー識別子が必要になる場合があります。その場合は確認方法をご案内します。</p></div>
+            </details>
+            <details>
+              <summary>不具合を報告するにはどうすればよいですか？</summary>
+              <div class="faq-answer"><p><a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a> へ、ゲームのバージョン、端末モデル、iOS バージョン、問題の再現手順、可能であればスクリーンショットを添えてメールをお送りください。</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="page-width footer-row">
+        <p>© 2026 Sanctuary Studio · Deng XiaoLong</p>
+        <nav aria-label="フッターナビゲーション">
+          <a href="./index.html#japanese">プライバシーポリシー</a>
+          <a href="#japanese">ページ上部へ</a>
+        </nav>
+      </div>
+    </footer>
+    </div>
+
+    <div class="language-panel" id="korean" data-language-panel="korean" lang="ko" hidden>
+    <main id="korean-top">
+      <section class="hero page-width" aria-labelledby="korean-hero-title">
+        <div class="hero-copy-area">
+          <p class="eyebrow">Sanctuary Studio · 공식 지원</p>
+          <h1 id="korean-hero-title">하강은 어려워도, 도움을 받는 일은 쉬워야 합니다.</h1>
+          <p class="hero-copy">
+            <strong>9999m: Down to the Princess</strong> 지원 페이지입니다. 평범한 배달원과 불가능에 가까운 약속, 그리고 지하 9,999미터에서 기다리는 공주의 이야기를 다룬 오프라인 지원 싱글 플레이 던전 어드벤처입니다.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="mailto:dxl707963406@outlook.com?subject=9999m%20Support%20Request&amp;body=Game%20version%3A%0ADevice%20model%3A%0AiOS%20version%3A%0AIssue%3A%0ASteps%20to%20reproduce%3A">지원팀에 문의</a>
+            <a class="button button-secondary" href="./index.html#korean">개인정보 처리방침</a>
+          </div>
+          <div class="feature-chips" aria-label="게임 기능">
+            <span>핵심 게임플레이 오프라인 지원</span>
+            <span>싱글 플레이</span>
+            <span>별도 게임 계정 불필요</span>
+            <span>선택적 Game Center</span>
+            <span>제한적인 게임 분석</span>
+            <span>터치 조작 지원</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true"><img src="assets/game-icon.jpg" alt="" /></div>
+      </section>
+
+      <section class="section" id="korean-contact" aria-labelledby="korean-contact-heading">
+        <div class="page-width support-grid">
+          <div class="contact-panel">
+            <p class="eyebrow">플레이어 지원</p>
+            <h2 id="korean-contact-heading">어떤 문제가 발생했는지 알려주세요.</h2>
+            <p>버그를 발견했거나 진행 상황이 사라졌거나 게임플레이 관련 질문이 있으면 아래 정보와 함께 개발자에게 직접 메시지를 보내주세요.</p>
+            <a class="button button-primary" href="mailto:dxl707963406@outlook.com?subject=9999m%20Support%20Request&amp;body=Game%20version%3A%0ADevice%20model%3A%0AiOS%20version%3A%0AIssue%3A%0ASteps%20to%20reproduce%3A">dxl707963406@outlook.com</a>
+            <div class="contact-note">
+              <strong>더 빠른 문제 확인을 도와주세요</strong>
+              <p>게임 버전, 기기 모델, iOS 버전, 예상했던 결과와 문제가 발생한 단계를 포함해 주세요. 가능하면 스크린샷도 첨부해 주세요.</p>
+            </div>
+          </div>
+          <dl class="info-panel" aria-label="개발자 연락처 정보">
+            <div class="info-row"><dt>게임</dt><dd>9999m: Down to the Princess</dd></div>
+            <div class="info-row"><dt>스튜디오</dt><dd>Sanctuary Studio</dd></div>
+            <div class="info-row"><dt>개발자</dt><dd>Deng XiaoLong</dd></div>
+            <div class="info-row"><dt>이메일</dt><dd><a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a></dd></div>
+            <div class="info-row"><dt>개인정보</dt><dd><a href="./index.html#korean">개인정보 처리방침 보기</a></dd></div>
+          </dl>
+        </div>
+        <div class="page-width">
+          <div class="offline-banner">
+            <span aria-hidden="true">✓</span>
+            <p><strong>핵심 게임플레이는 오프라인으로 이용할 수 있습니다.</strong>일반 플레이에는 게임 계정이나 인터넷 연결이 필요하지 않습니다. 선택적 앱 내 구입에는 인터넷 연결과 App Store에서 구입할 수 있는 Apple Account가 필요합니다. 저장 동기화에는 iCloud 활성화, 인터넷 연결 및 각 기기에서 동일한 Apple Account 사용이 필요합니다. 선택적 Game Center 순위표와 업적에는 인터넷 연결과 로그인된 Game Center 계정이 필요합니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="korean-faq" aria-labelledby="korean-faq-heading">
+        <div class="page-width">
+          <div class="section-heading">
+            <p class="eyebrow">빠른 답변</p>
+            <h2 id="korean-faq-heading">자주 묻는 질문</h2>
+            <p>일반적인 게임플레이 및 기술 문제는 먼저 여기에서 확인해 주세요.</p>
+          </div>
+          <div class="faq-list">
+            <details open>
+              <summary>게임에 인터넷 연결이나 계정이 필요한가요?</summary>
+              <div class="faq-answer"><p>핵심 게임플레이에는 인터넷 연결이나 게임 계정이 필요하지 않습니다. 게임 다운로드, 업데이트 수신, 앱 내 구입 완료, iCloud Documents를 통한 저장 데이터 동기화 같은 Apple 서비스에는 인터넷이 필요합니다. 선택적 Game Center 순위표와 업적에는 로그인된 Game Center 계정도 필요합니다. 게임에는 별도의 계정 시스템이 없으며 Game Center 없이도 모든 핵심 게임플레이를 이용할 수 있습니다.</p></div>
+            </details>
+            <details>
+              <summary>Game Center 순위표와 업적은 어떻게 작동하나요?</summary>
+              <div class="faq-answer"><p>Game Center는 선택 사항입니다. 로그인하면 게임은 최대 하강 거리 점수와 업적 진행 상황을 Apple Game Center에 전송합니다. 이를 통해 업적을 확인하고 순위표 결과를 비교하며, 동일한 Game Center 계정을 사용하는 지원 기기에서 진행 상황을 유지할 수 있습니다. Game Center 업적은 추가 게임 내 아이템이나 화폐를 지급하지 않습니다.</p></div>
+            </details>
+            <details>
+              <summary>Game Center 아이콘이 회색이거나 잠겨 있는 이유는 무엇인가요?</summary>
+              <div class="faq-answer"><p>회색 또는 잠금 아이콘은 게임이 활성 Game Center 로그인을 확인할 수 없다는 뜻입니다. 인터넷 연결을 확인하고 iPhone 또는 iPad의 “설정 &gt; Game Center”에서 로그인 상태를 확인한 뒤 게임으로 돌아와 다시 시도하세요. 상태가 갱신되지 않으면 게임을 한 번 재시작하세요. 이전에 Apple 로그인 화면을 닫았다면 설정에서 먼저 로그인한 뒤 돌아오세요. Game Center 없이도 정상적으로 플레이할 수 있습니다.</p></div>
+            </details>
+            <details>
+              <summary>앱 내 구입이 시작되거나 완료되지 않으면 어떻게 하나요?</summary>
+              <div class="faq-answer"><p>기기가 인터넷에 연결되어 있고 App Store에 로그인되어 있으며 앱 내 구입이 허용되어 있는지 확인하세요. Apple이 거래를 확인하고 게임이 지급 기록을 저장하는 동안 잠시 게임을 열어 두세요. 구매가 처리 중일 때 다른 구매를 누르지 마세요. Apple에서 결제되었지만 크리스털이 나타나지 않으면 게임을 한 번 재시작한 후 상품, 대략적인 구매 시간, 게임 버전 및 기기 모델을 지원팀에 알려주세요. 결제 카드 정보나 Apple Account 인증 정보는 보내지 마세요.</p></div>
+            </details>
+            <details>
+              <summary>게임 진행 상황은 어디에 저장되나요?</summary>
+              <div class="faq-answer"><p>진행 상황과 설정은 기기에 로컬로 저장됩니다. 게임에 iCloud가 활성화되어 있으면 저장 파일 사본이 Apple의 iCloud Documents에도 저장되고 동일한 Apple Account로 로그인한 지원 기기 간에 동기화됩니다. 기기를 변경할 때 진행 상황을 유지하는 데 도움이 됩니다. 다른 기기에서 게임을 열기 전에 iCloud 동기화가 완료될 시간을 주세요.</p></div>
+            </details>
+            <details>
+              <summary>다른 기기에 최신 저장 데이터가 표시되지 않는 이유는 무엇인가요?</summary>
+              <div class="faq-answer"><p>두 기기에서 동일한 Apple Account를 사용하고, iCloud Drive가 활성화되어 있으며, 게임의 iCloud 접근이 허용되어 있고, 두 기기 모두 인터넷에 연결되어 있는지 확인하세요. 첫 번째 기기에서 저장 후 게임을 닫고 동기화가 완료된 다음 두 번째 기기에서 여세요. 문제가 계속되면 게임을 삭제하기 전에 지원팀에 문의하세요.</p></div>
+            </details>
+            <details>
+              <summary>게임이 열리지 않거나 계속 종료되면 어떻게 해야 하나요?</summary>
+              <div class="faq-answer"><p>게임을 완전히 종료하고 기기를 재시작한 다음 저장 공간이 충분한지 확인하고 최신 게임 및 iOS 업데이트를 설치하세요. 문제가 계속되면 기기 모델, iOS 버전, 게임 버전 및 문제가 발생하는 상황을 이메일로 보내주세요.</p></div>
+            </details>
+            <details>
+              <summary>게임 언어를 어떻게 변경하나요?</summary>
+              <div class="faq-answer"><p>게임 메인 화면에서 설정을 열고 언어를 선택하세요. 게임은 영어, 중국어 간체, 중국어 번체, 일본어 및 한국어를 지원합니다.</p></div>
+            </details>
+            <details>
+              <summary>게임이 개인정보를 수집하거나 광고를 표시하나요?</summary>
+              <div class="faq-answer"><p>게임은 광고를 표시하지 않으며 게임 계정을 요구하지 않습니다. GameAnalytics가 포함된 버전은 IDFV 기반 영구 식별자, 기기 및 앱 버전 정보, 네트워크에서 추정한 대략적인 위치, 게임플레이 이정표, 세션 활동 및 선택적 구매 결과 등을 제한적인 제품 분석에 사용할 수 있습니다. 현재 설정은 ATT를 요청하지 않고, IDFA 기반 광고 이벤트, Unity 자동 오류, 원본 StoreKit 거래 식별자나 영수증을 GameAnalytics로 전송하지 않습니다. 선택적 Game Center 기능은 최대 하강 거리 점수와 업적 진행 상황을 Apple로 보내지만 Game Center 식별자, 별명, 점수 또는 업적 진행 상황을 GameAnalytics나 개발자 운영 서버로 보내지 않습니다. 활성화된 저장 동기화는 Apple의 iCloud Documents를 사용합니다. 자세한 내용은 <a href="./index.html#korean">전체 개인정보 처리방침</a>을 참조하세요. Apple의 Game Center 정보 처리는 <a href="https://www.apple.com/legal/privacy/data/en/game-center/" rel="noopener">Game Center 및 개인정보 보호</a>를 참조하세요.</p></div>
+            </details>
+            <details>
+              <summary>분석 데이터 접근 또는 삭제를 요청하려면 어떻게 하나요?</summary>
+              <div class="faq-answer"><p>제목을 “9999m Privacy Request”로 하여 <a href="mailto:dxl707963406@outlook.com?subject=9999m%20Privacy%20Request">dxl707963406@outlook.com</a>으로 이메일을 보내주세요. 결제 인증 정보나 Apple Account 암호는 보내지 마세요. 분석 기록을 찾기 위해 해당 설치의 GameAnalytics 사용자 식별자가 필요할 수 있으며, 필요한 경우 확인 방법을 안내해 드립니다.</p></div>
+            </details>
+            <details>
+              <summary>버그는 어떻게 신고하나요?</summary>
+              <div class="faq-answer"><p><a href="mailto:dxl707963406@outlook.com">dxl707963406@outlook.com</a>으로 게임 버전, 기기 모델, iOS 버전, 문제 재현 단계 및 가능한 경우 스크린샷을 보내주세요.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="page-width footer-row">
+        <p>© 2026 Sanctuary Studio · Deng XiaoLong</p>
+        <nav aria-label="바닥글 탐색">
+          <a href="./index.html#korean">개인정보 처리방침</a>
+          <a href="#korean">맨 위로</a>
+        </nav>
+      </div>
+    </footer>
+    </div>
+
+    <script>
+      (() => {
+        const localeMap = {
+          english: { lang: "en", title: "Support | 9999m: Down to the Princess" },
+          chinese: { lang: "zh-Hans", title: "游戏支持 | 9999m: Down to the Princess" },
+          "traditional-chinese": { lang: "zh-Hant", title: "遊戲支援 | 9999m: Down to the Princess" },
+          spanish: { lang: "es", title: "Soporte | 9999m: Down to the Princess" },
+          japanese: { lang: "ja", title: "ゲームサポート | 9999m: Down to the Princess" },
+          korean: { lang: "ko", title: "게임 지원 | 9999m: Down to the Princess" },
+        };
+        const panels = [...document.querySelectorAll("[data-language-panel]")];
+        const buttons = [...document.querySelectorAll("[data-language]")];
+        const homeLink = document.querySelector("[data-home-link]");
+
+        const languageFromHash = () => {
+          const hash = window.location.hash.slice(1);
+          return Object.keys(localeMap).find((language) => hash.startsWith(language));
+        };
+
+        const activateLanguage = (language) => {
+          const selected = localeMap[language] ? language : "english";
+          panels.forEach((panel) => {
+            panel.hidden = panel.dataset.languagePanel !== selected;
+          });
+          buttons.forEach((button) => {
+            button.setAttribute("aria-pressed", String(button.dataset.language === selected));
+          });
+          document.documentElement.lang = localeMap[selected].lang;
+          document.title = localeMap[selected].title;
+          homeLink.href = `#${selected}`;
+        };
+
+        buttons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const language = button.dataset.language;
+            activateLanguage(language);
+            window.location.hash = language;
+          });
+        });
+
+        window.addEventListener("hashchange", () => {
+          activateLanguage(languageFromHash() || "english");
+        });
+
+        activateLanguage(languageFromHash() || "english");
+      })();
+    </script>
   </body>
 </html>
