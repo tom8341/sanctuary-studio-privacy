@@ -84,6 +84,14 @@ a:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 5px; }
 .combat-section { display: grid; grid-template-columns: .72fr 1.28fr; gap: 10vw; padding: 150px clamp(42px, 8vw, 150px); background: #e4d8c4; color: #150e0a; }
 .combat-title { align-self: start; position: sticky; top: 55px; }
 .combat-title h2 { color: #160e0a; }
+:lang(zh-Hans) .combat-title h2,
+:lang(zh-Hant) .combat-title h2 {
+  font-family: "Songti SC", "Songti TC", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+  font-size: clamp(42px, 5vw, 74px);
+  line-height: 1.12;
+  letter-spacing: -.035em;
+  white-space: nowrap;
+}
 .combat-title > p { max-width: 520px; margin-top: 30px; color: #665b50; }
 .combat-ledger { border-top: 1px solid rgba(21,14,10,.22); }
 .combat-ledger article { display: grid; grid-template-columns: 56px 1fr; gap: 18px; padding: 39px 0 43px; border-bottom: 1px solid rgba(21,14,10,.22); }
