@@ -287,6 +287,52 @@
     }
   };
 
+  const previewCopy = {
+    en: ["From the developer interview.", "Read the full interview"],
+    es: ["De la entrevista al desarrollador.", "Leer la entrevista completa"],
+    "zh-hant": ["摘自開發者專訪。", "閱讀完整專訪"],
+    ja: ["開発者インタビューより。", "インタビュー全文を読む"],
+    ko: ["개발자 인터뷰 중에서.", "인터뷰 전문 읽기"],
+    "zh-hans": ["摘自开发者采访。", "阅读完整采访"]
+  };
+  const simplifiedChinesePreview = [
+    [
+      "你还记得《Dungeon 9999m》最初是什么样子吗？",
+      "最初它是一个需要快速不断下跳的游戏。",
+      "玩家为什么不能停下来？是有什么在身后追，还是你单纯想做出那种来不及多想、看准下一块落脚点就得跳的感觉？",
+      "因为我喜欢这种紧张感，让玩家不断地面对新的危机。"
+    ],
+    [
+      "为什么是 9,999 米？你希望玩家第一次看到这个距离时，心里冒出什么念头？",
+      "很深啊，我能到达么？另一方面，地狱的深度应该就是 1 万米吧。我记得有个传说，苏联有个钻井往下挖，大概也是到了这个深度挖不动了，并且能听到地狱中怪物的声音。"
+    ]
+  ];
+
+  const preview = document.querySelector("[data-interview-preview]");
+  if (preview) {
+    const language = document.documentElement.lang.toLowerCase();
+    const [intro, cta] = previewCopy[language];
+    const transcript = translations[language]?.transcript ?? simplifiedChinesePreview;
+    const followUp = translations[language]?.ui[4] ?? "记者追问";
+
+    document.querySelector("[data-interview-intro]").textContent = intro;
+    preview.querySelector("[data-interview-cta]").textContent = cta;
+    preview.querySelectorAll("article").forEach((entry, index) => {
+      const [question, ...paragraphs] = transcript[index];
+      entry.querySelector("h3").textContent = question;
+      entry.querySelectorAll("p").forEach((paragraph, paragraphIndex) => {
+        const label = paragraph.querySelector("strong");
+        if (label) {
+          label.textContent = followUp;
+          paragraph.replaceChildren(label, ` ${paragraphs[paragraphIndex]}`);
+        } else {
+          paragraph.textContent = paragraphs[paragraphIndex];
+        }
+      });
+    });
+    return;
+  }
+
   const languageLinks = document.querySelectorAll(".interview-languages a");
   const requested = new URLSearchParams(window.location.search).get("lang")?.toLowerCase();
   const activeLink = Array.from(languageLinks).find((link) => link.hreflang.toLowerCase() === requested);
