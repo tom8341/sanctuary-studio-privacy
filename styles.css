@@ -155,7 +155,8 @@ footer p { margin: 0; }
   .depth-panel { right: -16px; bottom: 34px; width: 182px; }
   .live-mark { left: -12px; }
   .descent { padding: 95px 22px 110px; }
-  .descent-heading, .combat-section, .qa { grid-template-columns: 1fr; gap: 46px; }
+  .descent-heading, .combat-section, .qa { grid-template-columns: minmax(0, 1fr); gap: 46px; }
+  .descent h2, .qa h2 { overflow-wrap: anywhere; }
   .depth-scale { gap: 7px; font-size: 10px; }
   .screenshot-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
   .combat-section { padding: 95px 22px; }
