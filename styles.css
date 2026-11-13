@@ -111,6 +111,8 @@ a:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 5px; }
 .qa { display: grid; grid-template-columns: .64fr 1.36fr; gap: 9vw; padding: 150px clamp(42px, 8vw, 150px); background: var(--surface); }
 .qa-heading { position: sticky; top: 55px; align-self: start; }
 .qa-heading > p { margin-top: 23px; }
+.qa-heading h2:lang(zh) { line-height: 1.12; letter-spacing: 0; }
+.qa-heading h2:lang(zh) span { white-space: nowrap; }
 .qa-list { border-top: 1px solid var(--line); }
 .qa-list article { display: grid; grid-template-columns: 48px 1fr; gap: 22px; padding: 32px 0 38px; border-bottom: 1px solid var(--line); }
 .qa-list article > span { color: var(--gold); font: 600 16px/1 var(--condensed); }

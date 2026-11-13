@@ -11,7 +11,9 @@
         ],
         [
           "Why 9,999 meters? What do you hope goes through players’ minds when they first see that distance?",
-          "That’s deep. Can I really make it? Also, hell should be about 10,000 meters down, right? I remember a legend about a Soviet borehole. They got down to around that depth, couldn't drill any farther, and supposedly heard the sounds of monsters in hell."
+          "That’s deep. Can I really make it?",
+          "Also, hell should be about 10,000 meters down, right?",
+          "I remember a legend about a Soviet borehole. They got down to around that depth, couldn't drill any farther, and supposedly heard the sounds of monsters in hell."
         ],
         [
           "Is there a moment in the first ten minutes you particularly want players to remember? If I'm playing for the first time, what will I see and hear, and what will I be doing?",
@@ -68,7 +70,9 @@
         ],
         [
           "¿Por qué 9.999 metros? ¿Qué quieres que piense el jugador cuando vea esa distancia por primera vez?",
-          "Qué profundo. ¿De verdad podré llegar? Por otro lado, el infierno debe de estar a unos 10.000 metros, ¿no? Recuerdo una leyenda sobre una perforación soviética. Dicen que al llegar más o menos a esa profundidad ya no pudieron seguir perforando y se oían los sonidos de monstruos del infierno."
+          "Qué profundo. ¿De verdad podré llegar?",
+          "Por otro lado, el infierno debe de estar a unos 10.000 metros, ¿no?",
+          "Recuerdo una leyenda sobre una perforación soviética. Dicen que al llegar más o menos a esa profundidad ya no pudieron seguir perforando y se oían los sonidos de monstruos del infierno."
         ],
         [
           "¿Hay algún momento de los primeros diez minutos que quieras que el jugador recuerde? Si juego por primera vez, ¿qué veré y oiré en ese momento? ¿Qué estaré haciendo?",
@@ -125,7 +129,9 @@
         ],
         [
           "なぜ9,999メートルなんですか？ 初めてその距離を見たプレイヤーに、何を思ってほしいですか？",
-          "深いな、本当にたどり着けるのか？ という感じです。それに、地獄ってだいたい地下1万メートルくらいじゃないですか。ソ連が掘った深い穴の伝説を覚えています。そのくらいの深さで掘り進めなくなり、地獄の怪物の声が聞こえた、という話です。"
+          "深いな、本当にたどり着けるのか？ という感じです。",
+          "それに、地獄ってだいたい地下1万メートルくらいじゃないですか。",
+          "ソ連が掘った深い穴の伝説を覚えています。そのくらいの深さで掘り進めなくなり、地獄の怪物の声が聞こえた、という話です。"
         ],
         [
           "最初の10分で、特に覚えていてほしい瞬間はありますか？ 初めて遊ぶ私には何が見えて、何が聞こえて、何をしているのでしょう？",
@@ -182,7 +188,9 @@
         ],
         [
           "왜 9,999미터인가요? 플레이어가 처음 그 거리를 보면 무슨 생각을 하길 바라나요?",
-          "정말 깊다. 내가 저기까지 갈 수 있을까? 그리고 지옥이라면 지하 1만 미터쯤 되지 않을까요? 소련의 시추공에 관한 전설이 기억나요. 그 정도 깊이까지 파고 나니 더는 뚫을 수 없었고, 지옥의 괴물 소리가 들렸다는 이야기예요."
+          "정말 깊다. 내가 저기까지 갈 수 있을까?",
+          "그리고 지옥이라면 지하 1만 미터쯤 되지 않을까요?",
+          "소련의 시추공에 관한 전설이 기억나요. 그 정도 깊이까지 파고 나니 더는 뚫을 수 없었고, 지옥의 괴물 소리가 들렸다는 이야기예요."
         ],
         [
           "처음 10분 중에 플레이어가 꼭 기억했으면 하는 순간이 있나요? 제가 처음 플레이한다면 그때 무엇을 보고, 무엇을 듣고, 무엇을 하고 있을까요?",
@@ -239,7 +247,9 @@
         ],
         [
           "為什麼是 9,999 米？你希望玩家第一次看到這個距離時，心裡冒出什麼念頭？",
-          "很深啊，我能到達麼？另一方面，地獄的深度應該就是 1 萬米吧。我記得有個傳說，蘇聯有個鑽井往下挖，大概也是到了這個深度挖不動了，並且能聽到地獄中怪物的聲音。"
+          "很深啊，我能到達麼？",
+          "另一方面，地獄的深度應該就是 1 萬米吧。",
+          "我記得有個傳說，蘇聯有個鑽井往下挖，大概也是到了這個深度挖不動了，並且能聽到地獄中怪物的聲音。"
         ],
         [
           "開場十分鐘裡，有沒有一個你特別想讓玩家記住的瞬間？如果我第一次玩，那一刻我會看到什麼、聽到什麼，手上正在做什麼？",
@@ -304,7 +314,9 @@
     ],
     [
       "为什么是 9,999 米？你希望玩家第一次看到这个距离时，心里冒出什么念头？",
-      "很深啊，我能到达么？另一方面，地狱的深度应该就是 1 万米吧。我记得有个传说，苏联有个钻井往下挖，大概也是到了这个深度挖不动了，并且能听到地狱中怪物的声音。"
+      "很深啊，我能到达么？",
+      "另一方面，地狱的深度应该就是 1 万米吧。",
+      "我记得有个传说，苏联有个钻井往下挖，大概也是到了这个深度挖不动了，并且能听到地狱中怪物的声音。"
     ]
   ];
 
