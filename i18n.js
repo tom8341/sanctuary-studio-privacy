@@ -91,11 +91,11 @@
   const htmlLanguages = { en: "en", es: "es", "zh-hant": "zh-Hant", ja: "ja", ko: "ko", "zh-hans": "zh-Hans" };
   const pageLanguages = { en: "english", es: "spanish", "zh-hant": "traditional-chinese", ja: "japanese", ko: "korean", "zh-hans": "chinese" };
   const interviewLabels = {
-    en: "Developer interview (Chinese)",
-    es: "Entrevista al desarrollador (en chino)",
-    "zh-hant": "開發者專訪（簡體中文）",
-    ja: "開発者インタビュー（中国語）",
-    ko: "개발자 인터뷰 (중국어)",
+    en: "Developer interview",
+    es: "Entrevista al desarrollador",
+    "zh-hant": "開發者專訪",
+    ja: "開発者インタビュー",
+    ko: "개발자 인터뷰",
     "zh-hans": "开发者采访"
   };
 
@@ -105,6 +105,7 @@
   });
 
   const dictionary = translations[language];
+  dictionary["nav.interview"] = interviewLabels[language];
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const value = dictionary[element.dataset.i18n];
     if (value) element.innerHTML = value;
@@ -116,8 +117,5 @@
   const supportLink = document.querySelector("[data-support-link]");
   if (supportLink) supportLink.href = `support.html#${pageLanguages[language]}`;
   const interviewLink = document.querySelector("[data-interview-link]");
-  if (interviewLink) {
-    interviewLink.textContent = interviewLabels[language];
-    interviewLink.lang = htmlLanguages[language];
-  }
+  if (interviewLink) interviewLink.href = `interview.html?lang=${language}`;
 })();
