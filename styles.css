@@ -51,6 +51,8 @@ a:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 5px; }
 .hero-body { max-width: 590px; margin: 0; color: #b6aa9d; font-size: 17px; line-height: 1.75; }
 .hero-actions { display: flex; align-items: center; gap: 22px; margin-top: 34px; }
 .hero-actions > span { color: #938779; font: 500 13px/1 var(--condensed); letter-spacing: .08em; text-transform: uppercase; }
+.interview-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 10px; color: var(--gold-bright); font-size: .9rem; text-decoration: underline; text-underline-offset: .25em; }
+.interview-link:hover { color: var(--paper); }
 .download-button { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; padding: 0 25px; background: var(--gold-bright); color: #150c07; font: 700 14px/1 var(--condensed); letter-spacing: .06em; text-transform: uppercase; box-shadow: 0 16px 36px rgba(0,0,0,.25); transition: transform .25s cubic-bezier(.16,1,.3,1), background .2s ease; }
 .download-button:hover { transform: translateY(-3px); background: #ffe0a0; }
 
