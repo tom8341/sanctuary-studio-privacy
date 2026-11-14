@@ -33,38 +33,26 @@
 
   const skillTranslations = {
     en: {
-      "skills.video.title": "From scroll to skill.",
-      "skills.video.body": "See how a skill scroll becomes a learned ability, then configure it for combat.",
       "combat.skills.title": "Shape your skills",
       "combat.skills.body": "Find skill scrolls, learn abilities, and combine them with your equipment. Equipped skills can activate automatically in combat as you face groups of dungeon enemies."
     },
     es: {
-      "skills.video.title": "Del pergamino a la habilidad.",
-      "skills.video.body": "Descubre cómo aprender una habilidad con un pergamino y configurarla para el combate.",
       "combat.skills.title": "Combina tus habilidades",
       "combat.skills.body": "Encuentra pergaminos, aprende habilidades y combínalas con tu equipo. Las habilidades equipadas pueden activarse automáticamente al combatir grupos de enemigos en la mazmorra."
     },
     "zh-hant": {
-      "skills.video.title": "從卷軸到技能。",
-      "skills.video.body": "看看如何透過技能卷軸學會能力，再將它加入戰鬥配置。",
       "combat.skills.title": "搭配你的技能",
       "combat.skills.body": "取得技能卷軸、學習技能，再與裝備組合。迎戰地牢敵群時，已裝備的技能可以在戰鬥中自動施放。"
     },
     ja: {
-      "skills.video.title": "巻物からスキルへ。",
-      "skills.video.body": "巻物からスキルを習得し、戦闘用の構成にセットする流れをご覧ください。",
       "combat.skills.title": "スキルを組み合わせよう",
       "combat.skills.body": "巻物を見つけてスキルを習得し、装備と組み合わせよう。セットしたスキルは、ダンジョンの敵の群れとの戦闘中に自動で発動できます。"
     },
     ko: {
-      "skills.video.title": "두루마리에서 스킬로.",
-      "skills.video.body": "두루마리로 스킬을 배우고 전투용 스킬 구성에 장착하는 과정을 확인하세요.",
       "combat.skills.title": "나만의 스킬 조합",
       "combat.skills.body": "스킬 두루마리를 찾아 스킬을 배우고 장비와 조합하세요. 장착한 스킬은 던전의 적 무리와 싸우는 동안 자동으로 발동할 수 있습니다."
     },
     "zh-hans": {
-      "skills.video.title": "从卷轴到技能。",
-      "skills.video.body": "看看如何通过技能卷轴学会能力，再将它加入战斗配置。",
       "combat.skills.title": "搭配你的技能",
       "combat.skills.body": "取得技能卷轴、学习技能，再与装备组合。迎战地牢敌群时，已装备的技能可以在战斗中自动施放。"
     }
