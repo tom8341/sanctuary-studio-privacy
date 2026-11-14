@@ -194,3 +194,263 @@ footer p { margin: 0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* Device gallery */
+.device-jump {
+  display: block;
+  width: fit-content;
+  margin-top: 22px;
+  color: var(--gold-bright);
+  font-size: .88rem;
+  text-decoration: underline;
+  text-underline-offset: .3em;
+}
+
+.hero .video-shell { border-radius: 8% / 3.7%; }
+.hero .video-shell > img,
+.hero .video-shell > video,
+.device-frame > img,
+.device-frame > video {
+  width: 100%;
+  height: 100%;
+}
+.hero .video-shell > video,
+.device-frame > video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  object-fit: contain;
+  transition: opacity .25s ease;
+}
+.hero .video-shell > video.is-playing,
+.device-frame > video.is-playing { opacity: 1; }
+.hero .video-shell > img { object-fit: cover; }
+.hero-motion {
+  position: absolute;
+  z-index: 1;
+  bottom: 12px;
+  left: 12px;
+  min-height: 44px;
+  background: #100908e8;
+}
+.hero-motion:not([hidden]) { display: inline-flex; align-items: center; gap: 8px; }
+
+.devices {
+  padding: clamp(64px, 9vw, 132px) clamp(24px, 8vw, 150px);
+  border-block: 1px solid var(--line);
+  background: radial-gradient(ellipse at 58% 49%, #251309, transparent 65%), #0c0705;
+}
+.devices-inner { max-width: 1260px; margin-inline: auto; }
+.devices-heading {
+  display: grid;
+  grid-template-columns: 1.35fr .65fr;
+  gap: clamp(20px, 5vw, 80px);
+  align-items: end;
+  margin-bottom: 32px;
+}
+.devices-heading h2 {
+  margin: 0;
+  font: 600 clamp(34px, 5.4vw, 72px)/1.02 var(--display);
+  letter-spacing: -.03em;
+  text-wrap: balance;
+}
+.devices-heading p, .device-note { margin: 0; color: var(--muted); }
+.device-gallery { min-width: 0; }
+.device-families:not([hidden]), .device-modes, .device-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.device-families {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.devices button, .hero-motion {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  padding: 0 12px;
+  background-color: #100a07;
+  color: var(--paper);
+  cursor: pointer;
+  font: 600 .9rem/1.15 var(--condensed);
+}
+.devices button:hover, .hero-motion:hover { border-color: var(--gold); }
+.devices button:focus-visible, .hero-motion:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+.devices button[aria-pressed="true"] {
+  border-color: var(--gold);
+  background: #28190e;
+  color: var(--gold-bright);
+}
+.device-families button { padding-inline: clamp(13px, 3vw, 28px); font-size: 1.05rem; }
+.device-stage {
+  display: grid;
+  place-items: center;
+  height: clamp(280px, 45vw, 530px);
+  touch-action: pan-y pinch-zoom;
+}
+.device-slide {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.device-gallery [hidden] { display: none; }
+.device-frame {
+  --rim: clamp(5px, 1vw, 11px);
+  --corner: clamp(10px, 2.2vw, 28px);
+  position: relative;
+  isolation: isolate;
+  width: min(100%, var(--frame-width, 710px));
+  padding: var(--rim);
+  border: 1px solid #8d7c63;
+  border-radius: var(--corner);
+  background: linear-gradient(155deg, #453b30, #15110f 20%, #080605 70%, #33281f);
+  box-shadow: inset 0 0 0 2px #211b17, 0 24px 52px #0009;
+  animation: device-arrives .4s ease both;
+}
+.device-frame > img {
+  position: relative;
+  aspect-ratio: var(--screen-ratio);
+  height: auto;
+  border-radius: calc(var(--corner) - var(--rim) / 2);
+  background: #000;
+}
+.device-frame > video {
+  inset: var(--rim);
+  width: calc(100% - 2 * var(--rim));
+  height: calc(100% - 2 * var(--rim));
+  border-radius: calc(var(--corner) - var(--rim) / 2);
+  background: #000;
+}
+.device-frame.phone { --frame-width: clamp(115px, 21vw, 223px); --corner: clamp(16px, 3vw, 39px); }
+.device-frame.phone-wide { --frame-width: 790px; --corner: clamp(16px, 3vw, 39px); }
+.device-frame.tablet { --frame-width: min(660px, 61vw); }
+.device-frame.tablet-tall { --frame-width: clamp(163px, 29vw, 321px); }
+.device-frame.duo-cover { --frame-width: min(610px, 60vw); }
+.device-frame.duo-cover-tall { --frame-width: clamp(160px, 27vw, 311px); }
+.device-frame.duo-open { --frame-width: min(670px, 62vw); }
+.device-frame.duo-tabletop { --frame-width: clamp(166px, 29vw, 329px); }
+.device-frame.duo-tabletop::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  height: 1px;
+  background: #b0a08c55;
+  pointer-events: none;
+}
+.device-footer:not([hidden]) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.device-controls button { min-width: 44px; font-size: 1.2rem; }
+.device-controls .motion-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .88rem;
+}
+.motion-symbol {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-block: 5px solid transparent;
+  border-left: 7px solid currentColor;
+}
+[aria-pressed="true"] > .motion-symbol {
+  width: 8px;
+  height: 10px;
+  border: 0;
+  border-inline: 2px solid currentColor;
+}
+.device-note {
+  max-width: 48ch;
+  min-height: 3.1em;
+  margin: 0 auto 16px;
+  text-align: center;
+  font-size: .9rem;
+  line-height: 1.55;
+  text-wrap: balance;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@keyframes device-arrives {
+  from { opacity: .2; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-actions { flex-wrap: wrap; }
+@media (min-width: 801px) and (max-width: 1050px) {
+  .primary-nav { gap: 16px; }
+  .hero { grid-template-columns: minmax(0, 1fr) minmax(0, .7fr); }
+  .hero h1 span { font-size: clamp(50px, 7vw, 74px); }
+}
+@media (max-width: 800px) {
+  .site-header {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+  .hero, .descent, .combat-section, .statement, .qa, .final-cta, footer {
+    padding-left: max(22px, env(safe-area-inset-left));
+    padding-right: max(22px, env(safe-area-inset-right));
+  }
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .hero-media { width: min(74vw, 360px); }
+  .devices {
+    padding-left: max(18px, env(safe-area-inset-left));
+    padding-right: max(18px, env(safe-area-inset-right));
+  }
+  .devices-heading { grid-template-columns: 1fr; gap: 10px; margin-bottom: 22px; }
+  .device-stage { height: clamp(290px, 83vw, 440px); }
+  .device-frame.phone { --frame-width: clamp(119px, 33vw, 182px); }
+  .device-frame.tablet, .device-frame.duo-cover, .device-frame.duo-open { --frame-width: 520px; }
+  .device-frame.tablet-tall, .device-frame.duo-tabletop, .device-frame.duo-cover-tall { --frame-width: clamp(167px, 50vw, 256px); }
+}
+@media (max-width: 360px) {
+  .device-families button, .device-modes button { padding-inline: 8px; }
+  .device-frame.phone { --frame-width: 120px; }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .site-header {
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+  }
+  .hero, .devices, .descent, .combat-section, .statement, .qa, .final-cta, footer {
+    padding-left: max(34px, env(safe-area-inset-left));
+    padding-right: max(34px, env(safe-area-inset-right));
+  }
+  .device-stage { height: 300px; }
+  .device-frame.phone { --frame-width: 121px; }
+  .device-frame.tablet-tall, .device-frame.duo-tabletop, .device-frame.duo-cover-tall { --frame-width: 176px; }
+  .device-frame.tablet, .device-frame.duo-cover, .device-frame.duo-open { --frame-width: 395px; }
+  .device-frame.phone-wide { --frame-width: 520px; }
+}
+
+.device-gallery .device-controls [hidden] { display: none; }
+.devices-heading h2:lang(zh), .devices-heading h2:lang(ja), .devices-heading h2:lang(ko) {
+  font-family: var(--body);
+  line-height: 1.15;
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .depth-panel { right: 0; }
+}
+@media (min-width: 801px) and (max-width: 1050px) {
+  .depth-panel { right: 0; }
+  .hero-media { justify-self: center; width: min(100%, 355px); }
+}

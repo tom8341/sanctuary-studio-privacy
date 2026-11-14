@@ -2,19 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#070403" />
     <meta name="description" content="Dungeon 9999m — fight, loot, and descend through a dungeon measured one dangerous meter at a time." />
     <title>Dungeon 9999m</title>
     <link rel="icon" href="assets/game-icon.png" />
-    <link rel="stylesheet" href="styles.css?v=5" />
-    <script src="i18n.js?v=4" defer></script>
+    <link rel="stylesheet" href="styles.css?v=8" />
+    <script src="i18n.js?v=6" defer></script>
+    <script src="devices.js?v=2" defer></script>
     <script src="interview-i18n.js?v=3" defer></script>
   </head>
   <body>
     <header class="site-header">
       <a class="wordmark" href="#top" aria-label="Dungeon 9999m home">DUNGEON <b>9999m</b></a>
       <nav class="primary-nav" aria-label="Primary navigation">
+        <a href="#devices" data-i18n="nav.devices">Devices</a>
         <a href="#descent" data-i18n="nav.descent">The descent</a>
         <a href="#combat" data-i18n="nav.combat">Combat</a>
         <a href="#qa" data-i18n="nav.qa">Developer Q&amp;A</a>
@@ -39,16 +41,17 @@
           <p class="hero-body" data-i18n="hero.body">Fight through torchlit halls, break enemy packs, claim what they drop, and push the descent one dangerous meter farther.</p>
           <div class="hero-actions">
             <a class="download-button" href="https://apps.apple.com/us/app/9999m-down-to-the-princess/id6747381264" data-i18n="hero.cta">Download on the App Store</a>
-            <span data-i18n="hero.meta">Portrait action RPG · iPhone</span>
+            <span data-i18n="hero.meta">Action RPG · iPhone, iPad &amp; iPhone Duo</span>
           </div>
+          <a class="device-jump" href="#devices" data-i18n="devices.jump">See supported displays ↓</a>
           <a class="interview-link" href="interview.html?lang=en" data-interview-link><span data-i18n="nav.interview">Developer interview</span><span aria-hidden="true">→</span></a>
         </div>
 
         <div class="hero-media">
           <div class="video-shell">
-            <video autoplay muted loop playsinline preload="metadata" poster="assets/gameplay-poster.jpg" aria-label="Dungeon 9999m gameplay">
-              <source src="assets/gameplay.m4v" type="video/x-m4v" />
-            </video>
+            <img src="assets/gameplay-poster.jpg" width="740" height="1600" alt="Dungeon 9999m gameplay" fetchpriority="high" />
+            <video data-src="assets/devices/iphone-portrait.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <button type="button" class="hero-motion" data-hero-motion hidden aria-pressed="false"><span class="motion-symbol" aria-hidden="true"></span><span data-i18n="devices.motion">Gameplay motion</span></button>
           </div>
           <div class="depth-panel" aria-hidden="true">
             <span>DEPTH TARGET</span>
@@ -57,6 +60,88 @@
             <p data-i18n="hero.depth">The princess waits below.</p>
           </div>
           <div class="live-mark"><span></span><b data-i18n="hero.live">REAL GAMEPLAY</b></div>
+        </div>
+      </section>
+
+      <section class="devices" id="devices" aria-labelledby="devices-title">
+        <div class="devices-inner">
+          <div class="devices-heading">
+            <h2 id="devices-title" data-i18n="devices.title">Play across Apple devices</h2>
+            <p data-i18n="devices.intro">See Dungeon 9999m on iPhone, iPad, and iPhone Duo.</p>
+          </div>
+          <div class="device-gallery" data-device-gallery>
+            <div class="device-families" data-device-controls hidden>
+              <button type="button" data-family="iphone" aria-pressed="true">iPhone</button>
+              <button type="button" data-family="ipad" aria-pressed="false">iPad</button>
+              <button type="button" data-family="duo" aria-pressed="false">iPhone Duo</button>
+            </div>
+            <div class="device-stage">
+              <figure class="device-slide" data-device="iphone" data-mode="portrait">
+                <div class="device-frame phone" style="--screen-ratio: 332 / 720">
+                  <img src="assets/gameplay-poster.jpg" width="740" height="1600" alt="iPhone — Portrait" data-i18n-alt="devices.alt.portrait.iphone" loading="lazy" decoding="async" />
+                  <video data-src="assets/devices/iphone-portrait.mp4" muted playsinline loop preload="none" aria-hidden="true"></video>
+                </div>
+              </figure>
+              <figure class="device-slide" data-device="iphone" data-mode="landscape" hidden>
+                <div class="device-frame phone-wide" style="--screen-ratio: 1168 / 538">
+                  <img src="assets/devices/iphone-landscape.jpg" width="1168" height="538" alt="iPhone — Landscape" data-i18n-alt="devices.alt.landscape.iphone" loading="lazy" decoding="async" />
+                  <video data-src="assets/devices/iphone-landscape.mp4" muted playsinline loop preload="none" aria-hidden="true"></video>
+                </div>
+              </figure>
+              <figure class="device-slide" data-device="ipad" data-mode="landscape" hidden>
+                <div class="device-frame tablet" style="--screen-ratio: 1400 / 972">
+                  <img src="assets/devices/ipad-landscape.jpg" width="1400" height="972" alt="iPad — Landscape" data-i18n-alt="devices.alt.landscape.ipad" loading="lazy" decoding="async" />
+                  <video data-src="assets/devices/ipad-landscape.mp4" muted playsinline loop preload="none" aria-hidden="true"></video>
+                </div>
+              </figure>
+              <figure class="device-slide" data-device="ipad" data-mode="portrait" hidden>
+                <div class="device-frame tablet-tall" style="--screen-ratio: 834 / 1200">
+                  <img src="assets/devices/ipad-portrait.jpg" width="834" height="1200" alt="iPad — Portrait" data-i18n-alt="devices.alt.portrait.ipad" loading="lazy" decoding="async" />
+                </div>
+              </figure>
+              <figure class="device-slide" data-device="duo" data-mode="outerWide" hidden>
+                <div class="device-frame duo-cover" style="--screen-ratio: 1400 / 962">
+                  <img src="assets/devices/duo-outer-landscape.jpg" width="1400" height="962" alt="iPhone Duo — Outer display · Landscape" data-i18n-alt="devices.alt.outerWide.duo" loading="lazy" decoding="async" />
+                  <video data-src="assets/devices/duo-landscape.mp4" muted playsinline loop preload="none" aria-hidden="true"></video>
+                </div>
+              </figure>
+              <figure class="device-slide" data-device="duo" data-mode="outerTall" hidden>
+                <div class="device-frame duo-cover-tall" style="--screen-ratio: 824 / 1200">
+                  <img src="assets/devices/duo-outer-portrait.jpg" width="824" height="1200" alt="iPhone Duo — Outer display · Portrait" data-i18n-alt="devices.alt.outerTall.duo" loading="lazy" decoding="async" />
+                </div>
+              </figure>
+              <figure class="device-slide" data-device="duo" data-mode="inner" hidden>
+                <div class="device-frame duo-open" style="--screen-ratio: 1400 / 984">
+                  <img src="assets/devices/duo-inner.jpg" width="1400" height="984" alt="iPhone Duo — Inner display · Landscape" data-i18n-alt="devices.alt.inner.duo" loading="lazy" decoding="async" />
+                </div>
+              </figure>
+              <figure class="device-slide" data-device="duo" data-mode="tabletop" hidden>
+                <div class="device-frame duo-tabletop" style="--screen-ratio: 844 / 1200">
+                  <img src="assets/devices/duo-tabletop.jpg" width="844" height="1200" alt="iPhone Duo — Tabletop" data-i18n-alt="devices.alt.tabletop.duo" loading="lazy" decoding="async" />
+                </div>
+              </figure>
+            </div>
+            <p class="device-note" data-device-note data-i18n="devices.caption.iphone.portrait">Explore the dungeon in a vertical view, with touch controls along the sides and bottom.</p>
+            <div class="device-footer" data-device-controls hidden>
+              <div class="device-modes" data-device-modes aria-label="Display modes" data-i18n-aria="devices.modes">
+                <button type="button" data-mode-index="0" aria-pressed="true" data-i18n="devices.portrait">Portrait</button>
+                <button type="button" data-mode-index="1" aria-pressed="false" data-i18n="devices.landscape">Landscape</button>
+                <button type="button" data-mode-index="2" aria-pressed="false" data-i18n="devices.landscape" hidden>Landscape</button>
+                <button type="button" data-mode-index="3" aria-pressed="false" data-i18n="devices.portrait" hidden>Portrait</button>
+                <button type="button" data-mode-index="4" aria-pressed="false" data-i18n="devices.outerWide" hidden>Outer display · Landscape</button>
+                <button type="button" data-mode-index="5" aria-pressed="false" data-i18n="devices.outerTall" hidden>Outer display · Portrait</button>
+                <button type="button" data-mode-index="6" aria-pressed="false" data-i18n="devices.inner" hidden>Inner display · Landscape</button>
+                <button type="button" data-mode-index="7" aria-pressed="false" data-i18n="devices.tabletop" hidden>Tabletop</button>
+              </div>
+              <div class="device-controls">
+                <button type="button" data-previous aria-label="Previous view" data-i18n-aria="devices.previous">‹</button>
+                <button type="button" class="motion-button" data-rotation aria-pressed="false"><span aria-hidden="true" class="motion-symbol"></span><span data-i18n="devices.auto">Autoplay</span></button>
+                <button type="button" class="motion-button" data-clip hidden aria-pressed="false"><span class="motion-symbol" aria-hidden="true"></span><span data-i18n="devices.clip">Gameplay video</span></button>
+                <button type="button" data-next aria-label="Next view" data-i18n-aria="devices.next">›</button>
+              </div>
+            </div>
+            <span class="visually-hidden" data-device-status role="status"></span>
+          </div>
         </div>
       </section>
 

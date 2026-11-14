@@ -73,6 +73,171 @@
     Object.assign(translations[locale], copy);
   });
 
+  const deviceTranslations = {
+    "en": {
+      "nav.devices": "Devices",
+      "hero.meta": "Action RPG · iPhone, iPad & iPhone Duo",
+      "devices.jump": "See supported displays ↓",
+      "devices.title": "Play across Apple devices",
+      "devices.intro": "See Dungeon 9999m on iPhone, iPad, and iPhone Duo.",
+      "devices.modes": "Display modes",
+      "devices.previous": "Previous view",
+      "devices.next": "Next view",
+      "devices.auto": "Autoplay",
+      "devices.motion": "Gameplay motion",
+      "devices.clip": "Gameplay video",
+      "devices.portrait": "Portrait",
+      "devices.landscape": "Landscape",
+      "devices.outerWide": "Outer display · Landscape",
+      "devices.outerTall": "Outer display · Portrait",
+      "devices.inner": "Inner display · Landscape",
+      "devices.tabletop": "Tabletop",
+      "devices.caption.iphone.portrait": "Explore the dungeon in a vertical view, with touch controls along the sides and bottom.",
+      "devices.caption.iphone.landscape": "Turn iPhone sideways for a wider view of the dungeon.",
+      "devices.caption.ipad.landscape": "See more of the room and the paths around you in landscape on iPad.",
+      "devices.caption.ipad.portrait": "Hold iPad upright to follow the descent through stairs and chambers.",
+      "devices.caption.duo.outerWide": "Play in landscape on the outer display while iPhone Duo is folded.",
+      "devices.caption.duo.outerTall": "Keep iPhone Duo folded and play upright on the outer display.",
+      "devices.caption.duo.inner": "Unfold iPhone Duo for a larger view of combat and loot on the inner display.",
+      "devices.caption.duo.tabletop": "In tabletop mode, the battle stays above the fold and touch controls sit below it.",
+    },
+    "es": {
+      "nav.devices": "Dispositivos",
+      "hero.meta": "RPG de acción · iPhone, iPad y iPhone Duo",
+      "devices.jump": "Ver pantallas compatibles ↓",
+      "devices.title": "Juega en dispositivos Apple",
+      "devices.intro": "Mira Dungeon 9999m en iPhone, iPad y iPhone Duo.",
+      "devices.modes": "Modos de pantalla",
+      "devices.previous": "Vista anterior",
+      "devices.next": "Vista siguiente",
+      "devices.auto": "Rotación automática",
+      "devices.motion": "Animación de juego",
+      "devices.clip": "Vídeo de juego",
+      "devices.portrait": "Vertical",
+      "devices.landscape": "Horizontal",
+      "devices.outerWide": "Pantalla exterior · Horizontal",
+      "devices.outerTall": "Pantalla exterior · Vertical",
+      "devices.inner": "Pantalla interior · Horizontal",
+      "devices.tabletop": "Modo de mesa",
+      "devices.caption.iphone.portrait": "Explora la mazmorra en vertical, con controles táctiles en los laterales y abajo.",
+      "devices.caption.iphone.landscape": "Gira el iPhone para ver la mazmorra en horizontal.",
+      "devices.caption.ipad.landscape": "Mira más de la sala y los caminos que la rodean en horizontal en el iPad.",
+      "devices.caption.ipad.portrait": "Sostén el iPad en vertical para seguir el descenso por escaleras y salas.",
+      "devices.caption.duo.outerWide": "Juega en horizontal en la pantalla exterior con el iPhone Duo plegado.",
+      "devices.caption.duo.outerTall": "Juega en vertical en la pantalla exterior con el iPhone Duo plegado.",
+      "devices.caption.duo.inner": "Despliega el iPhone Duo para ver el combate y el botín en la pantalla interior.",
+      "devices.caption.duo.tabletop": "En modo de mesa, el combate queda arriba del pliegue y los controles táctiles, abajo.",
+    },
+    "zh-hant": {
+      "nav.devices": "支援裝置",
+      "hero.meta": "動作角色扮演 · iPhone、iPad 與 iPhone Duo",
+      "devices.jump": "查看支援的顯示模式 ↓",
+      "devices.title": "在不同 Apple 裝置上遊玩",
+      "devices.intro": "看看 Dungeon 9999m 在 iPhone、iPad 與 iPhone Duo 上的實際遊戲畫面。",
+      "devices.modes": "顯示模式",
+      "devices.previous": "上一個畫面",
+      "devices.next": "下一個畫面",
+      "devices.auto": "自動輪播",
+      "devices.motion": "遊戲動態",
+      "devices.clip": "遊戲影片",
+      "devices.portrait": "直向",
+      "devices.landscape": "橫向",
+      "devices.outerWide": "外螢幕 · 橫向",
+      "devices.outerTall": "外螢幕 · 直向",
+      "devices.inner": "內螢幕 · 橫向",
+      "devices.tabletop": "桌面模式",
+      "devices.caption.iphone.portrait": "直向探索地下城，觸控操作分布在畫面兩側與底部。",
+      "devices.caption.iphone.landscape": "將 iPhone 橫放，查看更寬的地下城視野。",
+      "devices.caption.ipad.landscape": "iPad 橫向遊玩時，可以同時看到房間與周圍的通道。",
+      "devices.caption.ipad.portrait": "直向握持 iPad，沿著階梯穿過一間間石室。",
+      "devices.caption.duo.outerWide": "闔上 iPhone Duo，即可在外螢幕橫向遊玩。",
+      "devices.caption.duo.outerTall": "闔上 iPhone Duo，即可在外螢幕直向遊玩。",
+      "devices.caption.duo.inner": "展開 iPhone Duo，在更大的內螢幕上查看戰鬥和掉落。",
+      "devices.caption.duo.tabletop": "桌面模式下，摺痕上方顯示戰鬥畫面，下方是觸控操作。",
+    },
+    "ja": {
+      "nav.devices": "対応機種",
+      "hero.meta": "アクションRPG · iPhone、iPad、iPhone Duo",
+      "devices.jump": "対応する画面をチェック ↓",
+      "devices.title": "Appleデバイスでプレイ",
+      "devices.intro": "iPhone、iPad、iPhone DuoでのDungeon 9999mのプレイ画面。",
+      "devices.modes": "表示モード",
+      "devices.previous": "前の画面",
+      "devices.next": "次の画面",
+      "devices.auto": "自動切り替え",
+      "devices.motion": "ゲーム映像の再生",
+      "devices.clip": "プレイ動画",
+      "devices.portrait": "縦画面",
+      "devices.landscape": "横画面",
+      "devices.outerWide": "外側ディスプレイ · 横画面",
+      "devices.outerTall": "外側ディスプレイ · 縦画面",
+      "devices.inner": "内側ディスプレイ · 横画面",
+      "devices.tabletop": "テーブルトップモード",
+      "devices.caption.iphone.portrait": "縦画面でダンジョンを探索できます。タッチ操作は画面の両側と下部にあります。",
+      "devices.caption.iphone.landscape": "iPhoneを横にすると、ダンジョンを横長の画面で見渡せます。",
+      "devices.caption.ipad.landscape": "iPadの横画面では、部屋や周囲の通路を広く見渡せます。",
+      "devices.caption.ipad.portrait": "iPadを縦に持って、階段や石造りの部屋を進みましょう。",
+      "devices.caption.duo.outerWide": "iPhone Duoを閉じたまま、外側の画面で横向きにプレイできます。",
+      "devices.caption.duo.outerTall": "iPhone Duoを閉じたまま、外側の画面で縦向きにプレイできます。",
+      "devices.caption.duo.inner": "iPhone Duoを開くと、広い内側の画面で戦闘や戦利品を確認できます。",
+      "devices.caption.duo.tabletop": "テーブルトップモードでは、折り目の上に戦闘画面、下にタッチ操作が表示されます。",
+    },
+    "ko": {
+      "nav.devices": "지원 기기",
+      "hero.meta": "액션 RPG · iPhone, iPad 및 iPhone Duo",
+      "devices.jump": "지원 화면 모드 보기 ↓",
+      "devices.title": "Apple 기기에서 플레이",
+      "devices.intro": "iPhone, iPad, iPhone Duo에서 Dungeon 9999m의 실제 플레이를 확인하세요.",
+      "devices.modes": "화면 모드",
+      "devices.previous": "이전 화면",
+      "devices.next": "다음 화면",
+      "devices.auto": "자동 전환",
+      "devices.motion": "게임 영상 재생",
+      "devices.clip": "플레이 영상",
+      "devices.portrait": "세로 화면",
+      "devices.landscape": "가로 화면",
+      "devices.outerWide": "외부 화면 · 가로",
+      "devices.outerTall": "외부 화면 · 세로",
+      "devices.inner": "내부 화면 · 가로",
+      "devices.tabletop": "테이블톱 모드",
+      "devices.caption.iphone.portrait": "세로 화면으로 던전을 탐험하세요. 화면 양옆과 아래에 터치 조작부가 있습니다.",
+      "devices.caption.iphone.landscape": "iPhone을 가로로 돌리면 던전을 더 넓게 볼 수 있습니다.",
+      "devices.caption.ipad.landscape": "iPad 가로 화면으로 방과 주변 통로를 한눈에 보세요.",
+      "devices.caption.ipad.portrait": "iPad를 세로로 들고 계단과 석실을 따라 내려가세요.",
+      "devices.caption.duo.outerWide": "iPhone Duo를 접은 상태로 외부 화면에서 가로로 플레이하세요.",
+      "devices.caption.duo.outerTall": "iPhone Duo를 접은 상태로 외부 화면에서 세로로 플레이하세요.",
+      "devices.caption.duo.inner": "iPhone Duo를 펼쳐 더 큰 내부 화면에서 전투와 전리품을 확인하세요.",
+      "devices.caption.duo.tabletop": "테이블톱 모드에서는 접히는 부분 위에 전투 화면이, 아래에 터치 조작부가 표시됩니다.",
+    },
+    "zh-hans": {
+      "nav.devices": "支持设备",
+      "hero.meta": "动作角色扮演 · iPhone、iPad 和 iPhone Duo",
+      "devices.jump": "查看支持的显示模式 ↓",
+      "devices.title": "在不同 Apple 设备上游玩",
+      "devices.intro": "看看 Dungeon 9999m 在 iPhone、iPad 和 iPhone Duo 上的实际游戏画面。",
+      "devices.modes": "显示模式",
+      "devices.previous": "上一个画面",
+      "devices.next": "下一个画面",
+      "devices.auto": "自动轮播",
+      "devices.motion": "游戏动态",
+      "devices.clip": "游戏视频",
+      "devices.portrait": "竖屏",
+      "devices.landscape": "横屏",
+      "devices.outerWide": "外屏 · 横屏",
+      "devices.outerTall": "外屏 · 竖屏",
+      "devices.inner": "内屏 · 横屏",
+      "devices.tabletop": "桌面模式",
+      "devices.caption.iphone.portrait": "竖屏探索地下城，触控按键分布在画面两侧和底部。",
+      "devices.caption.iphone.landscape": "横握 iPhone，以更宽的视野观察地下城。",
+      "devices.caption.ipad.landscape": "iPad 横屏可以同时看到房间和周围的通道。",
+      "devices.caption.ipad.portrait": "竖握 iPad，沿着楼梯穿过一间间石室。",
+      "devices.caption.duo.outerWide": "合上 iPhone Duo，在外屏横向游玩。",
+      "devices.caption.duo.outerTall": "合上 iPhone Duo，在外屏竖向游玩。",
+      "devices.caption.duo.inner": "展开 iPhone Duo，在更大的内屏查看战斗和掉落。",
+      "devices.caption.duo.tabletop": "桌面模式下，折痕上方是战斗画面，下方是触控操作。",
+    },
+  };
+
   const supported = ["en", "es", "zh-hant", "ja", "ko", "zh-hans"];
   const requested = new URLSearchParams(window.location.search).get("lang")?.toLowerCase() || "en";
   const language = supported.includes(requested) ? requested : "en";
@@ -92,11 +257,21 @@
     if (link.dataset.lang === language) link.setAttribute("aria-current", "page");
   });
 
-  const dictionary = translations[language];
+  const dictionary = { ...translations[language], ...deviceTranslations[language] };
+  window.deviceStrings = deviceTranslations[language];
   dictionary["nav.interview"] = interviewLabels[language];
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const value = dictionary[element.dataset.i18n];
     if (value) element.innerHTML = value;
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
+    const value = dictionary[element.dataset.i18nAria];
+    if (value) element.setAttribute("aria-label", value);
+  });
+  document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+    const [, , mode, family] = element.dataset.i18nAlt.split(".");
+    const device = { iphone: "iPhone", ipad: "iPad", duo: "iPhone Duo" }[family];
+    element.alt = device + " · " + dictionary["devices." + mode];
   });
   const description = document.querySelector('meta[name="description"]');
   if (description) description.setAttribute("content", dictionary.meta);
