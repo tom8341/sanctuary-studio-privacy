@@ -23,7 +23,9 @@
 .interview-masthead {
   padding: clamp(64px, 10vw, 116px) 0 clamp(44px, 7vw, 84px);
   border-bottom: 1px solid var(--line);
-  background: radial-gradient(ellipse at 85% 15%, #301c10, var(--surface) 65%, var(--black));
+  background:
+    linear-gradient(180deg, rgba(5, 3, 3, .08), rgba(5, 3, 3, .72)),
+    var(--surface) url("assets/interview-banner.jpg") center / cover no-repeat;
 }
 
 .interview-column {
@@ -58,7 +60,7 @@
   min-height: 44px;
   align-items: center;
   padding-inline: 8px;
-  color: var(--muted);
+  color: var(--paper);
   font-size: .875rem;
 }
 
